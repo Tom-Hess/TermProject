@@ -40,7 +40,7 @@ namespace TermProject
             }
             else
             {
-                //create the user in the Database, display message
+                //add the user to the DB if username is not used, display message
             }
         }
     }

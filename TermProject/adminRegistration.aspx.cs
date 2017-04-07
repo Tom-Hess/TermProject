@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TermProjectLibrary;
-
+using System.Data;
+using Utilities;
 namespace TermProject
 {
     public partial class WebForm4 : System.Web.UI.Page
     {
         Validation myValidation = new Validation();
+        DBConnect myDB = new DBConnect();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -41,6 +44,39 @@ namespace TermProject
             else
             {
                 //create the Admin in the Database, display message
+                SqlCommand myCommand = new SqlCommand();
+                myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                myCommand.CommandText = "AddAdmin";
+
+                SqlParameter myParameter = new SqlParameter("Name", txtName.Text);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("Password", txtPassword.Text);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("Email", txtEmail.Text);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                int returnValue = myDB.DoUpdateUsingCmdObj(myCommand);
+
+
+                //account is added
+                if(returnValue > 0)
+                {
+
+                } else
+                {
+                    //SP failed
+                    
+                }
+
+
             }
         }
     }

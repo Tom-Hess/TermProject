@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3E22DEB8-A879-4EF7-855C-743D59D57DCC}</ProjectGuid>
+    <ProjectGuid>{54A1762D-3EA2-435B-B016-4A119433ECC8}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TermProject</RootNamespace>
-    <AssemblyName>TermProject</AssemblyName>
+    <RootNamespace>TermProjWS</RootNamespace>
+    <AssemblyName>TermProjWS</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -67,16 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="login.Master" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -85,93 +75,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
+    <Content Include="RegistrationWS.asmx" />
     <Content Include="Web.config" />
-    <Content Include="userLogin.aspx" />
-    <Content Include="userRegistration.aspx" />
-    <Content Include="adminLogin.aspx" />
-    <Content Include="adminRegistration.aspx" />
-    <Content Include="home.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="login.Master.cs">
-      <DependentUpon>login.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login.Master.designer.cs">
-      <DependentUpon>login.Master</DependentUpon>
-    </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
+    <Compile Include="RegistrationWS.asmx.cs">
+      <DependentUpon>RegistrationWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="userLogin.aspx.cs">
-      <DependentUpon>userLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="userLogin.aspx.designer.cs">
-      <DependentUpon>userLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="userRegistration.aspx.cs">
-      <DependentUpon>userRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="userRegistration.aspx.designer.cs">
-      <DependentUpon>userRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="adminLogin.aspx.cs">
-      <DependentUpon>adminLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="adminLogin.aspx.designer.cs">
-      <DependentUpon>adminLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="adminRegistration.aspx.cs">
-      <DependentUpon>adminRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="adminRegistration.aspx.designer.cs">
-      <DependentUpon>adminRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\RegistrationWS\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TermProjectLibrary\TermProjectLibrary.csproj">
-      <Project>{7192d7f4-ff2e-4dce-a2f4-9619226c32c2}</Project>
-      <Name>TermProjectLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52728/RegistrationWS.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\RegistrationWS\</RelPath>
-      <UpdateFromURL>http://localhost:52728/RegistrationWS.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TermProject_RegistrationWS_RegistrationWS</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -186,9 +99,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6313</DevelopmentServerPort>
+          <DevelopmentServerPort>52728</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6313/</IISUrl>
+          <IISUrl>http://localhost:52728/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblName" Text="User Name: "></asp:Label>
+                            <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
                         </div>
                         <div class="form-group">

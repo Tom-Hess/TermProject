@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/login.Master" AutoEventWireup="true" CodeBehind="adminRegistration.aspx.cs" Inherits="TermProject.WebForm4" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginB/login.Master" AutoEventWireup="true" CodeBehind="registration.aspx.cs" Inherits="TermProject.LoginB.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -8,12 +7,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Cloud Administrator Registration</strong></h3>
+                    <h3 class="panel-title"><strong>Registration</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblName" Text="Administrator Name: "></asp:Label>
+                            <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
                         </div>
                         <div class="form-group">
@@ -22,11 +21,15 @@
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>
-                            <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtPassword"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
-                            <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtConfirm"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:RadioButton ID="rbAdmin" runat="server" Text="Cloud Administrator" />
+                            <asp:RadioButton ID="rbUser" runat="server" Text="Cloud User" Checked="True" />
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" />

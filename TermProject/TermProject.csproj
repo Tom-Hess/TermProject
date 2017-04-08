@@ -66,8 +66,26 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\management.aspx" />
+    <Content Include="Admin\log.aspx" />
+    <Content Include="LoginB\home.aspx" />
+    <Content Include="LoginB\login.aspx" />
+    <Content Include="LoginB\registration.aspx" />
+    <Content Include="Login\WebForm1.aspx" />
     <Content Include="packages.config" />
-    <Content Include="login.Master" />
+    <Content Include="Login\login.Master" />
+    <Content Include="Admin\Admin.Master" />
+    <Content Include="LoginB\login.Master" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="User\User.Master" />
+    <None Include="Web References\RegistrationWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -76,56 +94,162 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
+    <Content Include="User\upload.aspx" />
+    <Content Include="User\cloud.aspx" />
+    <Content Include="User\history.aspx" />
+    <Content Include="User\account.aspx" />
     <Content Include="Web.config" />
-    <Content Include="userLogin.aspx" />
-    <Content Include="userRegistration.aspx" />
-    <Content Include="adminLogin.aspx" />
-    <Content Include="adminRegistration.aspx" />
-    <Content Include="home.aspx" />
+    <Content Include="Login\userLogin.aspx" />
+    <Content Include="Login\userRegistration.aspx" />
+    <Content Include="Login\adminLogin.aspx" />
+    <Content Include="Login\adminRegistration.aspx" />
+    <Content Include="Login\home.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="login.Master.cs">
+    <Compile Include="Admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\management.aspx.cs">
+      <DependentUpon>management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\management.aspx.designer.cs">
+      <DependentUpon>management.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\log.aspx.cs">
+      <DependentUpon>log.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\log.aspx.designer.cs">
+      <DependentUpon>log.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\login.Master.cs">
       <DependentUpon>login.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="login.Master.designer.cs">
+    <Compile Include="LoginB\login.Master.designer.cs">
       <DependentUpon>login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginB\home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginB\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\registration.aspx.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginB\registration.aspx.designer.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\login.Master.cs">
+      <DependentUpon>login.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\login.Master.designer.cs">
+      <DependentUpon>login.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Login\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="userLogin.aspx.cs">
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Login\userLogin.aspx.cs">
       <DependentUpon>userLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="userLogin.aspx.designer.cs">
+    <Compile Include="Login\userLogin.aspx.designer.cs">
       <DependentUpon>userLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="userRegistration.aspx.cs">
+    <Compile Include="Login\userRegistration.aspx.cs">
       <DependentUpon>userRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="userRegistration.aspx.designer.cs">
+    <Compile Include="Login\userRegistration.aspx.designer.cs">
       <DependentUpon>userRegistration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminLogin.aspx.cs">
+    <Compile Include="Login\adminLogin.aspx.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminLogin.aspx.designer.cs">
+    <Compile Include="Login\adminLogin.aspx.designer.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adminRegistration.aspx.cs">
+    <Compile Include="Login\adminRegistration.aspx.cs">
       <DependentUpon>adminRegistration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adminRegistration.aspx.designer.cs">
+    <Compile Include="Login\adminRegistration.aspx.designer.cs">
       <DependentUpon>adminRegistration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="home.aspx.cs">
+    <Compile Include="Login\home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="home.aspx.designer.cs">
+    <Compile Include="Login\home.aspx.designer.cs">
       <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\User.Master.cs">
+      <DependentUpon>User.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\User.Master.designer.cs">
+      <DependentUpon>User.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\upload.aspx.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\upload.aspx.designer.cs">
+      <DependentUpon>upload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\cloud.aspx.cs">
+      <DependentUpon>cloud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\cloud.aspx.designer.cs">
+      <DependentUpon>cloud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\history.aspx.cs">
+      <DependentUpon>history.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\history.aspx.designer.cs">
+      <DependentUpon>history.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\account.aspx.cs">
+      <DependentUpon>account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\account.aspx.designer.cs">
+      <DependentUpon>account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RegistrationWS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +258,26 @@
       <Name>TermProjectLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:52728/RegistrationWS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RegistrationWS\</RelPath>
+      <UpdateFromURL>http://localhost:52728/RegistrationWS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TermProject_RegistrationWS_RegistrationWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

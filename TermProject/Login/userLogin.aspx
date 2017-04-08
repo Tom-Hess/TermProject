@@ -8,12 +8,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Cloud User Login</strong></h3>
+                    <h3 class="panel-title"><strong>Login</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblName" Text="User Name: "></asp:Label>
+                            <asp:Label runat="server" ID="lblName" Text="Email Address: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
                         </div>
                         <div class="form-group">
@@ -23,6 +23,10 @@
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblRemember" Text="Remember me: "></asp:Label>
                             <asp:CheckBox runat="server" ID="chkRemember" />
+                        </div>
+                        <div class="form-group">
+                            <asp:RadioButton ID="rbAdmin" runat="server" Text="Cloud Administrator" />
+                            <asp:RadioButton ID="rbUser" runat="server" Text="Cloud User" />
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnLogin" Text="Log In" OnClick="btnLogin_Click" />

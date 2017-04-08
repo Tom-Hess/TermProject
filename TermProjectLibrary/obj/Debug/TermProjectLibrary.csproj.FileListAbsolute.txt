@@ -1,5 +1,5 @@
-C:\Users\Tom\Documents\College\(6th)Spring 2017\C# 2\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.dll
-C:\Users\Tom\Documents\College\(6th)Spring 2017\C# 2\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
-C:\Users\Tom\Documents\College\(6th)Spring 2017\C# 2\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
-C:\Users\Tom\Documents\College\(6th)Spring 2017\C# 2\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
-C:\Users\Tom\Documents\College\(6th)Spring 2017\C# 2\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb
+J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\bin\Debug\TermProjectLibrary.dll
+J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
+J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
+J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
+J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb

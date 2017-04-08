@@ -3,3 +3,8 @@ J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\bin\Debug\TermPro
 J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
 J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
 J:\Download\TermProject-Tom\TermProject-Tom\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb
+C:\Users\Player01201712\Desktop\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.dll
+C:\Users\Player01201712\Desktop\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
+C:\Users\Player01201712\Desktop\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Player01201712\Desktop\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
+C:\Users\Player01201712\Desktop\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb

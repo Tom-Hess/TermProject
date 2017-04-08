@@ -21,11 +21,11 @@
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtPassword"></asp:TextBox>
+                            <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtConfirm"></asp:TextBox>
+                            <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:RadioButton ID="rbAdmin" runat="server" Text="Cloud Administrator" />

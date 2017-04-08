@@ -71,9 +71,7 @@
     <Content Include="LoginB\home.aspx" />
     <Content Include="LoginB\login.aspx" />
     <Content Include="LoginB\registration.aspx" />
-    <Content Include="Login\WebForm1.aspx" />
     <Content Include="packages.config" />
-    <Content Include="Login\login.Master" />
     <Content Include="Admin\Admin.Master" />
     <Content Include="LoginB\login.Master" />
     <None Include="Properties\Settings.settings">
@@ -100,11 +98,6 @@
     <Content Include="User\history.aspx" />
     <Content Include="User\account.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Login\userLogin.aspx" />
-    <Content Include="Login\userRegistration.aspx" />
-    <Content Include="Login\adminLogin.aspx" />
-    <Content Include="Login\adminRegistration.aspx" />
-    <Content Include="Login\home.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Admin.Master.cs">
@@ -156,60 +149,11 @@
     <Compile Include="LoginB\registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Login\login.Master.cs">
-      <DependentUpon>login.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\login.Master.designer.cs">
-      <DependentUpon>login.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Login\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Login\userLogin.aspx.cs">
-      <DependentUpon>userLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\userLogin.aspx.designer.cs">
-      <DependentUpon>userLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login\userRegistration.aspx.cs">
-      <DependentUpon>userRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\userRegistration.aspx.designer.cs">
-      <DependentUpon>userRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login\adminLogin.aspx.cs">
-      <DependentUpon>adminLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\adminLogin.aspx.designer.cs">
-      <DependentUpon>adminLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login\adminRegistration.aspx.cs">
-      <DependentUpon>adminRegistration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\adminRegistration.aspx.designer.cs">
-      <DependentUpon>adminRegistration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Login\home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Login\home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

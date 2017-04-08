@@ -48,7 +48,8 @@ namespace TermProject.LoginB
                 if (rbAdmin.Checked)
                 {
                     //create the Admin in the Database, display message
-                    Person newAdmin = new Person();
+                    //Person newAdmin = new Person();
+                    RegistrationWS.Person newAdmin = new RegistrationWS.Person();
                     newAdmin.AccountType = adminID;
                     newAdmin.Email = txtEmail.Text;
                     newAdmin.Name = txtName.Text;
@@ -68,8 +69,10 @@ namespace TermProject.LoginB
                 }
                 else
                 {
-                    //create the Admin in the Database, display message
-                    Person newUser = new Person();
+                    //create the user in the Database, display message
+                    //Person newUser = new Person();
+                    RegistrationWS.Person newUser = new RegistrationWS.Person();
+
                     newUser.AccountType = adminID;
                     newUser.Email = txtEmail.Text;
                     newUser.Name = txtName.Text;

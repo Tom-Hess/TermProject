@@ -48,6 +48,7 @@ namespace TermProject.LoginB
                 int count = Convert.ToInt32(loginArray[0]);
                 if(count > 0 )
                 {
+                    Session["Login"] = 1;
                     //If found and chkRemember is checked, create a cookie containing user + pw info, then redirect to the next page
                     if (chkRemember.Checked)
                     {

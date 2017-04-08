@@ -45,7 +45,7 @@ namespace TermProject.LoginB
             }
             else
             {
-                if (rblRole.SelectedValue == "admin")
+                if (rblRole.SelectedValue == "Administrator")
                 {
                     //create the Admin in the Database, display message
                     //Person newAdmin = new Person();
@@ -60,7 +60,7 @@ namespace TermProject.LoginB
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
                         "alert('Administrator account successfully created.'); window.location='" +
-                        Request.ApplicationPath + "management.aspx';", true);
+                        Request.ApplicationPath + "../Admin/management.aspx';", true);
                     }
                     else
                     {
@@ -83,7 +83,7 @@ namespace TermProject.LoginB
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
                         "alert('User account successfully created.'); window.location='" +
-                        Request.ApplicationPath + "cloud.aspx';", true);
+                        Request.ApplicationPath + "../User/cloud.aspx';", true);
                     }
                     else
                     {

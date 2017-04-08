@@ -37,9 +37,15 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="form-group">
+                            <asp:Label runat="server" ID="lblRemember" Text="Create cookie: "></asp:Label>
+                            <asp:CheckBox runat="server" ID="chkRemember" />
+                        </div>
+                        <div class="form-group">
                             <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
+
+
                         <br />
                     </form>
                 </div>

@@ -52,6 +52,8 @@ namespace TermProject.LoginB
 
         public void createUser()
         {
+            HttpCookie myUserCookie = new HttpCookie("UserCookie");
+
             //create the Admin in the Database, display message
             //Person newAdmin = new Person();
             RegistrationWS.Person newPerson = new RegistrationWS.Person();
@@ -70,6 +72,18 @@ namespace TermProject.LoginB
 
             if (RegWS.AddAccount(newPerson))
             {
+                if (chkRemember.Checked)
+                {
+                    myUserCookie.Expires = DateTime.Now.AddDays(30);
+                }
+                else
+                {
+                    myUserCookie.Expires = DateTime.Now.AddDays(-1);
+
+                }
+                myUserCookie.Values["UserName"] = txtEmail.Text;
+                myUserCookie.Values["Password"] = txtPassword.Text;
+                Response.Cookies.Add(myUserCookie);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Account successfully created.');window.location ='login.aspx';", true);
             }
             else

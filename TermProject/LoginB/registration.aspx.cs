@@ -45,7 +45,7 @@ namespace TermProject.LoginB
             }
             else
             {
-                if (rbAdmin.Checked)
+                if (rblRole.SelectedValue == "admin")
                 {
                     //create the Admin in the Database, display message
                     //Person newAdmin = new Person();

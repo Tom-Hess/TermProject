@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginB/login.Master" AutoEventWireup="true" CodeBehind="registration.aspx.cs" Inherits="TermProject.LoginB.WebForm3" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -28,8 +29,10 @@
                             <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:RadioButton ID="rbAdmin" runat="server" Text="Cloud Administrator" />
-                            <asp:RadioButton ID="rbUser" runat="server" Text="Cloud User" Checked="True" />
+                            <asp:RadioButtonList runat="server" ID="rblRole">
+                                <asp:ListItem Selected="True">User</asp:ListItem>
+                                <asp:ListItem>Administrator</asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" />

@@ -8,25 +8,25 @@ namespace TermProjWS
 {
     public class Person
     {
-        string email;
-        string password;
-        string name;
-        int accountType; //admin = 1, user = 0
-        double storageCapacity;
+        //string email;
+        //string password;
+        //string name;
+        //int accountType; //admin = 1, user = 0
+        //double storageCapacity;
 
-        public Person ()
-        {
+        //public Person ()
+        //{
 
-        }
+        //}
 
-        public Person(string Email, string Password, string Name, int AccountType, double StorageCapacity)
-        {
-            this.email = Email;
-            this.password = Password;
-            this.name = Name;
-            this.accountType = AccountType;
-            this.storageCapacity = StorageCapacity;
-        }
+        //public Person(string Email, string Password, string Name, int AccountType, double StorageCapacity)
+        //{
+        //    this.email = Email;
+        //    this.password = Password;
+        //    this.name = Name;
+        //    this.accountType = AccountType;
+        //    this.storageCapacity = StorageCapacity;
+        //}
 
         public string Email { get; set; }
 

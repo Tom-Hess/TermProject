@@ -24,10 +24,6 @@
                             <asp:CheckBox runat="server" ID="chkRemember" />
                         </div>
                         <div class="form-group">
-                            <asp:RadioButton ID="rbAdmin" runat="server" Text="Cloud Administrator" Checked="False" />
-                            <asp:RadioButton ID="rbUser" runat="server" Text="Cloud User" Checked="True" />
-                        </div>
-                        <div class="form-group">
                             <asp:Button runat="server" ID="btnLogin" Text="Log In" OnClick="btnLogin_Click" />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>

@@ -11,6 +11,7 @@ namespace TermProjectLibrary
     public class DBConnect
     {
         //Tom's connection
+
         String SqlConnectString = "server=127.0.0.1,5555;Database=sp17_3342_tuf34452;User id=tuf34452;Password=ahweeF5m";
         //String SqlConnectString = "server=cis-mssql1.temple.edu;Database=sp17_3342_tuf34452;User id=tuf34452;Password=ahweeF5m";
 

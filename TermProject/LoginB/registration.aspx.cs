@@ -14,8 +14,8 @@ namespace TermProject.LoginB
     {
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
-        int adminID = 1;
         double adminCapacity = 0;
+        double userCapacity = 10;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -31,10 +31,19 @@ namespace TermProject.LoginB
             {
                 lblMsg.Text = "Email cannot be blank. ";
             }
+            else if (!myValidation.IsValidEmail(txtEmail.Text))
+            {
+                lblMsg.Text = "Not a valid email address. ";
+            }
             else if (myValidation.IsEmpty(txtPassword.Text))
             {
                 lblMsg.Text = "Password cannot be blank. ";
             }
+            //Comment out to make debug easier
+            //else if (txtPassword.Text.Length < 6)
+            //{
+            //    lblMsg.Text = "Password cannot be shorter than SIX didgit. ";
+            //}
             else if (myValidation.IsEmpty(txtConfirm.Text))
             {
                 lblMsg.Text = "Confirmation Password cannot be blank. ";
@@ -45,51 +54,50 @@ namespace TermProject.LoginB
             }
             else
             {
-                if (rblRole.SelectedValue == "Administrator")
-                {
-                    //create the Admin in the Database, display message
-                    //Person newAdmin = new Person();
-                    RegistrationWS.Person newAdmin = new RegistrationWS.Person();
-                    newAdmin.AccountType = adminID;
-                    newAdmin.Email = txtEmail.Text;
-                    newAdmin.Name = txtName.Text;
-                    newAdmin.StorageCapacity = adminCapacity;
-                    newAdmin.Password = txtPassword.Text;
+                createUser();
+                    
+            }
+        }
 
-                    if (RegWS.AddAdmin(newAdmin))
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                        "alert('Administrator account successfully created.'); window.location='" +
-                        Request.ApplicationPath + "../Admin/management.aspx';", true);
-                    }
-                    else
-                    {
-                        lblMsg.Text = "Email already in use!";
-                    }
+        public void createUser()
+        {
+            HttpCookie myUserCookie = new HttpCookie("UserCookie");
+
+            //create the Admin in the Database, display message
+            //Person newAdmin = new Person();
+            RegistrationWS.Person newPerson = new RegistrationWS.Person();
+            newPerson.AccountType = Convert.ToInt32(rblRole.SelectedValue);
+            newPerson.Email = txtEmail.Text;
+            newPerson.Name = txtName.Text;
+            if(newPerson.AccountType == 1)
+            {
+                newPerson.StorageCapacity = adminCapacity;
+            }else
+            {
+                newPerson.StorageCapacity = userCapacity;
+
+            }
+            newPerson.Password = txtPassword.Text;
+
+            if (RegWS.AddAccount(newPerson))
+            {
+                if (chkRemember.Checked)
+                {
+                    myUserCookie.Expires = DateTime.Now.AddDays(30);
                 }
                 else
                 {
-                    //create the user in the Database, display message
-                    //Person newUser = new Person();
-                    RegistrationWS.Person newUser = new RegistrationWS.Person();
+                    myUserCookie.Expires = DateTime.Now.AddDays(-1);
 
-                    newUser.AccountType = adminID;
-                    newUser.Email = txtEmail.Text;
-                    newUser.Name = txtName.Text;
-                    newUser.StorageCapacity = adminCapacity;
-                    newUser.Password = txtPassword.Text;
-
-                    if (RegWS.AddAdmin(newUser))
-                    {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                        "alert('User account successfully created.'); window.location='" +
-                        Request.ApplicationPath + "../User/cloud.aspx';", true);
-                    }
-                    else
-                    {
-                        lblMsg.Text = "Email already in use!";
-                    }
                 }
+                myUserCookie.Values["UserName"] = txtEmail.Text;
+                myUserCookie.Values["Password"] = txtPassword.Text;
+                Response.Cookies.Add(myUserCookie);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Account successfully created.');window.location ='login.aspx';", true);
+            }
+            else
+            {
+                lblMsg.Text = "Email already in use!";
             }
         }
     }

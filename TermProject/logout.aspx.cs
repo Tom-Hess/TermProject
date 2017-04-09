@@ -5,15 +5,16 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace TermProject.User
+namespace TermProject
 {
-    public partial class WebForm4 : System.Web.UI.Page
+    public partial class logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Login"] == null)
+            if(!IsPostBack)
             {
-                Response.Redirect("~/LoginB/login.aspx");
+                Session["Login"] = null;
+                Response.Redirect("~/LoginB/home.aspx");
             }
         }
     }

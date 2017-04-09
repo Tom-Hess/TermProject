@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,30 +22,41 @@ namespace TermProjWS
         SqlCommand myCommand = new SqlCommand();
         DBConnect myDB = new DBConnect();
         PWEncryption myEncryption = new PWEncryption();
+        DataSet myDS = new DataSet();
 
         [WebMethod]
-        public bool AddAdmin(Person newAdmin)
+        public bool AddAccount(Person newPerson)
         {
             myCommand.Parameters.Clear();
 
             myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "AddAdmin";
+            myCommand.CommandText = "AddAccount";
 
-            SqlParameter myParameter = new SqlParameter("Name", newAdmin.Name);
+            SqlParameter myParameter = new SqlParameter("Name", newPerson.Name);
             myParameter.Direction = ParameterDirection.Input;
             myParameter.SqlDbType = SqlDbType.VarChar;
             myCommand.Parameters.Add(myParameter);
 
-            string encryptedPW = myEncryption.EncryptString(newAdmin.Password);
+            string encryptedPW = myEncryption.EncryptString(newPerson.Password);
 
             myParameter = new SqlParameter("Password", encryptedPW);
             myParameter.Direction = ParameterDirection.Input;
             myParameter.SqlDbType = SqlDbType.VarChar;
             myCommand.Parameters.Add(myParameter);
 
-            myParameter = new SqlParameter("Email", newAdmin.Email);
+            myParameter = new SqlParameter("Email", newPerson.Email);
             myParameter.Direction = ParameterDirection.Input;
             myParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("StorageSpace", newPerson.StorageCapacity);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.Float;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("AccountType", newPerson.AccountType);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.Int;
             myCommand.Parameters.Add(myParameter);
 
             int returnValue = myDB.DoUpdateUsingCmdObj(myCommand);
@@ -55,6 +67,40 @@ namespace TermProjWS
             {
                 return false;
             }
+        }
+        [WebMethod]
+        public ArrayList ValidateLogin(string email, string PW)
+        {
+            ArrayList myAL = new ArrayList();
+            int count = 0;
+
+            myCommand.Parameters.Clear();
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "CheckAccount";
+            SqlParameter inputParameter = new SqlParameter("@Email", email);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(inputParameter);
+
+            string encryptedPW = myEncryption.EncryptString(PW);
+
+            inputParameter = new SqlParameter("@PassWord", encryptedPW);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(inputParameter);
+
+            myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            count = myDS.Tables[0].Rows.Count;
+            myAL.Add(count);
+
+            if(count > 0)
+            {
+                myDB.GetDataSetUsingCmdObj(myCommand);
+                int accountType = Convert.ToInt32(myDB.GetField("AccountType", 0));
+                myAL.Add(accountType);
+            }
+
+            return myAL;
         }
     }
 }

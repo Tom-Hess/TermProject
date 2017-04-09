@@ -27,9 +27,12 @@ namespace TermProject.RegistrationWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="RegistrationWSSoap", Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(object[]))]
     public partial class RegistrationWS : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback AddAdminOperationCompleted;
+        private System.Threading.SendOrPostCallback AddAccountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ValidateLoginOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -70,34 +73,68 @@ namespace TermProject.RegistrationWS {
         }
         
         /// <remarks/>
-        public event AddAdminCompletedEventHandler AddAdminCompleted;
+        public event AddAccountCompletedEventHandler AddAccountCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool AddAdmin(Person newAdmin) {
-            object[] results = this.Invoke("AddAdmin", new object[] {
-                        newAdmin});
+        public event ValidateLoginCompletedEventHandler ValidateLoginCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool AddAccount(Person newPerson) {
+            object[] results = this.Invoke("AddAccount", new object[] {
+                        newPerson});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void AddAdminAsync(Person newAdmin) {
-            this.AddAdminAsync(newAdmin, null);
+        public void AddAccountAsync(Person newPerson) {
+            this.AddAccountAsync(newPerson, null);
         }
         
         /// <remarks/>
-        public void AddAdminAsync(Person newAdmin, object userState) {
-            if ((this.AddAdminOperationCompleted == null)) {
-                this.AddAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAdminOperationCompleted);
+        public void AddAccountAsync(Person newPerson, object userState) {
+            if ((this.AddAccountOperationCompleted == null)) {
+                this.AddAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddAccountOperationCompleted);
             }
-            this.InvokeAsync("AddAdmin", new object[] {
-                        newAdmin}, this.AddAdminOperationCompleted, userState);
+            this.InvokeAsync("AddAccount", new object[] {
+                        newPerson}, this.AddAccountOperationCompleted, userState);
         }
         
-        private void OnAddAdminOperationCompleted(object arg) {
-            if ((this.AddAdminCompleted != null)) {
+        private void OnAddAccountOperationCompleted(object arg) {
+            if ((this.AddAccountCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.AddAdminCompleted(this, new AddAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.AddAccountCompleted(this, new AddAccountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidateLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public object[] ValidateLogin(string email, string PW) {
+            object[] results = this.Invoke("ValidateLogin", new object[] {
+                        email,
+                        PW});
+            return ((object[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidateLoginAsync(string email, string PW) {
+            this.ValidateLoginAsync(email, PW, null);
+        }
+        
+        /// <remarks/>
+        public void ValidateLoginAsync(string email, string PW, object userState) {
+            if ((this.ValidateLoginOperationCompleted == null)) {
+                this.ValidateLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidateLoginOperationCompleted);
+            }
+            this.InvokeAsync("ValidateLogin", new object[] {
+                        email,
+                        PW}, this.ValidateLoginOperationCompleted, userState);
+        }
+        
+        private void OnValidateLoginOperationCompleted(object arg) {
+            if ((this.ValidateLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidateLoginCompleted(this, new ValidateLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -191,17 +228,17 @@ namespace TermProject.RegistrationWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void AddAdminCompletedEventHandler(object sender, AddAdminCompletedEventArgs e);
+    public delegate void AddAccountCompletedEventHandler(object sender, AddAccountCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AddAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class AddAccountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal AddAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal AddAccountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -211,6 +248,32 @@ namespace TermProject.RegistrationWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void ValidateLoginCompletedEventHandler(object sender, ValidateLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidateLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidateLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public object[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((object[])(this.results[0]));
             }
         }
     }

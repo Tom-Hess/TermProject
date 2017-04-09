@@ -89,6 +89,9 @@
                     <li class="page-scroll">
                         <a href="log.aspx">Transaction Log</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="../logout.aspx">Logout</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

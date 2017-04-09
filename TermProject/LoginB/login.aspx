@@ -12,8 +12,8 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblName" Text="Email Address: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
+                            <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>

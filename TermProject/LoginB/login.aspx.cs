@@ -72,10 +72,15 @@ namespace TermProject.LoginB
                     {
                         Response.Redirect("~/User/cloud.aspx");
                     }
+                }else
+                {
+                    lblMsg.Text = "Invalid login credentials.";
+                    txtPassword.Text = "";
+                    myUserCookie.Expires = DateTime.Now.AddDays(-1);
                 }
 
 
-                
+
             }
         }
     }

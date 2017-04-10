@@ -11,9 +11,15 @@ namespace TermProject.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Login"] == null)
+            if (Convert.ToInt32(Session["Login"]) == 1)
             {
-                Response.Redirect("~/LoginB/login.aspx");
+                Response.Redirect("~/Admin/management.aspx");
+            }
+            else if(Convert.ToInt32(Session["Login"]) == 0)
+            {
+            }else
+            {
+                Response.Redirect("~/LoginB/home.aspx");
             }
         }
     }

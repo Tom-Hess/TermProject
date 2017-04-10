@@ -51,7 +51,7 @@ namespace TermProjWS
 
             myParameter = new SqlParameter("StorageSpace", newPerson.StorageCapacity);
             myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.Float;
+            myParameter.SqlDbType = SqlDbType.BigInt;
             myCommand.Parameters.Add(myParameter);
 
             myParameter = new SqlParameter("AccountType", newPerson.AccountType);

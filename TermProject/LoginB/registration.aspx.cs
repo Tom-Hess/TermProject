@@ -14,8 +14,8 @@ namespace TermProject.LoginB
     {
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
-        double adminCapacity = 0;
-        double userCapacity = 10;
+        Int64 adminCapacity = 0;
+        Int64 userCapacity = 1000000000;
         protected void Page_Load(object sender, EventArgs e)
         {
 

@@ -8,3 +8,8 @@ C:\Users\Tom\Desktop\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary
 C:\Users\Tom\Desktop\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
 C:\Users\Tom\Desktop\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
 C:\Users\Tom\Desktop\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb
+C:\Users\NanXin-Taichi\Documents\Visual Studio 2015\Projects\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.dll
+C:\Users\NanXin-Taichi\Documents\Visual Studio 2015\Projects\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
+C:\Users\NanXin-Taichi\Documents\Visual Studio 2015\Projects\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
+C:\Users\NanXin-Taichi\Documents\Visual Studio 2015\Projects\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
+C:\Users\NanXin-Taichi\Documents\Visual Studio 2015\Projects\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb

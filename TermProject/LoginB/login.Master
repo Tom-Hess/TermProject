@@ -91,6 +91,9 @@
                     <li class="page-scroll">
                         <a href="registration.aspx">Registration</a>
                     </li>
+                    <li class="page-scroll">
+                        <a href="testing.aspx">Testing</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

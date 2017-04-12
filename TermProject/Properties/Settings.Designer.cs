@@ -26,7 +26,8 @@ namespace TermProject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52728/RegistrationWS.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Registration" +
+            "WS.asmx")]
         public string TermProject_RegistrationWS_RegistrationWS {
             get {
                 return ((string)(this["TermProject_RegistrationWS_RegistrationWS"]));

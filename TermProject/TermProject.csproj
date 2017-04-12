@@ -68,22 +68,25 @@
   <ItemGroup>
     <Content Include="Admin\management.aspx" />
     <Content Include="Admin\log.aspx" />
+    <Content Include="Admin\registration.aspx" />
     <Content Include="LoginB\home.aspx" />
     <Content Include="LoginB\login.aspx" />
     <Content Include="LoginB\registration.aspx" />
+    <Content Include="LoginB\testing.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="packages.config" />
     <Content Include="Admin\Admin.Master" />
     <Content Include="LoginB\login.Master" />
+    <None Include="Properties\PublishProfiles\TermProject.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="User\User.Master" />
-    <None Include="Web References\RegistrationWS\Reference.map">
+    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -122,6 +125,13 @@
     <Compile Include="Admin\log.aspx.designer.cs">
       <DependentUpon>log.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\registration.aspx.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\registration.aspx.designer.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginB\login.Master.cs">
       <DependentUpon>login.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,6 +159,13 @@
     </Compile>
     <Compile Include="LoginB\registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\testing.aspx.cs">
+      <DependentUpon>testing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginB\testing.aspx.designer.cs">
+      <DependentUpon>testing.aspx</DependentUpon>
     </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
@@ -217,10 +234,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:52728/RegistrationWS.asmx">
+    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RegistrationWS\</RelPath>
-      <UpdateFromURL>http://localhost:52728/RegistrationWS.asmx</UpdateFromURL>
+      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

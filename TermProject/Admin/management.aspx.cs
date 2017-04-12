@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using TermProjectLibrary;
+using TermProject.RegistrationWS;
+
 namespace TermProject.Admin
 {
     public partial class WebForm1 : System.Web.UI.Page
@@ -13,15 +16,17 @@ namespace TermProject.Admin
         {
             if (Convert.ToInt32(Session["Login"]) == 1)
             {
-            }
-            else if (Convert.ToInt32(Session["Login"]) == 0)
-            {
-                Response.Redirect("~/User/cloud.aspx");
+                if (!IsPostBack)
+                {
+                    //Load gridview
+                }
             }
             else
             {
                 Response.Redirect("~/LoginB/home.aspx");
             }
+
+            
         }
     }
 }

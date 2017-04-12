@@ -90,6 +90,9 @@
                         <a href="log.aspx">Transaction Log</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="registration.aspx">Register New Admin</a>
+                    </li>
+                    <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>
                     </li>
                 </ul>

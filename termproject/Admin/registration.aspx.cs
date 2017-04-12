@@ -8,15 +8,26 @@ using System.Web.UI.WebControls;
 using TermProjectLibrary;
 using TermProject.RegistrationWS;
 
-namespace TermProject.LoginB
+namespace TermProject.Admin
 {
     public partial class WebForm3 : System.Web.UI.Page
     {
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
-        Int64 userCapacity = 1000000000;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Convert.ToInt32(Session["Login"]) == 1)
+            {
+            }
+            else if (Convert.ToInt32(Session["Login"]) == 0)
+            {
+                Response.Redirect("~/User/cloud.aspx");
+            }
+            else
+            {
+                Response.Redirect("~/LoginB/home.aspx");
+            }
 
         }
 
@@ -48,38 +59,22 @@ namespace TermProject.LoginB
             }
             else
             {
-                createUser();
+                createAdmin();
             }
         }
 
-        public void createUser()
+        public void createAdmin()
         {
-            HttpCookie myUserCookie = new HttpCookie("UserCookie");
-
-            //create the Admin in the Database, display message
-            //Person newAdmin = new Person();
             RegistrationWS.Person newPerson = new RegistrationWS.Person();
-            newPerson.AccountType = 0;
+            newPerson.AccountType = 1;
             newPerson.Email = txtEmail.Text;
             newPerson.Name = txtName.Text;
-            newPerson.StorageCapacity = userCapacity;
+            newPerson.StorageCapacity = 0;
             newPerson.Password = txtPassword.Text;
 
             if (RegWS.AddAccount(newPerson))
             {
-                if (chkRemember.Checked)
-                {
-                    myUserCookie.Expires = DateTime.Now.AddDays(30);
-                }
-                else
-                {
-                    myUserCookie.Expires = DateTime.Now.AddDays(-1);
-
-                }
-                myUserCookie.Values["UserName"] = txtEmail.Text;
-                myUserCookie.Values["Password"] = txtPassword.Text;
-                Response.Cookies.Add(myUserCookie);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Account successfully created.');window.location ='login.aspx';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Admin successfully created.');window.location ='management.aspx';", true);
             }
             else
             {

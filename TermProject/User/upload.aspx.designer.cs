@@ -22,22 +22,13 @@ namespace TermProject.User {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtPath control.
+        /// fileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPath;
-        
-        /// <summary>
-        /// btnBrowse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBrowse;
+        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
         
         /// <summary>
         /// btnLogin control.

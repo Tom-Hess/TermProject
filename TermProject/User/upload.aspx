@@ -12,9 +12,8 @@
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
-                        <div class="form-group">
-                            <asp:TextBox runat="server" ID="txtPath"></asp:TextBox>
-                            <asp:Button runat="server" ID="btnBrowse" Text="Browse" />
+                         <div class="form-group">
+                            <asp:FileUpload ID="fileUpload" runat="server" />
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnLogin" Text="Upload" />

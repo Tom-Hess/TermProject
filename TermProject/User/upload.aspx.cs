@@ -11,7 +11,6 @@ namespace TermProject.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (Convert.ToInt32(Session["Login"]) == 1)
             {
                 Response.Redirect("~/Admin/management.aspx");
@@ -22,6 +21,17 @@ namespace TermProject.User
             else
             {
                 Response.Redirect("~/LoginB/home.aspx");
+            }
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if(!fuUpload.HasFile)
+            {
+                lblMsg.Text = "No file selected!";
+            }else
+            {
+
             }
         }
     }

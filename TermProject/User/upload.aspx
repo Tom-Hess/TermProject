@@ -13,12 +13,13 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                          <div class="form-group">
-                            <asp:FileUpload ID="fileUpload" runat="server" />
+                            <asp:FileUpload ID="fuUpload" runat="server" />
                         </div>
                         <div class="form-group">
-                            <asp:Button runat="server" ID="btnLogin" Text="Upload" />
+                            <asp:Button runat="server" ID="btnUpload" Text="Upload" OnClick="btnUpload_Click" />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
+                        
                     </form>
                 </div>
             </div>

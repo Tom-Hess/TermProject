@@ -12,30 +12,42 @@
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
-                        <div class="form-group">
-                            <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtPassword"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" ID="lblConfirm" Text="Confirm: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtConfirm"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
+
+                        <asp:Button ID="btnChangePW" runat="server" Text="Change My Password" OnClick="btnChangePW_Click" />
+                        &nbsp&nbsp
+                        <asp:Button ID="btnChangeAccountInfo" runat="server" Text="Edit Account Information" OnClick="btnChangeAccountInfo_Click" />
+                        <div id="dvChangePW" visible="false" runat="server">
+                            <br />
+                            <asp:Label ID="lblCurrentPW" runat="server" Text="Current Password: "></asp:Label>
+                            &nbsp&nbsp
+                            <asp:TextBox ID="txtCurrentPW" TextMode="Password"  runat="server"></asp:TextBox>
+                            <br /><br />
+                            <asp:Label ID="lblNewPW" runat="server" Text="New Password: "></asp:Label>
+                            &nbsp&nbsp
+                            <asp:TextBox ID="txtNewPW" TextMode="Password" runat="server"></asp:TextBox>
+                            <br /><br />
+                            <asp:Label ID="lblConfirm" runat="server" Text="Confirm new password: "></asp:Label>
+                            &nbsp&nbsp
+                            <asp:TextBox ID="txtConfirm" TextMode="Password" runat="server"></asp:TextBox>
+                            <br /><br />
+                            <asp:Button ID="btnUpdatePW" runat="server" Text="Update Password" OnClick="btnUpdatePW_Click" />
+                            <asp:Label id ="lblUpdatePWError" ForeColor="Red" runat="server"></asp:Label>
                         </div>
 
-                        <div class="form-group">
-                            <asp:Label runat="server" ID="lblStorage" Text="Storage Space: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtStorage"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <asp:Button runat="server" ID="btnUpdate" Text="Update" />
-                            <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
+                        <div id="dvEditInfo" runat="server" visible="false">
+                            <br />
+                            <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
+                            &nbsp&nbsp
+                            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                            <br /><br />
+                            <asp:Label ID="lblName" runat="server" Text="Name: "></asp:Label>
+                            &nbsp&nbsp
+                            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+                            <br /><br />
+
+                            <asp:Button ID="btnUpdateInfo" runat="server" Text="Update Account Information" OnClick="btnUpdateInfo_Click" />
+                            <asp:Label id ="lblUpdateInfoError" ForeColor="Red" runat="server"></asp:Label>
+
                         </div>
                     </form>
                 </div>

@@ -66,11 +66,13 @@ namespace TermProject.LoginB
                     if(accountID ==1)
                     {
                         Session["Login"] = 1;
+                        Session["Email"] = txtEmail.Text;
                         Response.Redirect("~/Admin/management.aspx");
                     }
                     else
                     {
                         Session["Login"] = 0;
+                        Session["Email"] = txtEmail.Text;
                         Response.Redirect("~/User/cloud.aspx");
                     }
                 }else

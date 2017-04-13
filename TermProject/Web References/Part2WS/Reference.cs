@@ -33,6 +33,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback UpdateAccountOperationCompleted;
         
+        private System.Threading.SendOrPostCallback uploadFileOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -76,6 +78,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event UpdateAccountCompletedEventHandler UpdateAccountCompleted;
+        
+        /// <remarks/>
+        public event uploadFileCompletedEventHandler uploadFileCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -133,6 +138,43 @@ namespace TermProject.Part2WS {
             if ((this.UpdateAccountCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateAccountCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/uploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email) {
+            object[] results = this.Invoke("uploadFile", new object[] {
+                        title,
+                        type,
+                        length,
+                        data,
+                        email});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email) {
+            this.uploadFileAsync(title, type, length, data, email, null);
+        }
+        
+        /// <remarks/>
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, object userState) {
+            if ((this.uploadFileOperationCompleted == null)) {
+                this.uploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnuploadFileOperationCompleted);
+            }
+            this.InvokeAsync("uploadFile", new object[] {
+                        title,
+                        type,
+                        length,
+                        data,
+                        email}, this.uploadFileOperationCompleted, userState);
+        }
+        
+        private void OnuploadFileOperationCompleted(object arg) {
+            if ((this.uploadFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.uploadFileCompleted(this, new uploadFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -253,6 +295,32 @@ namespace TermProject.Part2WS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void UpdateAccountCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void uploadFileCompletedEventHandler(object sender, uploadFileCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class uploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal uploadFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

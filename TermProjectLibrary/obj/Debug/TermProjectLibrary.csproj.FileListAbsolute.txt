@@ -43,3 +43,8 @@ J:\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
 J:\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
 J:\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
 J:\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb
+C:\Users\tub48631\Downloads\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.dll
+C:\Users\tub48631\Downloads\TermProject\TermProject\TermProjectLibrary\bin\Debug\TermProjectLibrary.pdb
+C:\Users\tub48631\Downloads\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.csprojResolveAssemblyReference.cache
+C:\Users\tub48631\Downloads\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.dll
+C:\Users\tub48631\Downloads\TermProject\TermProject\TermProjectLibrary\obj\Debug\TermProjectLibrary.pdb

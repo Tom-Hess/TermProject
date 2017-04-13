@@ -83,5 +83,49 @@ namespace TermProjWS
 
         }
 
+        [WebMethod]
+        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email)
+        {
+            myCommand.Parameters.Clear();
+
+            myCommand.CommandType = CommandType.StoredProcedure;
+            myCommand.CommandText = "TPuploadFile";
+
+            SqlParameter myParameter = new SqlParameter("@title", title);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("@type", type);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("@length", length);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.BigInt;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("@data", data);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.VarBinary;
+            myCommand.Parameters.Add(myParameter);
+
+            myParameter = new SqlParameter("@email", email);
+            myParameter.Direction = ParameterDirection.Input;
+            myParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(myParameter);
+
+            int returnValue = myDB.DoUpdateUsingCmdObj(myCommand);
+            if (returnValue > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

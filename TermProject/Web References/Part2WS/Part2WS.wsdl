@@ -36,6 +36,24 @@
       <s:element name="UpdateAccountResponse">
         <s:complexType />
       </s:element>
+      <s:element name="uploadFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="length" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="uploadFileResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAccountInfoSoapIn">
@@ -50,6 +68,12 @@
   <wsdl:message name="UpdateAccountSoapOut">
     <wsdl:part name="parameters" element="tns:UpdateAccountResponse" />
   </wsdl:message>
+  <wsdl:message name="uploadFileSoapIn">
+    <wsdl:part name="parameters" element="tns:uploadFile" />
+  </wsdl:message>
+  <wsdl:message name="uploadFileSoapOut">
+    <wsdl:part name="parameters" element="tns:uploadFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="Part2WSSoap">
     <wsdl:operation name="GetAccountInfo">
       <wsdl:input message="tns:GetAccountInfoSoapIn" />
@@ -58,6 +82,10 @@
     <wsdl:operation name="UpdateAccount">
       <wsdl:input message="tns:UpdateAccountSoapIn" />
       <wsdl:output message="tns:UpdateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadFile">
+      <wsdl:input message="tns:uploadFileSoapIn" />
+      <wsdl:output message="tns:uploadFileSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Part2WSSoap" type="tns:Part2WSSoap">
@@ -80,6 +108,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="uploadFile">
+      <soap:operation soapAction="http://tempuri.org/uploadFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Part2WSSoap12" type="tns:Part2WSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -94,6 +131,15 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateAccount">
       <soap12:operation soapAction="http://tempuri.org/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadFile">
+      <soap12:operation soapAction="http://tempuri.org/uploadFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

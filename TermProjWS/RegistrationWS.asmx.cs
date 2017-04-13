@@ -102,7 +102,6 @@ namespace TermProjWS
 
             return myAL;
         }
-
         
     }
 }

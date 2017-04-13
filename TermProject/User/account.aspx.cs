@@ -71,15 +71,23 @@ namespace TermProject.User
 
         protected void btnUpdateInfo_Click(object sender, EventArgs e)
         {
+            if(validateUpdateInfo())
+            {
+                string oldEmail = Session["Email"].ToString();
+                accountInfo.Email = txtEmail.Text;
+                accountInfo.Name = txtName.Text;
+                P2WS.UpdateAccount(accountInfo, oldEmail);
 
-
-
-
-            Session["Email"] = txtEmail.Text;
+                Session["Email"] = accountInfo.Email;
+                lblUpdateInfoError.Text = "Successfully updated account information.";
+                lblUpdateInfoError.ForeColor = System.Drawing.Color.Green;
+            }
+            
         }
 
         public bool ValidateUpdatePW()
         {
+            lblUpdatePWError.ForeColor = System.Drawing.Color.Red;
             if(myValidation.IsEmpty(txtCurrentPW.Text))
             {
                 lblUpdatePWError.Text = "Current password cannot be blank!";
@@ -106,6 +114,29 @@ namespace TermProject.User
                 return false;
             }
 
+            return true;
+        }
+        public bool validateUpdateInfo()
+        {
+            lblUpdateInfoError.ForeColor = System.Drawing.Color.Red;
+            if(myValidation.IsEmpty(txtEmail.Text))
+            {
+                lblUpdateInfoError.Text = "Email cannot be blank.";
+                txtEmail.Focus();
+                return false;
+            }
+            if (!myValidation.IsValidEmail(txtEmail.Text))
+            {
+                lblUpdateInfoError.Text = "Invalid email.";
+                txtEmail.Focus();
+                return false;
+            }
+            if(myValidation.IsEmpty(txtName.Text))
+            {
+                lblUpdateInfoError.Text = "Name cannot be blank.";
+                txtName.Focus();
+                return false;
+            }
             return true;
         }
     }

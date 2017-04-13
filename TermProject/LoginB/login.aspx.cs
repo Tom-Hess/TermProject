@@ -36,10 +36,12 @@ namespace TermProject.LoginB
             if (myValidation.IsEmpty(txtEmail.Text))
             {
                 lblMsg.Text = "Email cannot be blank. ";
+                txtEmail.Focus();
             }
             else if (myValidation.IsEmpty(txtPassword.Text))
             {
                 lblMsg.Text = "Password cannot be blank. ";
+                txtPassword.Focus();
             }
             else
             {
@@ -81,8 +83,6 @@ namespace TermProject.LoginB
                     txtPassword.Text = "";
                     myUserCookie.Expires = DateTime.Now.AddDays(-1);
                 }
-
-
 
             }
         }

@@ -8,12 +8,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Cloud</strong></h3>
+                    <h3 class="panel-title"><strong>File Cloud</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div>
-                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                            <asp:GridView ID="gvFiles" runat="server">
+
+                            </asp:GridView>
                         </div>
                     </form>
                 </div>

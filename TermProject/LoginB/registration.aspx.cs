@@ -25,26 +25,32 @@ namespace TermProject.LoginB
             if (myValidation.IsEmpty(txtName.Text))
             {
                 lblMsg.Text = "Name cannot be blank. ";
+                txtName.Focus();
             }
             else if (myValidation.IsEmpty(txtEmail.Text))
             {
                 lblMsg.Text = "Email cannot be blank. ";
+                txtEmail.Focus();
             }
             else if (!myValidation.IsValidEmail(txtEmail.Text))
             {
                 lblMsg.Text = "Not a valid email address. ";
+                txtEmail.Focus();
             }
             else if (myValidation.IsEmpty(txtPassword.Text))
             {
                 lblMsg.Text = "Password cannot be blank. ";
+                txtPassword.Focus();
             }
             else if (myValidation.IsEmpty(txtConfirm.Text))
             {
                 lblMsg.Text = "Confirmation Password cannot be blank. ";
+                txtConfirm.Focus();
             }
             else if (txtPassword.Text != txtConfirm.Text)
             {
                 lblMsg.Text = "Password and Confirmation Password must be the same. ";
+                txtPassword.Focus();
             }
             else
             {

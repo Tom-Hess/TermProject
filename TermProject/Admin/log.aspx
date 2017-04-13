@@ -14,9 +14,10 @@
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
-                            <asp:Label runat="server" ID="lblFrom" Text="From: "></asp:Label>
+                            <br /><br />
+                            <asp:Label runat="server" ID="lblFrom" Text="From Date (Format: mm/dd/yyyy): "></asp:Label>
                             <asp:TextBox runat="server" ID="txtFrom"></asp:TextBox>
-                            <asp:Label runat="server" ID="lblTo" Text="To: "></asp:Label>
+                            <asp:Label runat="server" ID="lblTo" Text="To Date: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtTo"></asp:TextBox>
                         </div>
                         <div class="form-group">
@@ -25,7 +26,9 @@
                         </div>
                         <br />
                         <div>
-                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                            <asp:GridView ID="gvTransactionLog" runat="server">
+
+                            </asp:GridView>
                         </div>
                     </form>
                 </div>

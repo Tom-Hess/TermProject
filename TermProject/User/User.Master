@@ -93,7 +93,7 @@
                         <a href="history.aspx">Transaction History</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="account.aspx">Account</a>
+                        <a href="account.aspx">Edit Account</a>
                     </li>
                     <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>

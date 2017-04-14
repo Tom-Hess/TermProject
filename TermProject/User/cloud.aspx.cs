@@ -72,7 +72,7 @@ namespace TermProject.User
 
         public void showFiles()
         {
-            myDS = P2WS.getFiles(Session["Email"].ToString(), 112358);
+            myDS = P2WS.getFiles(Convert.ToInt32(Session["AccountID"]), 112358);
 
             gvFiles.DataSource = myDS;
             gvFiles.DataBind();

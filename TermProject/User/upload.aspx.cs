@@ -43,16 +43,11 @@ namespace TermProject.User
                 fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
                 string fileTitle = fuUpload.PostedFile.FileName;
                 string fileType = fuUpload.PostedFile.ContentType;
-                
-                //BinaryFormatter serializer = new BinaryFormatter();
-                //MemoryStream memStream = new MemoryStream();
-                //Byte[] byteArray;
-                //serializer.Serialize(memStream, fuUpload.PostedFile);
-                //byteArray = memStream.ToArray();
 
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
-                if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, Session["email"].ToString(), 112358))
+                if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, 
+                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), 112358))
                 {
                     lblMsg.Text = "Upload successful. ";
                 }

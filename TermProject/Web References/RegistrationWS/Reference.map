@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx?wsdl" filename="RegistrationWS.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx?disco" filename="RegistrationWS.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx?disco" filename="registrationws.disco" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx?wsdl" filename="registrationws.wsdl" />
   </Results>
 </DiscoveryClientResultsFile>

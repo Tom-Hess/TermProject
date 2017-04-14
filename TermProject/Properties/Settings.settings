@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TermProject.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TermProject_RegistrationWS_RegistrationWS" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx</Value>
-    </Setting>
     <Setting Name="TermProject_Part2WS_Part2WS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:52728/Part2WS.asmx</Value>
+    </Setting>
+    <Setting Name="TermProject_RegistrationWS_RegistrationWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

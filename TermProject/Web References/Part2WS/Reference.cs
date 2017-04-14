@@ -163,24 +163,25 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/uploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int verification) {
+        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int accountID, int verification) {
             object[] results = this.Invoke("uploadFile", new object[] {
                         title,
                         type,
                         length,
                         data,
                         email,
+                        accountID,
                         verification});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int verification) {
-            this.uploadFileAsync(title, type, length, data, email, verification, null);
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, int verification) {
+            this.uploadFileAsync(title, type, length, data, email, accountID, verification, null);
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int verification, object userState) {
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, int verification, object userState) {
             if ((this.uploadFileOperationCompleted == null)) {
                 this.uploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnuploadFileOperationCompleted);
             }
@@ -190,6 +191,7 @@ namespace TermProject.Part2WS {
                         length,
                         data,
                         email,
+                        accountID,
                         verification}, this.uploadFileOperationCompleted, userState);
         }
         
@@ -202,25 +204,25 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet getFiles(string email, int verification) {
+        public System.Data.DataSet getFiles(int accountID, int verification) {
             object[] results = this.Invoke("getFiles", new object[] {
-                        email,
+                        accountID,
                         verification});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void getFilesAsync(string email, int verification) {
-            this.getFilesAsync(email, verification, null);
+        public void getFilesAsync(int accountID, int verification) {
+            this.getFilesAsync(accountID, verification, null);
         }
         
         /// <remarks/>
-        public void getFilesAsync(string email, int verification, object userState) {
+        public void getFilesAsync(int accountID, int verification, object userState) {
             if ((this.getFilesOperationCompleted == null)) {
                 this.getFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetFilesOperationCompleted);
             }
             this.InvokeAsync("getFiles", new object[] {
-                        email,
+                        accountID,
                         verification}, this.getFilesOperationCompleted, userState);
         }
         

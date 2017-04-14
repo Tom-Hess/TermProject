@@ -91,7 +91,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int verification)
+        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int accountID, int verification)
         {
             if(verification == verificationToken)
             {
@@ -108,6 +108,11 @@ namespace TermProjWS
                 myParameter = new SqlParameter("@type", type);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@accountID", accountID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);
 
                 myParameter = new SqlParameter("@length", length);
@@ -142,7 +147,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public DataSet getFiles(string email, int verification)
+        public DataSet getFiles(int accountID, int verification)
         {
             myDS = new DataSet();
             if (verification == verificationToken)
@@ -152,7 +157,7 @@ namespace TermProjWS
                 myCommand.CommandType = CommandType.StoredProcedure;
                 myCommand.CommandText = "TPGetFiles";
 
-                SqlParameter myParameter = new SqlParameter("@Email", email);
+                SqlParameter myParameter = new SqlParameter("@accountID", accountID);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);

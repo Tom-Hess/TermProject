@@ -98,6 +98,8 @@ namespace TermProjWS
                 myDB.GetDataSetUsingCmdObj(myCommand);
                 int accountType = Convert.ToInt32(myDB.GetField("AccountType", 0));
                 myAL.Add(accountType);
+                int accountID = Convert.ToInt32(myDB.GetField("AccountID", 0));
+                myAL.Add(accountID);
             }
 
             return myAL;

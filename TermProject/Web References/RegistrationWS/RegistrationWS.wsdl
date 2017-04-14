@@ -113,10 +113,10 @@
   </wsdl:binding>
   <wsdl:service name="RegistrationWS">
     <wsdl:port name="RegistrationWSSoap" binding="tns:RegistrationWSSoap">
-      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx" />
+      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx" />
     </wsdl:port>
     <wsdl:port name="RegistrationWSSoap12" binding="tns:RegistrationWSSoap12">
-      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx" />
+      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

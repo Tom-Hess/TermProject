@@ -84,10 +84,6 @@
     </None>
     <Content Include="User\User.Master" />
     <None Include="Web References\Part2WS\Part2WS.disco" />
-    <Content Include="Web References\RegistrationWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -96,7 +92,11 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
+    <Content Include="Web References\RegistrationWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\RegistrationWS\registrationws.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -109,7 +109,7 @@
     <Content Include="User\cloud.aspx" />
     <Content Include="User\history.aspx" />
     <Content Include="User\account.aspx" />
-    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
+    <None Include="Web References\RegistrationWS\registrationws.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -248,10 +248,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx">
+    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RegistrationWS\</RelPath>
-      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx</UpdateFromURL>
+      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

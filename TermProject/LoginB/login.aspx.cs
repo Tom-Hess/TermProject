@@ -64,8 +64,11 @@ namespace TermProject.LoginB
                     myUserCookie.Values["Password"] = txtPassword.Text;
                     Response.Cookies.Add(myUserCookie);
 
-                    int accountID = Convert.ToInt32(loginArray[1]);
-                    if(accountID ==1)
+                    int accountType = Convert.ToInt32(loginArray[1]);
+                    int accountID = Convert.ToInt32(loginArray[2]);
+                    Session["AccountID"] = accountID;
+
+                    if (accountType ==1)
                     {
                         Session["Login"] = 1;
                         Session["Email"] = txtEmail.Text;

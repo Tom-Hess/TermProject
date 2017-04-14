@@ -13,15 +13,19 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div>
-                            <asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="false" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating">
+                            <asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" OnRowDeleting="gvFiles_RowDeleting">
                                 <Columns>
-                                    <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="ID" SortExpression="title" />
+                                    <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="File ID" SortExpression="title" />
                                     <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />
                                     <asp:BoundField DataField="type" ReadOnly="true" HeaderText="Type" SortExpression="type" />
                                     <asp:BoundField DataField="timestamp" ReadOnly="true" HeaderText="Time Added" SortExpression="timestamp" />
                                     <asp:BoundField DataField="length" ReadOnly="true" HeaderText="Size" SortExpression="length" />
 
                                     <asp:CommandField ButtonType="Button" HeaderText="Rename File" ShowEditButton="True" ShowHeader="True" />
+
+
+                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+
 
                                 </Columns>
 

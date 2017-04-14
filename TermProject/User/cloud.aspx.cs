@@ -77,5 +77,16 @@ namespace TermProject.User
             gvFiles.DataSource = myDS;
             gvFiles.DataBind();
         }
+
+        protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int index = e.RowIndex;
+            int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
+
+            P2WS.DeleteFile(fileID, 112358);
+
+            showFiles();
+
+        }
     }
 }

@@ -198,5 +198,25 @@ namespace TermProjWS
             return myDS;
         }
 
+        [WebMethod]
+        public void DeleteFile(int fileID, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPDeleteFile";
+
+                SqlParameter myParameter = new SqlParameter("@ID", fileID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+            }
+
+        }
+
     }
 }

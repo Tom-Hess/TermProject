@@ -42,6 +42,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback getUploadHistoryOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -97,6 +99,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event getUploadHistoryCompletedEventHandler getUploadHistoryCompleted;
+        
+        /// <remarks/>
+        public event DeleteFileCompletedEventHandler DeleteFileCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -301,6 +306,36 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DeleteFile(int fileID, int verification) {
+            this.Invoke("DeleteFile", new object[] {
+                        fileID,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void DeleteFileAsync(int fileID, int verification) {
+            this.DeleteFileAsync(fileID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteFileAsync(int fileID, int verification, object userState) {
+            if ((this.DeleteFileOperationCompleted == null)) {
+                this.DeleteFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteFileOperationCompleted);
+            }
+            this.InvokeAsync("DeleteFile", new object[] {
+                        fileID,
+                        verification}, this.DeleteFileOperationCompleted, userState);
+        }
+        
+        private void OnDeleteFileOperationCompleted(object arg) {
+            if ((this.DeleteFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -499,6 +534,10 @@ namespace TermProject.Part2WS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -186,6 +186,13 @@ namespace TermProjWS
             }
 
         }
+        [WebMethod]
+        public DataSet getUploadHistory(string email, DateTime fromTime, DateTime toTime, int verification)
+        {
+            myDS = new DataSet();
+
+            return myDS;
+        }
 
     }
 }

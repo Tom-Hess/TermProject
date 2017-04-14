@@ -26,8 +26,14 @@
                         </div>
                         <br />
                         <div>
-                            <asp:GridView ID="gvTransactionLog" runat="server">
-
+                            <asp:GridView ID="gvTransactionLog" AutoGenerateColumns="false" runat="server">
+                                <Columns>
+                                    <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="ID" SortExpression="title" />
+                                    <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />
+                                    <asp:BoundField DataField="type" ReadOnly="true" HeaderText="Type" SortExpression="type" />
+                                    <asp:BoundField DataField="timestamp" ReadOnly="true" HeaderText="Time Added" SortExpression="timestamp" />
+                                    <asp:BoundField DataField="length" ReadOnly="true" HeaderText="Size" SortExpression="length" />
+                                </Columns>
                             </asp:GridView>
                         </div>
                     </form>

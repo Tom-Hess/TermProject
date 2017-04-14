@@ -40,6 +40,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback UpdateFileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getUploadHistoryOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -92,6 +94,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event UpdateFileCompletedEventHandler UpdateFileCompleted;
+        
+        /// <remarks/>
+        public event getUploadHistoryCompletedEventHandler getUploadHistoryCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -255,6 +260,41 @@ namespace TermProject.Part2WS {
             if ((this.UpdateFileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.UpdateFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getUploadHistory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getUploadHistory(string email, System.DateTime fromTime, System.DateTime toTime, int verification) {
+            object[] results = this.Invoke("getUploadHistory", new object[] {
+                        email,
+                        fromTime,
+                        toTime,
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getUploadHistoryAsync(string email, System.DateTime fromTime, System.DateTime toTime, int verification) {
+            this.getUploadHistoryAsync(email, fromTime, toTime, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getUploadHistoryAsync(string email, System.DateTime fromTime, System.DateTime toTime, int verification, object userState) {
+            if ((this.getUploadHistoryOperationCompleted == null)) {
+                this.getUploadHistoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUploadHistoryOperationCompleted);
+            }
+            this.InvokeAsync("getUploadHistory", new object[] {
+                        email,
+                        fromTime,
+                        toTime,
+                        verification}, this.getUploadHistoryOperationCompleted, userState);
+        }
+        
+        private void OngetUploadHistoryOperationCompleted(object arg) {
+            if ((this.getUploadHistoryCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getUploadHistoryCompleted(this, new getUploadHistoryCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -431,6 +471,32 @@ namespace TermProject.Part2WS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void UpdateFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void getUploadHistoryCompletedEventHandler(object sender, getUploadHistoryCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getUploadHistoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getUploadHistoryCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

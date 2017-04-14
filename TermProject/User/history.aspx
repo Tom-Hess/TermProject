@@ -13,12 +13,14 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblFrom" Text="From: "></asp:Label>
+                            <asp:Label runat="server" ID="lblFrom" Text="From (format: mm/dd/yyyy): "></asp:Label>
                             <asp:TextBox runat="server" ID="txtFrom"></asp:TextBox>
                             <asp:Label runat="server" ID="lblTo" Text="To: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtTo"></asp:TextBox>
-                            <asp:Button runat="server" ID="btnGenerate" Text="Generate" />
+                            &nbsp&nbsp
+                            <asp:Button runat="server" ID="btnViewFiles" Text="View Files" OnClick="btnViewFiles_Click"  />
                         </div>
+                        <asp:Label ID="lblMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
                         <div>
                             <asp:GridView ID="gvFileHistory" runat="server"></asp:GridView>
                         </div>

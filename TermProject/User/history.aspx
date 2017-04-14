@@ -20,7 +20,7 @@
                             <asp:Button runat="server" ID="btnGenerate" Text="Generate" />
                         </div>
                         <div>
-                            <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                            <asp:GridView ID="gvFileHistory" runat="server"></asp:GridView>
                         </div>
                     </form>
                 </div>

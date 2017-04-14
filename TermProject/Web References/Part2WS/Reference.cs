@@ -20,6 +20,7 @@ namespace TermProject.Part2WS {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -34,6 +35,10 @@ namespace TermProject.Part2WS {
         private System.Threading.SendOrPostCallback UpdateAccountOperationCompleted;
         
         private System.Threading.SendOrPostCallback uploadFileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getFilesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UpdateFileOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -81,6 +86,12 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event uploadFileCompletedEventHandler uploadFileCompleted;
+        
+        /// <remarks/>
+        public event getFilesCompletedEventHandler getFilesCompleted;
+        
+        /// <remarks/>
+        public event UpdateFileCompletedEventHandler UpdateFileCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -181,6 +192,69 @@ namespace TermProject.Part2WS {
             if ((this.uploadFileCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.uploadFileCompleted(this, new uploadFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getFiles(string email, int verification) {
+            object[] results = this.Invoke("getFiles", new object[] {
+                        email,
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getFilesAsync(string email, int verification) {
+            this.getFilesAsync(email, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getFilesAsync(string email, int verification, object userState) {
+            if ((this.getFilesOperationCompleted == null)) {
+                this.getFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetFilesOperationCompleted);
+            }
+            this.InvokeAsync("getFiles", new object[] {
+                        email,
+                        verification}, this.getFilesOperationCompleted, userState);
+        }
+        
+        private void OngetFilesOperationCompleted(object arg) {
+            if ((this.getFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getFilesCompleted(this, new getFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void UpdateFile(int fileID, string fileName, int verification) {
+            this.Invoke("UpdateFile", new object[] {
+                        fileID,
+                        fileName,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void UpdateFileAsync(int fileID, string fileName, int verification) {
+            this.UpdateFileAsync(fileID, fileName, verification, null);
+        }
+        
+        /// <remarks/>
+        public void UpdateFileAsync(int fileID, string fileName, int verification, object userState) {
+            if ((this.UpdateFileOperationCompleted == null)) {
+                this.UpdateFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateFileOperationCompleted);
+            }
+            this.InvokeAsync("UpdateFile", new object[] {
+                        fileID,
+                        fileName,
+                        verification}, this.UpdateFileOperationCompleted, userState);
+        }
+        
+        private void OnUpdateFileOperationCompleted(object arg) {
+            if ((this.UpdateFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UpdateFileCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -327,6 +401,36 @@ namespace TermProject.Part2WS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void getFilesCompletedEventHandler(object sender, getFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void UpdateFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

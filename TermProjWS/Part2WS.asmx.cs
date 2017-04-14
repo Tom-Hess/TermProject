@@ -141,5 +141,51 @@ namespace TermProjWS
             
         }
 
+        [WebMethod]
+        public DataSet getFiles(string email, int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPGetFiles";
+
+                SqlParameter myParameter = new SqlParameter("@Email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+            return myDS;
+        }
+
+        [WebMethod]
+        public void UpdateFile(int fileID, string fileName, int verification)
+        {
+            if(verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPUpdateFile";
+
+                SqlParameter myParameter = new SqlParameter("@ID", fileID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@title", fileName);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+            }
+
+        }
+
     }
 }

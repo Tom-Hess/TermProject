@@ -90,9 +90,6 @@
                         <a href="cloud.aspx">Cloud</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="history.aspx">Transaction History</a>
-                    </li>
-                    <li class="page-scroll">
                         <a href="account.aspx">Edit Account</a>
                     </li>
                     <li class="page-scroll">

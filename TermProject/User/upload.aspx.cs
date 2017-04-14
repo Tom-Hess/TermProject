@@ -44,6 +44,9 @@ namespace TermProject.User
                 string fileTitle = fuUpload.PostedFile.FileName;
                 string fileType = fuUpload.PostedFile.ContentType;
 
+                string fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
+                fileExtension = fileExtension.ToLower();
+
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
                 if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, 

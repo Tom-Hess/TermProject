@@ -107,7 +107,6 @@
   <ItemGroup>
     <Content Include="User\upload.aspx" />
     <Content Include="User\cloud.aspx" />
-    <Content Include="User\history.aspx" />
     <Content Include="User\account.aspx" />
     <None Include="Web References\RegistrationWS\registrationws.disco" />
     <Content Include="Web.config" />
@@ -209,13 +208,6 @@
     </Compile>
     <Compile Include="User\cloud.aspx.designer.cs">
       <DependentUpon>cloud.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\history.aspx.cs">
-      <DependentUpon>history.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\history.aspx.designer.cs">
-      <DependentUpon>history.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\account.aspx.cs">
       <DependentUpon>account.aspx</DependentUpon>

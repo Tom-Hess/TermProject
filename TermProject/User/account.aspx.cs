@@ -30,7 +30,7 @@ namespace TermProject.User
                 Response.Redirect("~/LoginB/home.aspx");
             }
             //create person object for the user's current information
-            accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString());
+            accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString(), 112358);
         }
 
         protected void btnChangePW_Click(object sender, EventArgs e)
@@ -61,7 +61,7 @@ namespace TermProject.User
                 {
                     //update the password in the database
                     accountInfo.Password = txtNewPW.Text;
-                    P2WS.UpdateAccount(accountInfo, accountInfo.Email);
+                    P2WS.UpdateAccount(accountInfo, accountInfo.Email, 112358);
                     lblUpdatePWError.Text = "Password successfully updated.";
                     lblUpdatePWError.ForeColor = System.Drawing.Color.Green;
                 }
@@ -76,7 +76,7 @@ namespace TermProject.User
                 string oldEmail = Session["Email"].ToString();
                 accountInfo.Email = txtEmail.Text;
                 accountInfo.Name = txtName.Text;
-                P2WS.UpdateAccount(accountInfo, oldEmail);
+                P2WS.UpdateAccount(accountInfo, oldEmail, 112358);
 
                 Session["Email"] = accountInfo.Email;
                 lblUpdateInfoError.Text = "Successfully updated account information.";

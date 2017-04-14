@@ -84,24 +84,26 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Person GetAccountInfo(string email) {
+        public Person GetAccountInfo(string email, int verification) {
             object[] results = this.Invoke("GetAccountInfo", new object[] {
-                        email});
+                        email,
+                        verification});
             return ((Person)(results[0]));
         }
         
         /// <remarks/>
-        public void GetAccountInfoAsync(string email) {
-            this.GetAccountInfoAsync(email, null);
+        public void GetAccountInfoAsync(string email, int verification) {
+            this.GetAccountInfoAsync(email, verification, null);
         }
         
         /// <remarks/>
-        public void GetAccountInfoAsync(string email, object userState) {
+        public void GetAccountInfoAsync(string email, int verification, object userState) {
             if ((this.GetAccountInfoOperationCompleted == null)) {
                 this.GetAccountInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAccountInfoOperationCompleted);
             }
             this.InvokeAsync("GetAccountInfo", new object[] {
-                        email}, this.GetAccountInfoOperationCompleted, userState);
+                        email,
+                        verification}, this.GetAccountInfoOperationCompleted, userState);
         }
         
         private void OnGetAccountInfoOperationCompleted(object arg) {
@@ -113,25 +115,27 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/UpdateAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void UpdateAccount(Person updatePerson, string oldEmail) {
+        public void UpdateAccount(Person updatePerson, string oldEmail, int verification) {
             this.Invoke("UpdateAccount", new object[] {
                         updatePerson,
-                        oldEmail});
+                        oldEmail,
+                        verification});
         }
         
         /// <remarks/>
-        public void UpdateAccountAsync(Person updatePerson, string oldEmail) {
-            this.UpdateAccountAsync(updatePerson, oldEmail, null);
+        public void UpdateAccountAsync(Person updatePerson, string oldEmail, int verification) {
+            this.UpdateAccountAsync(updatePerson, oldEmail, verification, null);
         }
         
         /// <remarks/>
-        public void UpdateAccountAsync(Person updatePerson, string oldEmail, object userState) {
+        public void UpdateAccountAsync(Person updatePerson, string oldEmail, int verification, object userState) {
             if ((this.UpdateAccountOperationCompleted == null)) {
                 this.UpdateAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUpdateAccountOperationCompleted);
             }
             this.InvokeAsync("UpdateAccount", new object[] {
                         updatePerson,
-                        oldEmail}, this.UpdateAccountOperationCompleted, userState);
+                        oldEmail,
+                        verification}, this.UpdateAccountOperationCompleted, userState);
         }
         
         private void OnUpdateAccountOperationCompleted(object arg) {
@@ -143,23 +147,24 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/uploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email) {
+        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int verification) {
             object[] results = this.Invoke("uploadFile", new object[] {
                         title,
                         type,
                         length,
                         data,
-                        email});
+                        email,
+                        verification});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email) {
-            this.uploadFileAsync(title, type, length, data, email, null);
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int verification) {
+            this.uploadFileAsync(title, type, length, data, email, verification, null);
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, object userState) {
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int verification, object userState) {
             if ((this.uploadFileOperationCompleted == null)) {
                 this.uploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnuploadFileOperationCompleted);
             }
@@ -168,7 +173,8 @@ namespace TermProject.Part2WS {
                         type,
                         length,
                         data,
-                        email}, this.uploadFileOperationCompleted, userState);
+                        email,
+                        verification}, this.uploadFileOperationCompleted, userState);
         }
         
         private void OnuploadFileOperationCompleted(object arg) {

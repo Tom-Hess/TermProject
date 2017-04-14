@@ -52,7 +52,7 @@ namespace TermProject.User
 
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
-                if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, Session["email"].ToString()))
+                if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, Session["email"].ToString(), 112358))
                 {
                     lblMsg.Text = "Upload successful. ";
                 }

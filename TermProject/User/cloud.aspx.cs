@@ -51,9 +51,9 @@ namespace TermProject.User
             lblMsg.Text = "";
             int rowIndex = e.RowIndex;
             TextBox Tbox;
-            int fileID = Convert.ToInt32(gvFiles.Rows[rowIndex].Cells[0].Text);
+            int fileID = Convert.ToInt32(gvFiles.Rows[rowIndex].Cells[1].Text);
 
-            Tbox = (TextBox)gvFiles.Rows[rowIndex].Cells[1].Controls[0];
+            Tbox = (TextBox)gvFiles.Rows[rowIndex].Cells[2].Controls[0];
             string fileName = Tbox.Text;
 
             if (myValidation.IsEmpty(fileName))
@@ -81,7 +81,7 @@ namespace TermProject.User
         protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int index = e.RowIndex;
-            int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
+            int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[1].Text);
 
             P2WS.DeleteFile(fileID, 112358);
 

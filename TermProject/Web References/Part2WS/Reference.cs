@@ -168,7 +168,7 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/uploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int accountID, int verification) {
+        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int accountID, string imagePath, int verification) {
             object[] results = this.Invoke("uploadFile", new object[] {
                         title,
                         type,
@@ -176,17 +176,18 @@ namespace TermProject.Part2WS {
                         data,
                         email,
                         accountID,
+                        imagePath,
                         verification});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, int verification) {
-            this.uploadFileAsync(title, type, length, data, email, accountID, verification, null);
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, int verification) {
+            this.uploadFileAsync(title, type, length, data, email, accountID, imagePath, verification, null);
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, int verification, object userState) {
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, int verification, object userState) {
             if ((this.uploadFileOperationCompleted == null)) {
                 this.uploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnuploadFileOperationCompleted);
             }
@@ -197,6 +198,7 @@ namespace TermProject.Part2WS {
                         data,
                         email,
                         accountID,
+                        imagePath,
                         verification}, this.uploadFileOperationCompleted, userState);
         }
         

@@ -47,6 +47,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="data" type="s:base64Binary" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="imagePath" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
         </s:complexType>

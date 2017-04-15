@@ -47,10 +47,40 @@ namespace TermProject.User
                 string fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
                 fileExtension = fileExtension.ToLower();
 
-                lblMsg.Text = fileData.ToString() + fileTitle;
+                string imagePath;
+
+                switch(fileExtension)
+                {
+                    case ".jpg":
+                        imagePath = "~/Images/jpg.png";
+                        break;
+                    case ".jpeg":
+                        imagePath = "~/Images/jpeg.jpg";
+                        break;
+                    case ".docx":
+                        imagePath = "~/Images/word.jpg";
+                        break;
+                    case ".gif":
+                        imagePath = "~/Images/gif.jpg";
+                        break;
+                    case ".png":
+                        imagePath = "~/Images/png.jpg";
+                        break;
+                    case ".xlsx":
+                        imagePath = "~/Images/xslx.png";
+                        break;
+                    case ".pptx":
+                        imagePath = "~/Images/pptx.png";
+                        break;
+                    default:
+                        imagePath = "~/Images/unknown.png";
+                        break;
+                }
+
+                    lblMsg.Text = fileData.ToString() + fileTitle;
 
                 if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, 
-                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), 112358))
+                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, 112358))
                 {
                     lblMsg.Text = "Upload successful. ";
                 }

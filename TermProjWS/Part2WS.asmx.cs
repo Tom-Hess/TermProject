@@ -91,7 +91,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int accountID, int verification)
+        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int accountID, string imagePath, int verification)
         {
             if(verification == verificationToken)
             {
@@ -106,6 +106,11 @@ namespace TermProjWS
                 myCommand.Parameters.Add(myParameter);
 
                 myParameter = new SqlParameter("@type", type);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@imagePath", imagePath);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);

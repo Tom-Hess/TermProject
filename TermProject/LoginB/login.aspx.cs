@@ -67,6 +67,7 @@ namespace TermProject.LoginB
                     int accountType = Convert.ToInt32(loginArray[1]);
                     int accountID = Convert.ToInt32(loginArray[2]);
                     Session["AccountID"] = accountID;
+                    Session["verification"] = 112358;
 
                     if (accountType ==1)
                     {

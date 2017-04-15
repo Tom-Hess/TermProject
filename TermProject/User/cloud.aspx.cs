@@ -63,7 +63,7 @@ namespace TermProject.User
             }
 
             //update the file in the DB
-            P2WS.UpdateFile(fileID, fileName, 112358);
+            P2WS.UpdateFile(fileID, fileName, Convert.ToInt32(Session["verification"]));
 
             gvFiles.EditIndex = -1;
             showFiles();
@@ -72,7 +72,7 @@ namespace TermProject.User
 
         public void showFiles()
         {
-            myDS = P2WS.getFiles(Convert.ToInt32(Session["AccountID"]), 112358);
+            myDS = P2WS.getFiles(Convert.ToInt32(Session["AccountID"]), Convert.ToInt32(Session["verification"]));
 
             gvFiles.DataSource = myDS;
             gvFiles.DataBind();
@@ -82,9 +82,10 @@ namespace TermProject.User
         {
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[1].Text);
+            Int64 size = -(Convert.ToInt64(gvFiles.Rows[index].Cells[4].Text));
 
-            P2WS.DeleteFile(fileID, 112358);
-
+            P2WS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
+            P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
 
         }

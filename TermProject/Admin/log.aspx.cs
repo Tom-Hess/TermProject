@@ -70,7 +70,7 @@ namespace TermProject.Admin
                 DateTime toTime = DateTime.Parse(txtTo.Text);
                 string email = txtEmail.Text;
 
-                myDS = P2WS.getUploadHistory(email, fromTime, toTime, 112358);
+                myDS = P2WS.getUploadHistory(email, fromTime, toTime, Convert.ToInt32(Session["verification"]));
                 gvTransactionLog.DataSource = myDS;
                 gvTransactionLog.DataBind();
             }

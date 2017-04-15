@@ -18,10 +18,9 @@
                             <asp:GridView ID="gvFiles" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                                 <Columns>
                                     <asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px" 
-                                        ControlStyle-Width="100" ControlStyle-Height="100">
-<ControlStyle Height="100px" Width="100px"></ControlStyle>
-
-<ItemStyle Height="50px" Width="50px"></ItemStyle>
+                                        ControlStyle-Width="50" ControlStyle-Height="50"> 
+                                        <ControlStyle Height="50px" Width="50px"></ControlStyle>
+                                        <ItemStyle Height="50px" Width="50px"></ItemStyle>
                                     </asp:ImageField>
                                     <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="File ID" SortExpression="title" />
                                     <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />

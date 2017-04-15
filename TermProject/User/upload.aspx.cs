@@ -16,7 +16,6 @@ namespace TermProject.User
     {
         Part2WS.Part2WS myUpload = new Part2WS.Part2WS();
         Part2WS.Person myAccount = new Part2WS.Person();
-        int verification = 112358;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToInt32(Session["Login"]) == 1)
@@ -34,6 +33,7 @@ namespace TermProject.User
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
+            lblMsg.ForeColor = System.Drawing.Color.Red;
             if(!fuUpload.HasFile)
             {
                 lblMsg.Text = "No file selected!";
@@ -83,8 +83,8 @@ namespace TermProject.User
 
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
-                DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, verification);
-                myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), verification);
+                DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, Convert.ToInt32(Session["verification"]));
+                myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
 
                 if (tempFile.Tables[0].Rows.Count > 0)
                 {//if file name exist in the DB
@@ -97,10 +97,11 @@ namespace TermProject.User
                 else
                 {
                     if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData,
-                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, verification))
+                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, Convert.ToInt32(Session["verification"])))
                     {
-                        lblMsg.Text = "Upload successful. ";
-                        myUpload.updateStorageUsed(Session["email"].ToString(), fileLength, verification);
+                        lblMsg.ForeColor = System.Drawing.Color.Green;
+                        lblMsg.Text = "Successfully uploaded " + fileTitle;
+                        myUpload.updateStorageUsed(Session["email"].ToString(), fileLength, Convert.ToInt32(Session["verification"]));
                     }
                     else
                     {

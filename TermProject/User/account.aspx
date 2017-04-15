@@ -8,14 +8,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Edit Account Information</strong></h3>
+                    <h3 class="panel-title"><strong>Edit Account</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
-
+                        <div style="text-align: center">
                         <asp:Button ID="btnChangePW" runat="server" Text="Change My Password" OnClick="btnChangePW_Click" />
                         &nbsp&nbsp
                         <asp:Button ID="btnChangeAccountInfo" runat="server" Text="Edit Account Information" OnClick="btnChangeAccountInfo_Click" />
+                        </div>
                         <div id="dvChangePW" visible="false" runat="server">
                             <br />
                             <asp:Label ID="lblCurrentPW" runat="server" Text="Current Password: "></asp:Label>

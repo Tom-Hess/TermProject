@@ -185,7 +185,7 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPUpdateFile";
+                myCommand.CommandText = "TPGetFiles";
 
                 SqlParameter myParameter = new SqlParameter("@ID", fileID);
                 myParameter.Direction = ParameterDirection.Input;
@@ -202,9 +202,33 @@ namespace TermProjWS
 
         }
         [WebMethod]
-        public DataSet getUploadHistory(string email, DateTime fromTime, DateTime toTime, int verification)
+        public DataSet getUploadHistory(string email, DateTime fromDate, DateTime toDate, int verification)
         {
             myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetHistoryByEmail";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@start", fromDate);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@end", toDate);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
             return myDS;
         }
 

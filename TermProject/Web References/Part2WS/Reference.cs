@@ -289,29 +289,29 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getUploadHistory", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Data.DataSet getUploadHistory(string email, System.DateTime fromTime, System.DateTime toTime, int verification) {
+        public System.Data.DataSet getUploadHistory(string email, System.DateTime fromDate, System.DateTime toDate, int verification) {
             object[] results = this.Invoke("getUploadHistory", new object[] {
                         email,
-                        fromTime,
-                        toTime,
+                        fromDate,
+                        toDate,
                         verification});
             return ((System.Data.DataSet)(results[0]));
         }
         
         /// <remarks/>
-        public void getUploadHistoryAsync(string email, System.DateTime fromTime, System.DateTime toTime, int verification) {
-            this.getUploadHistoryAsync(email, fromTime, toTime, verification, null);
+        public void getUploadHistoryAsync(string email, System.DateTime fromDate, System.DateTime toDate, int verification) {
+            this.getUploadHistoryAsync(email, fromDate, toDate, verification, null);
         }
         
         /// <remarks/>
-        public void getUploadHistoryAsync(string email, System.DateTime fromTime, System.DateTime toTime, int verification, object userState) {
+        public void getUploadHistoryAsync(string email, System.DateTime fromDate, System.DateTime toDate, int verification, object userState) {
             if ((this.getUploadHistoryOperationCompleted == null)) {
                 this.getUploadHistoryOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetUploadHistoryOperationCompleted);
             }
             this.InvokeAsync("getUploadHistory", new object[] {
                         email,
-                        fromTime,
-                        toTime,
+                        fromDate,
+                        toDate,
                         verification}, this.getUploadHistoryOperationCompleted, userState);
         }
         

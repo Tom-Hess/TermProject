@@ -24,7 +24,7 @@ namespace TermProject.Part2WS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="Part2WSSoap", Namespace="http://tempuri.org/")]
@@ -43,6 +43,10 @@ namespace TermProject.Part2WS {
         private System.Threading.SendOrPostCallback getUploadHistoryOperationCompleted;
         
         private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getFileOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback updateStorageUsedOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -102,6 +106,12 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event DeleteFileCompletedEventHandler DeleteFileCompleted;
+        
+        /// <remarks/>
+        public event getFileCompletedEventHandler getFileCompleted;
+        
+        /// <remarks/>
+        public event updateStorageUsedCompletedEventHandler updateStorageUsedCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -338,6 +348,71 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getFile(string email, string fileName, int verification) {
+            object[] results = this.Invoke("getFile", new object[] {
+                        email,
+                        fileName,
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getFileAsync(string email, string fileName, int verification) {
+            this.getFileAsync(email, fileName, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getFileAsync(string email, string fileName, int verification, object userState) {
+            if ((this.getFileOperationCompleted == null)) {
+                this.getFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetFileOperationCompleted);
+            }
+            this.InvokeAsync("getFile", new object[] {
+                        email,
+                        fileName,
+                        verification}, this.getFileOperationCompleted, userState);
+        }
+        
+        private void OngetFileOperationCompleted(object arg) {
+            if ((this.getFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getFileCompleted(this, new getFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateStorageUsed", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void updateStorageUsed(string email, long storageUsed, int verification) {
+            this.Invoke("updateStorageUsed", new object[] {
+                        email,
+                        storageUsed,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void updateStorageUsedAsync(string email, long storageUsed, int verification) {
+            this.updateStorageUsedAsync(email, storageUsed, verification, null);
+        }
+        
+        /// <remarks/>
+        public void updateStorageUsedAsync(string email, long storageUsed, int verification, object userState) {
+            if ((this.updateStorageUsedOperationCompleted == null)) {
+                this.updateStorageUsedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateStorageUsedOperationCompleted);
+            }
+            this.InvokeAsync("updateStorageUsed", new object[] {
+                        email,
+                        storageUsed,
+                        verification}, this.updateStorageUsedOperationCompleted, userState);
+        }
+        
+        private void OnupdateStorageUsedOperationCompleted(object arg) {
+            if ((this.updateStorageUsedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateStorageUsedCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -357,7 +432,7 @@ namespace TermProject.Part2WS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1098.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -372,7 +447,9 @@ namespace TermProject.Part2WS {
         
         private int accountTypeField;
         
-        private double storageCapacityField;
+        private long storageSpaceField;
+        
+        private long storageUsedField;
         
         /// <remarks/>
         public string Email {
@@ -415,22 +492,32 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
-        public double StorageCapacity {
+        public long StorageSpace {
             get {
-                return this.storageCapacityField;
+                return this.storageSpaceField;
             }
             set {
-                this.storageCapacityField = value;
+                this.storageSpaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long StorageUsed {
+            get {
+                return this.storageUsedField;
+            }
+            set {
+                this.storageUsedField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void GetAccountInfoCompletedEventHandler(object sender, GetAccountInfoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetAccountInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -452,15 +539,15 @@ namespace TermProject.Part2WS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void UpdateAccountCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void uploadFileCompletedEventHandler(object sender, uploadFileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class uploadFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -482,11 +569,11 @@ namespace TermProject.Part2WS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void getFilesCompletedEventHandler(object sender, getFilesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -508,15 +595,15 @@ namespace TermProject.Part2WS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void UpdateFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void getUploadHistoryCompletedEventHandler(object sender, getUploadHistoryCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getUploadHistoryCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -538,8 +625,38 @@ namespace TermProject.Part2WS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void DeleteFileCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void getFileCompletedEventHandler(object sender, getFileCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void updateStorageUsedCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

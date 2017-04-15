@@ -49,7 +49,7 @@ namespace TermProjWS
             myParameter.SqlDbType = SqlDbType.VarChar;
             myCommand.Parameters.Add(myParameter);
 
-            myParameter = new SqlParameter("StorageSpace", newPerson.StorageCapacity);
+            myParameter = new SqlParameter("StorageSpace", newPerson.StorageSpace);
             myParameter.Direction = ParameterDirection.Input;
             myParameter.SqlDbType = SqlDbType.BigInt;
             myCommand.Parameters.Add(myParameter);

@@ -46,10 +46,15 @@ namespace TermProjWS
                 string password = myDB.GetField("Password", 0).ToString();
                 password = myEncryption.DecryptString(password);
                 string name = myDB.GetField("Name", 0).ToString();
+                Int64 storageSpace = Int64.Parse(myDB.GetField("StorageSpace", 0).ToString());
+                Int64 storageUsed = Int64.Parse(myDB.GetField("StorageUsed", 0).ToString());
 
                 accountInfo.Password = password;
                 accountInfo.Email = email;
                 accountInfo.Name = name;
+                accountInfo.StorageSpace = storageSpace;
+                accountInfo.StorageUsed = storageUsed;
+                accountInfo.AccountType = int.Parse(myDB.GetField("AccountType", 0).ToString());
             }
             return accountInfo;
         }
@@ -221,6 +226,58 @@ namespace TermProjWS
                 myDB.DoUpdateUsingCmdObj(myCommand);
             }
 
+        }
+        [WebMethod]
+        public DataSet getFile(string email, string fileName, int verification)
+        {
+            //Get a user's file
+            if (verification == verificationToken)
+            {
+                //get account information given the email address
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetFile";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@name", fileName);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                DataSet myds = myDB.GetDataSetUsingCmdObj(myCommand);
+                return myds;
+            }
+            else
+                return null;
+
+        }
+        [WebMethod]
+        public void updateStorageUsed(string email, Int64 storageUsed, int verification)
+        {//Can be used to add or minus storageUsed
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPUpdateFile";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@storageUsed", storageUsed);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.BigInt;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+            }
         }
 
     }

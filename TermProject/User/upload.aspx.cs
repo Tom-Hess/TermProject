@@ -8,13 +8,15 @@ using System.Web.UI.WebControls;
 //using System.Runtime.Serialization.Formatters.Binary;       //needed for BinaryFormatter
 using System.IO;                                            //needed for the MemoryStream
 using TermProjectLibrary;
+using System.Data;
 
 namespace TermProject.User
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
         Part2WS.Part2WS myUpload = new Part2WS.Part2WS();
-
+        Part2WS.Person myAccount = new Part2WS.Person();
+        int verification = 112358;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToInt32(Session["Login"]) == 1)
@@ -79,14 +81,31 @@ namespace TermProject.User
 
                     lblMsg.Text = fileData.ToString() + fileTitle;
 
-                if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData, 
-                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, 112358))
-                {
-                    lblMsg.Text = "Upload successful. ";
+                lblMsg.Text = fileData.ToString() + fileTitle;
+
+                DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, verification);
+                myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), verification);
+
+                if (tempFile.Tables[0].Rows.Count > 0)
+                {//if file name exist in the DB
+                    lblMsg.Text = "File name exist in the your Cloud. ";
+                }
+                else if ((fileLength + myAccount.StorageUsed) > myAccount.StorageSpace)
+                {//If file size is bigger than the user's current balance
+                    lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";
                 }
                 else
                 {
-                    lblMsg.Text = "Failed to upload file. ";
+                    if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData,
+                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, verification))
+                    {
+                        lblMsg.Text = "Upload successful. ";
+                        myUpload.updateStorageUsed(Session["email"].ToString(), fileLength, verification);
+                    }
+                    else
+                    {
+                        lblMsg.Text = "Failed to upload file. ";
+                    }
                 }
             }
         }

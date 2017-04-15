@@ -31,11 +31,13 @@ namespace TermProjWS
         public string Email { get; set; }
 
         public string Password { get; set; }
-        
+
         public string Name { get; set; }
 
         public int AccountType { get; set; }
 
-        public double StorageCapacity { get; set; }
+        public Int64 StorageSpace { get; set; }
+
+        public Int64 StorageUsed { get; set; }
     }
 }

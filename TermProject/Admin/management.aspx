@@ -13,20 +13,24 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div>
+                            <asp:Label runat="server" ID="lblMsg" ForeColor="Red" Text=""></asp:Label>
+                        </div>
+                        <div>
                             <asp:GridView ID="gvManagement" runat="server" AutoGenerateColumns="False" 
                                 OnRowCancelingEdit="gvManagement_RowCancelingEdit" 
                                 OnRowEditing="gvManagement_RowEditing" 
                                 OnRowUpdating="gvManagement_RowUpdating" 
                                 OnRowDeleting="gvManagement_RowDeleting"
                                 OnRowResetting="gvManagment_RowResetting" 
-                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" >
+                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"  >
                                 <Columns>
-                                    <asp:BoundField DataField="Name" ReadOnly="true" HeaderText="User name" SortExpression="Name" />
+                                    <asp:BoundField DataField="ID" ReadOnly="true" HeaderText="User ID" SortExpression="Name" />
+                                    <asp:BoundField DataField="Name" ReadOnly="true" HeaderText="User Name" SortExpression="Name" />
                                     <asp:BoundField DataField="Email" ReadOnly="true" HeaderText="Email Address" SortExpression="Email" />
                                     <asp:BoundField DataField="StorageSpace" ReadOnly="true" HeaderText="Storage Capacity" SortExpression="StorageSpace" />
                                     <asp:BoundField DataField="StorageUsed" ReadOnly="true" HeaderText="StorageUsed" SortExpression="StorageUsed" />
                                     <asp:CommandField ButtonType="Button" EditText="Modify" ShowEditButton="True" ShowHeader="True" />
-                                    <asp:CommandField ButtonType="Button" EditText="Reset Pasword" ShowEditButton="True" ShowHeader="True" />
+                                    <asp:CommandField ButtonType="Button" EditText="Reset Password" ShowEditButton="True" />
                                     <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
                                 </Columns>
                                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />

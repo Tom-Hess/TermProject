@@ -22,16 +22,16 @@
                                 OnRowUpdating="gvManagement_RowUpdating" 
                                 OnRowDeleting="gvManagement_RowDeleting"
                                 OnRowResetting="gvManagment_RowResetting" 
-                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4"  >
+                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" >
                                 <Columns>
-                                    <asp:BoundField DataField="ID" ReadOnly="true" HeaderText="User ID" SortExpression="Name" />
+                                    <asp:BoundField DataField="AccountID" ReadOnly="true" HeaderText="User ID" SortExpression="Name" />
                                     <asp:BoundField DataField="Name" ReadOnly="true" HeaderText="User Name" SortExpression="Name" />
                                     <asp:BoundField DataField="Email" ReadOnly="true" HeaderText="Email Address" SortExpression="Email" />
-                                    <asp:BoundField DataField="StorageSpace" ReadOnly="true" HeaderText="Storage Capacity" SortExpression="StorageSpace" />
+                                    <asp:BoundField DataField="StorageSpace" HeaderText="Storage Capacity" SortExpression="StorageSpace" />
                                     <asp:BoundField DataField="StorageUsed" ReadOnly="true" HeaderText="StorageUsed" SortExpression="StorageUsed" />
                                     <asp:CommandField ButtonType="Button" EditText="Modify" ShowEditButton="True" ShowHeader="True" />
-                                    <asp:CommandField ButtonType="Button" EditText="Reset Password" ShowEditButton="True" />
                                     <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                    <asp:ButtonField ButtonType="Button" Text="Reset Password" />
                                 </Columns>
                                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                                 <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />

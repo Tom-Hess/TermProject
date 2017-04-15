@@ -319,5 +319,29 @@ namespace TermProjWS
             return myDS;
         }
 
+        [WebMethod]
+        public void updateStorageCapacity(int ID, Int64 capacity, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPupdateStorageCapacity";
+
+                SqlParameter myParameter = new SqlParameter("@accountID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@storageCapacity", capacity);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.BigInt;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+            }
+        }
+
     }
 }

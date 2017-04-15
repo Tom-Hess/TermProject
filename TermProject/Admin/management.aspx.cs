@@ -50,7 +50,7 @@ namespace TermProject.Admin
             int rowIndex = e.RowIndex;
             Int64 capacity;
             TextBox Tbox;
-            int fileID = Convert.ToInt32(gvManagement.Rows[rowIndex].Cells[0].Text);
+            int accountID = Convert.ToInt32(gvManagement.Rows[rowIndex].Cells[0].Text);
 
             Tbox = (TextBox)gvManagement.Rows[rowIndex].Cells[3].Controls[0];
             string storageCapacity = Tbox.Text;
@@ -60,7 +60,7 @@ namespace TermProject.Admin
                 lblMsg.Text = "Storage Capacity cannot be blank. ";
                 return;
             }
-            else if (!Int64.TryParse(storageCapacity, out capacity) {
+            else if (!Int64.TryParse(storageCapacity, out capacity)) {
                 lblMsg.Text = "Storage Capacity must be an integer. ";
                 return;
             }
@@ -69,10 +69,10 @@ namespace TermProject.Admin
                 lblMsg.Text = "Cannot set Storage Capacity lower than current cloud Storage size. ";
                 return;
             }
-
-            //update the file in the DB
-            //P2WS.UpdateFile(fileID, fileName, Convert.ToInt32(Session["verification"]));
-
+            else
+            {
+                P2WS.updateStorageCapacity(accountID, Int64.Parse(storageCapacity), Convert.ToInt32(Session["verification"]));
+            }
             gvManagement.EditIndex = -1;
             showFiles();
         }
@@ -94,12 +94,5 @@ namespace TermProject.Admin
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
         }
-
-        protected void gvManagement_RowResetting(object sender, GridViewUpdateEventArgs e)
-        {
-
-        }
-
-
     }
 }

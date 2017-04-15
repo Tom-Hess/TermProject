@@ -50,6 +50,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback getAllAccountOperationCompleted;
         
+        private System.Threading.SendOrPostCallback updateStorageCapacityOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -117,6 +119,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event getAllAccountCompletedEventHandler getAllAccountCompleted;
+        
+        /// <remarks/>
+        public event updateStorageCapacityCompletedEventHandler updateStorageCapacityCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -447,6 +452,38 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateStorageCapacity", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void updateStorageCapacity(int ID, long capacity, int verification) {
+            this.Invoke("updateStorageCapacity", new object[] {
+                        ID,
+                        capacity,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void updateStorageCapacityAsync(int ID, long capacity, int verification) {
+            this.updateStorageCapacityAsync(ID, capacity, verification, null);
+        }
+        
+        /// <remarks/>
+        public void updateStorageCapacityAsync(int ID, long capacity, int verification, object userState) {
+            if ((this.updateStorageCapacityOperationCompleted == null)) {
+                this.updateStorageCapacityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateStorageCapacityOperationCompleted);
+            }
+            this.InvokeAsync("updateStorageCapacity", new object[] {
+                        ID,
+                        capacity,
+                        verification}, this.updateStorageCapacityOperationCompleted, userState);
+        }
+        
+        private void OnupdateStorageCapacityOperationCompleted(object arg) {
+            if ((this.updateStorageCapacityCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateStorageCapacityCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -717,6 +754,10 @@ namespace TermProject.Part2WS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void updateStorageCapacityCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

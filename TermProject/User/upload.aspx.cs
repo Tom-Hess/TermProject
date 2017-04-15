@@ -85,12 +85,13 @@ namespace TermProject.User
 
                 DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, Convert.ToInt32(Session["verification"]));
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
+                Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
 
                 if (tempFile.Tables[0].Rows.Count > 0)
                 {//if file name exist in the DB
                     lblMsg.Text = "File name exist in the your Cloud. ";
                 }
-                else if ((fileLength + myAccount.StorageUsed) > myAccount.StorageSpace)
+                else if (projectedRemainStorage > myAccount.StorageSpace)
                 {//If file size is bigger than the user's current balance
                     lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";
                 }
@@ -101,7 +102,7 @@ namespace TermProject.User
                     {
                         lblMsg.ForeColor = System.Drawing.Color.Green;
                         lblMsg.Text = "Successfully uploaded " + fileTitle;
-                        myUpload.updateStorageUsed(Session["email"].ToString(), fileLength, Convert.ToInt32(Session["verification"]));
+                        myUpload.updateStorageUsed(Session["email"].ToString(), projectedRemainStorage, Convert.ToInt32(Session["verification"]));
                     }
                     else
                     {

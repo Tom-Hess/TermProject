@@ -264,7 +264,7 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPUpdateFile";
+                myCommand.CommandText = "TPupdateStorageUsed";
 
                 SqlParameter myParameter = new SqlParameter("@email", email);
                 myParameter.Direction = ParameterDirection.Input;
@@ -278,6 +278,21 @@ namespace TermProjWS
 
                 myDB.DoUpdateUsingCmdObj(myCommand);
             }
+        }
+        [WebMethod]
+        public DataSet getAllAccount(int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetAllAccounts";
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+            return myDS;
         }
 
     }

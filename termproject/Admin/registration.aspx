@@ -28,8 +28,8 @@
                             <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
                             <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
                         </div>
-                        <div class="form-group">
-                            <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click"/>
+                        <div class="form-group" style="text-align:center">
+                            <asp:Button runat="server" ID="btnSubmit" Text="Register" OnClick="btnSubmit_Click"/>
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
                         <br />

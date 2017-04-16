@@ -16,7 +16,7 @@
                             <asp:Label runat="server" ID="lblMsg" ForeColor="Red" Text=""></asp:Label>
                         </div>
                         <div>
-                            <asp:GridView ID="gvManagement" runat="server" AutoGenerateColumns="False" 
+                            <asp:GridView ID="gvManagement" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False" 
                                 OnRowCancelingEdit="gvManagement_RowCancelingEdit" 
                                 OnRowEditing="gvManagement_RowEditing" 
                                 OnRowUpdating="gvManagement_RowUpdating" 

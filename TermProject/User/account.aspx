@@ -17,7 +17,7 @@
                         &nbsp&nbsp
                         <asp:Button ID="btnChangeAccountInfo" runat="server" Text="Edit Account Information" OnClick="btnChangeAccountInfo_Click" />
                         </div>
-                        <div id="dvChangePW" visible="false" runat="server">
+                        <div id="dvChangePW" visible="false" runat="server" style="text-align:center">
                             <br />
                             <asp:Label ID="lblCurrentPW" runat="server" Text="Current Password: "></asp:Label>
                             &nbsp&nbsp
@@ -35,7 +35,7 @@
                             <asp:Label id ="lblUpdatePWError" ForeColor="Red" runat="server"></asp:Label>
                         </div>
 
-                        <div id="dvEditInfo" runat="server" visible="false">
+                        <div id="dvEditInfo" runat="server" visible="false" style="text-align:center">
                             <br />
                             <asp:Label ID="lblEmail" runat="server" Text="Email: "></asp:Label>
                             &nbsp&nbsp

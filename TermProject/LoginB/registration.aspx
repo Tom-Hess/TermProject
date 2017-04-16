@@ -32,8 +32,8 @@
                             <asp:Label runat="server" ID="lblRemember" Text="Create cookie "></asp:Label>
                             <asp:CheckBox runat="server" ID="chkRemember" />
                         </div>
-                        <div class="form-group">
-                            <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" />
+                        <div class="form-group" style="text-align:center">
+                            <asp:Button runat="server" ID="btnSubmit" Text="Register" OnClick="btnSubmit_Click" />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
 

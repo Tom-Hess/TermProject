@@ -20,10 +20,10 @@
                             <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblRemember" Text="Remember me: "></asp:Label>
+                            <asp:Label runat="server" ID="lblRemember" Text="Remember me "></asp:Label>
                             <asp:CheckBox runat="server" ID="chkRemember" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="text-align:center">
                             <asp:Button runat="server" ID="btnLogin" Text="Log In" OnClick="btnLogin_Click" />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>

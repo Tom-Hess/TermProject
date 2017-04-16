@@ -26,7 +26,7 @@
                         </div>
                         <br />
                         <div>
-                            <asp:GridView ID="gvTransactionLog" AutoGenerateColumns="false" runat="server">
+                            <asp:GridView ID="gvTransactionLog" HorizontalAlign="Center" AutoGenerateColumns="false" runat="server">
                                 <Columns>
                                     <asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
                                         ControlStyle-Width="50" ControlStyle-Height="50">

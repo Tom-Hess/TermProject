@@ -15,14 +15,14 @@
                                 Welcome to Temple University Cloud Storage Site
                             </h3>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="text-align:center">
                             <p>
-                                To login, click Login
+                                To login to the cloud, click Login
                             </p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="text-align:center"> 
                             <p>
-                                To register, click Registration
+                                To register a new account, click Registration
                             </p>
                         </div>
                     </form>

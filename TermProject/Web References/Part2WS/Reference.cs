@@ -52,6 +52,10 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback updateStorageCapacityOperationCompleted;
         
+        private System.Threading.SendOrPostCallback deleteAccountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback resetPassordOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -122,6 +126,12 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event updateStorageCapacityCompletedEventHandler updateStorageCapacityCompleted;
+        
+        /// <remarks/>
+        public event deleteAccountCompletedEventHandler deleteAccountCompleted;
+        
+        /// <remarks/>
+        public event resetPassordCompletedEventHandler resetPassordCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -484,6 +494,68 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int deleteAccount(int ID, int verification) {
+            object[] results = this.Invoke("deleteAccount", new object[] {
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteAccountAsync(int ID, int verification) {
+            this.deleteAccountAsync(ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void deleteAccountAsync(int ID, int verification, object userState) {
+            if ((this.deleteAccountOperationCompleted == null)) {
+                this.deleteAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteAccountOperationCompleted);
+            }
+            this.InvokeAsync("deleteAccount", new object[] {
+                        ID,
+                        verification}, this.deleteAccountOperationCompleted, userState);
+        }
+        
+        private void OndeleteAccountOperationCompleted(object arg) {
+            if ((this.deleteAccountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteAccountCompleted(this, new deleteAccountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/resetPassord", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int resetPassord(int ID, int verification) {
+            object[] results = this.Invoke("resetPassord", new object[] {
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void resetPassordAsync(int ID, int verification) {
+            this.resetPassordAsync(ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void resetPassordAsync(int ID, int verification, object userState) {
+            if ((this.resetPassordOperationCompleted == null)) {
+                this.resetPassordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnresetPassordOperationCompleted);
+            }
+            this.InvokeAsync("resetPassord", new object[] {
+                        ID,
+                        verification}, this.resetPassordOperationCompleted, userState);
+        }
+        
+        private void OnresetPassordOperationCompleted(object arg) {
+            if ((this.resetPassordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.resetPassordCompleted(this, new resetPassordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -758,6 +830,58 @@ namespace TermProject.Part2WS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
     public delegate void updateStorageCapacityCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void deleteAccountCompletedEventHandler(object sender, deleteAccountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteAccountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteAccountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void resetPassordCompletedEventHandler(object sender, resetPassordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class resetPassordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal resetPassordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

@@ -22,16 +22,22 @@
                                 OnRowUpdating="gvManagement_RowUpdating" 
                                 OnRowDeleting="gvManagement_RowDeleting"
                                 OnRowResetting="gvManagment_RowResetting" 
-                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" >
+                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" >
                                 <Columns>
                                     <asp:BoundField DataField="AccountID" ReadOnly="true" HeaderText="User ID" SortExpression="Name" />
                                     <asp:BoundField DataField="Name" ReadOnly="true" HeaderText="User Name" SortExpression="Name" />
                                     <asp:BoundField DataField="Email" ReadOnly="true" HeaderText="Email Address" SortExpression="Email" />
                                     <asp:BoundField DataField="StorageSpace" HeaderText="Storage Capacity" SortExpression="StorageSpace" />
                                     <asp:BoundField DataField="StorageUsed" ReadOnly="true" HeaderText="StorageUsed" SortExpression="StorageUsed" />
-                                    <asp:CommandField ButtonType="Button" EditText="Modify" ShowEditButton="True" ShowHeader="True" />
-                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
-                                    <asp:ButtonField ButtonType="Button" Text="Reset Password" />
+                                    <asp:CommandField ButtonType="Button" EditText="Modify" ShowEditButton="True" ShowHeader="True" HeaderText="Update Account" />
+                                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" HeaderText="Delete Account" />
+                                    <asp:TemplateField HeaderText="Reset Password" ShowHeader="False">
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnReset" runat="server" CausesValidation="false" 
+                                                CommandName="ResetPassword" Text="Reset Password" 
+                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                                 <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />

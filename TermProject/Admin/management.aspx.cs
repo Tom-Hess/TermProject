@@ -87,12 +87,58 @@ namespace TermProject.Admin
         protected void gvManagement_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int index = e.RowIndex;
-            int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[1].Text);
-            Int64 size = -(Convert.ToInt64(gvManagement.Rows[index].Cells[4].Text));
+            int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+            //Int64 size = -(Convert.ToInt64(gvManagement.Rows[index].Cells[4].Text));
+            //Don't need to update the account's size. It is deleted
 
-            P2WS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
-            P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
+            int flag = P2WS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
+            //Delete transaction and account at the same time
+
+            if (flag == 0)
+                lblMsg.Text = "No rows were affected by this action. ";
+            else if (flag == -1)
+                lblMsg.Text = "An exception occured while perform this action. ";
+            else
+            {
+                lblMsg.Text = "Delted all files and account information in regard to " +
+                    gvManagement.Rows[index].Cells[1].Text + ". ";
+                //P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
+            }
             showFiles();
         }
+
+        protected void gvManagement_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ResetPassword")
+            {
+                // Retrieve the row index stored in the 
+                // CommandArgument property.
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // Retrieve the row that contains the button 
+                // from the Rows collection.
+                //GridViewRow row = gvManagement.Rows[index];
+
+                int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+
+                // Add code here to add the item to the shopping cart.
+                int flag = P2WS.resetPassord(fileID, Convert.ToInt32(Session["verification"]));
+                if (flag == 0)
+                {
+                    lblMsg.Text = "Unable to locate this account. ";
+                }
+                else if (flag == -1)
+                {
+                    lblMsg.Text = "Exception occured. ";
+                }
+                else
+                {
+                    lblMsg.Text = "Account " + fileID.ToString() +
+                        "'s password has been resetted to default password. ";
+                }
+            }
+        }
+
+
     }
 }

@@ -197,6 +197,36 @@
       <s:element name="updateStorageCapacityResponse">
         <s:complexType />
       </s:element>
+      <s:element name="deleteAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAccountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resetPassord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resetPassordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resetPassordResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAccountInfoSoapIn">
@@ -265,6 +295,18 @@
   <wsdl:message name="updateStorageCapacitySoapOut">
     <wsdl:part name="parameters" element="tns:updateStorageCapacityResponse" />
   </wsdl:message>
+  <wsdl:message name="deleteAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAccount" />
+  </wsdl:message>
+  <wsdl:message name="deleteAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="resetPassordSoapIn">
+    <wsdl:part name="parameters" element="tns:resetPassord" />
+  </wsdl:message>
+  <wsdl:message name="resetPassordSoapOut">
+    <wsdl:part name="parameters" element="tns:resetPassordResponse" />
+  </wsdl:message>
   <wsdl:portType name="Part2WSSoap">
     <wsdl:operation name="GetAccountInfo">
       <wsdl:input message="tns:GetAccountInfoSoapIn" />
@@ -309,6 +351,14 @@
     <wsdl:operation name="updateStorageCapacity">
       <wsdl:input message="tns:updateStorageCapacitySoapIn" />
       <wsdl:output message="tns:updateStorageCapacitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAccount">
+      <wsdl:input message="tns:deleteAccountSoapIn" />
+      <wsdl:output message="tns:deleteAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resetPassord">
+      <wsdl:input message="tns:resetPassordSoapIn" />
+      <wsdl:output message="tns:resetPassordSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Part2WSSoap" type="tns:Part2WSSoap">
@@ -412,6 +462,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="deleteAccount">
+      <soap:operation soapAction="http://tempuri.org/deleteAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassord">
+      <soap:operation soapAction="http://tempuri.org/resetPassord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Part2WSSoap12" type="tns:Part2WSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -507,6 +575,24 @@
     </wsdl:operation>
     <wsdl:operation name="updateStorageCapacity">
       <soap12:operation soapAction="http://tempuri.org/updateStorageCapacity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAccount">
+      <soap12:operation soapAction="http://tempuri.org/deleteAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetPassord">
+      <soap12:operation soapAction="http://tempuri.org/resetPassord" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

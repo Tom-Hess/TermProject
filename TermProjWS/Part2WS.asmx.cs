@@ -24,6 +24,7 @@ namespace TermProjWS
         PWEncryption myEncryption = new PWEncryption();
         DataSet myDS = new DataSet();
         int verificationToken = 112358;
+        string defaultPassword = "admin";
         [WebMethod]
         public Person GetAccountInfo(string email, int verification)
         {
@@ -342,6 +343,60 @@ namespace TermProjWS
                 myDB.DoUpdateUsingCmdObj(myCommand);
             }
         }
+        [WebMethod]
+        public int deleteAccount(int ID, int verification)
+        {
+            int flag = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeleteAccount";
+
+                SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+                //Flag represense number of rows affected,-1 if exception occured, 
+            }
+            else
+                return flag; //return zero
+        }
+
+        [WebMethod]
+        public int resetPassord(int ID, int verification)
+        {
+            string encryptedDP = myEncryption.EncryptString(defaultPassword);
+            int flag = 0;// rows affected by this action, -1 if except occured
+
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeleteAccount";
+
+                SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@defaultPassword", encryptedDP);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+            }
+            else
+                return flag;
+        }
+
 
     }
 }

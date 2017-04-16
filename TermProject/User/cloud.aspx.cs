@@ -59,14 +59,16 @@ namespace TermProject.User
             if (myValidation.IsEmpty(fileName))
             {
                 lblMsg.Text = "Invalid file name";
-                return;
+            }else
+            {
+                //update the file in the DB
+                P2WS.UpdateFile(fileID, fileName, Convert.ToInt32(Session["verification"]));
+
+                gvFiles.EditIndex = -1;
+                showFiles();
             }
 
-            //update the file in the DB
-            P2WS.UpdateFile(fileID, fileName, Convert.ToInt32(Session["verification"]));
-
-            gvFiles.EditIndex = -1;
-            showFiles();
+            
         }
 
 

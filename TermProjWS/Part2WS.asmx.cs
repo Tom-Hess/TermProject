@@ -186,7 +186,7 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPGetFiles";
+                myCommand.CommandText = "TPUpdateFile";
 
                 SqlParameter myParameter = new SqlParameter("@ID", fileID);
                 myParameter.Direction = ParameterDirection.Input;

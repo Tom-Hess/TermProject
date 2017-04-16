@@ -24,7 +24,7 @@ namespace TermProjWS
         PWEncryption myEncryption = new PWEncryption();
         DataSet myDS = new DataSet();
         int verificationToken = 112358;
-        string defaultPassword = "admin";
+        string defaultPassword = "password";
         [WebMethod]
         public Person GetAccountInfo(string email, int verification)
         {
@@ -378,7 +378,7 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPdeleteAccount";
+                myCommand.CommandText = "TPresetPassword";
 
                 SqlParameter myParameter = new SqlParameter("@ID", ID);
                 myParameter.Direction = ParameterDirection.Input;
@@ -387,7 +387,7 @@ namespace TermProjWS
 
                 myParameter = new SqlParameter("@defaultPassword", encryptedDP);
                 myParameter.Direction = ParameterDirection.Input;
-                myParameter.SqlDbType = SqlDbType.Int;
+                myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);
 
                 flag = myDB.DoUpdateUsingCmdObj(myCommand);

@@ -109,6 +109,7 @@ namespace TermProject.Admin
 
         protected void gvManagement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            lblMsg.ForeColor = System.Drawing.Color.Red;
             if (e.CommandName == "ResetPassword")
             {
                 // Retrieve the row index stored in the 
@@ -119,10 +120,10 @@ namespace TermProject.Admin
                 // from the Rows collection.
                 //GridViewRow row = gvManagement.Rows[index];
 
-                int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+                int userID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
 
                 // Add code here to add the item to the shopping cart.
-                int flag = P2WS.resetPassord(fileID, Convert.ToInt32(Session["verification"]));
+                int flag = P2WS.resetPassord(userID, Convert.ToInt32(Session["verification"]));
                 if (flag == 0)
                 {
                     lblMsg.Text = "Unable to locate this account. ";
@@ -133,7 +134,8 @@ namespace TermProject.Admin
                 }
                 else
                 {
-                    lblMsg.Text = "Account " + fileID.ToString() +
+                    lblMsg.ForeColor = System.Drawing.Color.Green;
+                    lblMsg.Text = "Account " + userID.ToString() +
                         "'s password has been resetted to default password. ";
                 }
             }

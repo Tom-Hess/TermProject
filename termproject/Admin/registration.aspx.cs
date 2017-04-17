@@ -75,7 +75,7 @@ namespace TermProject.Admin
             newPerson.AccountType = 1;
             newPerson.Email = txtEmail.Text;
             newPerson.Name = txtName.Text;
-            newPerson.StorageCapacity = 0;
+            newPerson.StorageSpace = 0;
             newPerson.Password = txtPassword.Text;
 
             if (RegWS.AddAccount(newPerson))

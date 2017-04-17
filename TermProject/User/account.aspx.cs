@@ -71,16 +71,25 @@ namespace TermProject.User
 
         protected void btnUpdateInfo_Click(object sender, EventArgs e)
         {
-            if(validateUpdateInfo())
+            lblUpdateInfoError.ForeColor = System.Drawing.Color.Red;
+            if (validateUpdateInfo())
             {
                 string oldEmail = Session["Email"].ToString();
                 accountInfo.Email = txtEmail.Text;
                 accountInfo.Name = txtName.Text;
-                P2WS.UpdateAccount(accountInfo, oldEmail, Convert.ToInt32(Session["verification"]));
+                if (P2WS.UpdateAccount(accountInfo, oldEmail, Convert.ToInt32(Session["verification"])))
+                {
+                    Session["Email"] = accountInfo.Email;
+                    lblUpdateInfoError.Text = "Successfully updated account information.";
+                    lblUpdateInfoError.ForeColor = System.Drawing.Color.Green;
+                } else
+                {
+                    lblUpdateInfoError.Text = "New email already in use!";
+                    txtEmail.Focus();
+                }
 
-                Session["Email"] = accountInfo.Email;
-                lblUpdateInfoError.Text = "Successfully updated account information.";
-                lblUpdateInfoError.ForeColor = System.Drawing.Color.Green;
+
+
             }
             
         }

@@ -68,7 +68,7 @@ namespace TermProject.LoginB
             newPerson.AccountType = 0;
             newPerson.Email = txtEmail.Text;
             newPerson.Name = txtName.Text;
-            newPerson.StorageCapacity = userCapacity;
+            newPerson.StorageSpace = userCapacity;
             newPerson.Password = txtPassword.Text;
 
             if (RegWS.AddAccount(newPerson))

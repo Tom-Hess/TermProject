@@ -37,7 +37,11 @@
         </s:complexType>
       </s:element>
       <s:element name="UpdateAccountResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateAccountResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="uploadFile">
         <s:complexType>

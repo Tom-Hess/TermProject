@@ -28,46 +28,58 @@ namespace TermProjWS
         public bool AddAccount(Person newPerson)
         {
             myCommand.Parameters.Clear();
-
             myCommand.CommandType = CommandType.StoredProcedure;
-            myCommand.CommandText = "AddAccount";
+            myCommand.CommandText = "TPCheckEmail";
+            SqlParameter inputParameter = new SqlParameter("@Email", newPerson.Email);
+            inputParameter.Direction = ParameterDirection.Input;
+            inputParameter.SqlDbType = SqlDbType.VarChar;
+            myCommand.Parameters.Add(inputParameter);
 
-            SqlParameter myParameter = new SqlParameter("Name", newPerson.Name);
-            myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.VarChar;
-            myCommand.Parameters.Add(myParameter);
+            myDS = myDB.GetDataSetUsingCmdObj(myCommand);
 
-            string encryptedPW = myEncryption.EncryptString(newPerson.Password);
-
-            myParameter = new SqlParameter("Password", encryptedPW);
-            myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.VarChar;
-            myCommand.Parameters.Add(myParameter);
-
-            myParameter = new SqlParameter("Email", newPerson.Email);
-            myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.VarChar;
-            myCommand.Parameters.Add(myParameter);
-
-            myParameter = new SqlParameter("StorageSpace", newPerson.StorageSpace);
-            myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.BigInt;
-            myCommand.Parameters.Add(myParameter);
-
-            myParameter = new SqlParameter("AccountType", newPerson.AccountType);
-            myParameter.Direction = ParameterDirection.Input;
-            myParameter.SqlDbType = SqlDbType.Int;
-            myCommand.Parameters.Add(myParameter);
-
-            int returnValue = myDB.DoUpdateUsingCmdObj(myCommand);
-            if(returnValue > 0 )
+            int count = myDS.Tables[0].Rows.Count;
+            if (count == 0)
             {
+                myCommand.Parameters.Clear();
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "AddAccount";
+
+                SqlParameter myParameter = new SqlParameter("Name", newPerson.Name);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                string encryptedPW = myEncryption.EncryptString(newPerson.Password);
+
+                myParameter = new SqlParameter("Password", encryptedPW);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("Email", newPerson.Email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("StorageSpace", newPerson.StorageSpace);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.BigInt;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("AccountType", newPerson.AccountType);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
                 return true;
-            } else
+            }
+            else
             {
                 return false;
             }
         }
+        
         [WebMethod]
         public ArrayList ValidateLogin(string email, string PW)
         {

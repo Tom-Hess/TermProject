@@ -61,39 +61,59 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public void UpdateAccount(Person updatePerson, string oldEmail, int verification)
+        public bool UpdateAccount(Person updatePerson, string oldEmail, int verification)
         {
-            if(verification == verificationToken)
+            if (verification == verificationToken)
             {
                 myCommand.Parameters.Clear();
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "UpdateAccount";
-                SqlParameter inputParameter = new SqlParameter("@OldEmail", oldEmail);
+                myCommand.CommandText = "TPCheckEmail";
+                SqlParameter inputParameter = new SqlParameter("@Email", updatePerson.Email);
                 inputParameter.Direction = ParameterDirection.Input;
                 inputParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(inputParameter);
 
-                string password = myEncryption.EncryptString(updatePerson.Password);
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+                int count = myDS.Tables[0].Rows.Count;
+                if (count == 0)
+                {
+                    myCommand.Parameters.Clear();
+                    myCommand.CommandType = CommandType.StoredProcedure;
+                    myCommand.CommandText = "UpdateAccount";
+                    inputParameter = new SqlParameter("@OldEmail", oldEmail);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    myCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@Password", password);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                myCommand.Parameters.Add(inputParameter);
+                    string password = myEncryption.EncryptString(updatePerson.Password);
 
-                inputParameter = new SqlParameter("@NewEmail", updatePerson.Email);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                myCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@Password", password);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    myCommand.Parameters.Add(inputParameter);
 
-                inputParameter = new SqlParameter("@Name", updatePerson.Name);
-                inputParameter.Direction = ParameterDirection.Input;
-                inputParameter.SqlDbType = SqlDbType.VarChar;
-                myCommand.Parameters.Add(inputParameter);
+                    inputParameter = new SqlParameter("@NewEmail", updatePerson.Email);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    myCommand.Parameters.Add(inputParameter);
 
-                myDB.DoUpdateUsingCmdObj(myCommand);
+                    inputParameter = new SqlParameter("@Name", updatePerson.Name);
+                    inputParameter.Direction = ParameterDirection.Input;
+                    inputParameter.SqlDbType = SqlDbType.VarChar;
+                    myCommand.Parameters.Add(inputParameter);
+
+                    myDB.DoUpdateUsingCmdObj(myCommand);
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+                }
+            } else
+            {
+                return false;
             }
-            
-
         }
 
         [WebMethod]

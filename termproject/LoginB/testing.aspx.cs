@@ -309,21 +309,33 @@ namespace TermProject.LoginB
             }
         }
 
-        protected void btnM12submit_Click(object sender, EventArgs e)
+        protected void btnM13submit_Click(object sender, EventArgs e)
         {
-            int temp;
-            if (txtM12ID.Text == "")
-                lblM12msg.Text = "ID cannot be blank. ";
-            else if (!int.TryParse(txtM12ID.Text, out temp) && temp > 0)
-                lblM12msg.Text = "ID must be an positive integer. ";
+            Int64 storageSpace;
+            int accountType = int.Parse(ddlM13.SelectedValue);
+            if (accountType == 1)
+                storageSpace = 0;
+            else
+                storageSpace = 1000000000;
+
+            if (txtM13name.Text == "")
+                lblM13msg.Text = "Name cannot be blank. ";
+            else if (!myValidation.IsValidEmail(txtM13email.Text))
+                lblM13msg.Text = "Not a valid email. ";
+            else if (txtM13email.Text == "")
+                lblM13msg.Text = "Email cannot be blank. ";
+            else if (txtM13password.Text == "")
+                lblM13msg.Text = "Password cannot be blank. ";
+            else if (txtM13password != txtM13confirm)
+                lblM13msg.Text = "Confirmation password doesn't match with password.";
             else
             {
                 RegistrationWS.Person newPerson = new RegistrationWS.Person();
-                newPerson.AccountType = 
-                newPerson.Email = 
-                newPerson.Name = 
-                newPerson.StorageSpace = 
-                newPerson.Password = 
+                newPerson.AccountType = int.Parse(ddlM13.SelectedValue);
+                newPerson.Email = txtM13email.Text;
+                newPerson.Name = txtM13name.Text;
+                newPerson.StorageSpace = storageSpace;
+                newPerson.Password = txtM13password.Text;
 
                 if (RegWS.AddAccount(newPerson))
                 {
@@ -335,6 +347,34 @@ namespace TermProject.LoginB
                     lblM13msg.Text = "Email already in use!";
                 }
             }
+        }
+
+        protected void btnM12submit_Click(object sender, EventArgs e)
+        {
+            int temp;
+            if (txtM12ID.Text == "")
+                lblM12msg.Text = "ID cannot be blank. ";
+            else if (!int.TryParse(txtM12ID.Text, out temp) && temp > 0)
+                lblM12msg.Text = "ID must be an positive integer. ";
+            else
+            {
+                txtM11Affected.Text = P2WS.resetPassord(temp, verificationToken).ToString();
+            }
+        }
+
+        protected void btnM14submit_Click(object sender, EventArgs e)
+        {
+            if (txtM14email.Text == "")
+                lblM14msg.Text = "Email cannot be blank. ";
+            else if (txtM14password.Text == "")
+                lblM14msg.Text = "Password cannot be blank. ";
+            else
+            {
+                ArrayList loginArray = new ArrayList(RegWS.ValidateLogin(txtEmail.Text, txtPassword.Text));
+
+
+            }
+            
         }
     }
 }

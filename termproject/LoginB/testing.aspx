@@ -221,26 +221,50 @@
                         </div>
                         <div class="form-group">
                             <div class="form-group">
-                                <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
-                                <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
+                                <asp:Label runat="server" ID="lblM13name" Text="Name: "></asp:Label>
+                                <asp:TextBox runat="server" ID="txtM13name"></asp:TextBox>
                             </div>
                             <div class="form-group">
-                                <asp:Label runat="server" ID="Label13" Text="Email: "></asp:Label>
-                                <asp:TextBox runat="server" ID="TextBox1"></asp:TextBox>
+                                <asp:Label runat="server" ID="lblM13email" Text="Email: "></asp:Label>
+                                <asp:TextBox runat="server" ID="txtM13email"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>
-                                <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
+                                <asp:TextBox runat="server" TextMode="Password" ID="txtM13password"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
-                                <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
+                                <asp:TextBox runat="server" TextMode="Password" ID="txtM13confirm"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lblType" Text="Account Type: "></asp:Label>
+                                <asp:DropDownList ID="ddlM13" runat="server">
+                                    <asp:ListItem Value="1">Admin</asp:ListItem>
+                                    <asp:ListItem Value="0">User</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnM13submit" Text="Method 13 Submit" />
                             <asp:Label runat="server" ID="lblM13msg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
+                        <br />
+                        <div class="form-group">
+                            <p>
+                                Web Method 14: validate login. Input: email and password. Output: An arraylist.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" ID="Label13" Text="Email: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM14email"></asp:TextBox>
+                            <asp:Label runat="server" ID="Label14" Text="Password: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM14password"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button runat="server" ID="btnM14submit" Text="Method 14 Submit" OnClick="btnM14submit_Click" />
+                            <asp:Label runat="server" ID="lblM14msg" Text="" ForeColor="#FF3300"></asp:Label>
+                        </div>
+                        <br />
                     </form>
                 </div>
             </div>

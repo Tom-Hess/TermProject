@@ -125,7 +125,7 @@
                             <p>
                                 Web Method 7: delete a file from user's cloud. Input: FileID. Output: none. User Web Method 4 verify the result.
                             </p>
-                            
+
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="Label6" Text="FileID: "></asp:Label>
@@ -178,7 +178,7 @@
                             <asp:TextBox runat="server" ID="txtM10size"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:Button runat="server" ID="btnM10submit" Text="Method 10 Submit" OnClick="btnM10submit_Click"  />
+                            <asp:Button runat="server" ID="btnM10submit" Text="Method 10 Submit" OnClick="btnM10submit_Click" />
                             <asp:Label runat="server" ID="lblM10msg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
                         <br />
@@ -190,12 +190,57 @@
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblM10ID" Text="ID: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtM11ID"></asp:TextBox>
+                            <asp:Label runat="server" ID="Label11" Text="Rows affected: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM11Affected"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:Button runat="server" ID="Button1" Text="Method 10 Submit" OnClick="btnM10submit_Click"  />
-                            <asp:Label runat="server" ID="Label13" Text="" ForeColor="#FF3300"></asp:Label>
+                            <asp:Button runat="server" ID="btnM11submit" Text="Method 11 Submit" OnClick="btnM11submit_Click" />
+                            <asp:Label runat="server" ID="lblM11msg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
                         <br />
+                        <div class="form-group">
+                            <p>
+                                Web Method 12: reset password. Input: ID. Output: Number of rows affected by this action.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" ID="lblM12ID" Text="ID: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM12ID"></asp:TextBox>
+                            <asp:Label runat="server" ID="Label12" Text="Rows affected: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM12affected"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button runat="server" ID="btnM12submit" Text="Method 12 Submit" OnClick="btnM12submit_Click" />
+                            <asp:Label runat="server" ID="lblM12msg" Text="" ForeColor="#FF3300"></asp:Label>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <p>
+                                Web Method 13: Add an account. Input: person class. Output: bool. 
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
+                                <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="Label13" Text="Email: "></asp:Label>
+                                <asp:TextBox runat="server" ID="TextBox1"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lblPassword" Text="Password: "></asp:Label>
+                                <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
+                                <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button runat="server" ID="btnM13submit" Text="Method 13 Submit" />
+                            <asp:Label runat="server" ID="lblM13msg" Text="" ForeColor="#FF3300"></asp:Label>
+                        </div>
                     </form>
                 </div>
             </div>

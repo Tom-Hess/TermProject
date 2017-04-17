@@ -14,11 +14,11 @@ namespace TermProject.LoginB
     public partial class WebForm4 : System.Web.UI.Page
     {
         int verificationToken = 112358;
-        string defaultPassword = "password";
 
         Validation myValidation = new Validation();
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Part2WS.Person accountInfo = new Part2WS.Person();
+        RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -172,7 +172,7 @@ namespace TermProject.LoginB
                     lblM4msg.Text = "Unable to locate this account. ";
                 }
             }
-            
+
         }
 
         protected void btnM5submit_Click(object sender, EventArgs e)
@@ -289,10 +289,51 @@ namespace TermProject.LoginB
             else if (txtM10size.Text == "")
                 lblM10msg.Text = "Size cannot be blank. ";
             else if (!Int64.TryParse(txtM10size.Text, out temp2))
-                lblM10msg.Text = "Size must be an integer. "; 
+                lblM10msg.Text = "Size must be an integer. ";
             else
             {
                 P2WS.updateStorageCapacity(temp, temp2, verificationToken);
+            }
+        }
+
+        protected void btnM11submit_Click(object sender, EventArgs e)
+        {
+            int temp;
+            if (txtM11ID.Text == "")
+                lblM11msg.Text = "ID cannot be blank. ";
+            else if (!int.TryParse(txtM11ID.Text, out temp) && temp > 0)
+                lblM11msg.Text = "ID must be an positive integer. ";
+            else
+            {
+                txtM11Affected.Text = P2WS.deleteAccount(temp, verificationToken).ToString();
+            }
+        }
+
+        protected void btnM12submit_Click(object sender, EventArgs e)
+        {
+            int temp;
+            if (txtM12ID.Text == "")
+                lblM12msg.Text = "ID cannot be blank. ";
+            else if (!int.TryParse(txtM12ID.Text, out temp) && temp > 0)
+                lblM12msg.Text = "ID must be an positive integer. ";
+            else
+            {
+                RegistrationWS.Person newPerson = new RegistrationWS.Person();
+                newPerson.AccountType = 
+                newPerson.Email = 
+                newPerson.Name = 
+                newPerson.StorageSpace = 
+                newPerson.Password = 
+
+                if (RegWS.AddAccount(newPerson))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
+                        "alert('Admin successfully created.');window.location ='management.aspx';", true);
+                }
+                else
+                {
+                    lblM13msg.Text = "Email already in use!";
+                }
             }
         }
     }

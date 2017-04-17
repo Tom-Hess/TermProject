@@ -25,7 +25,9 @@
                         </div>
                         <div class="form-group" style="text-align:center">
                             <asp:Button runat="server" ID="btnLogin" Text="Log In" OnClick="btnLogin_Click" />
+                            <br />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
+
                         </div>
                         <br />
                     </form>

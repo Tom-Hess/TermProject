@@ -32,6 +32,7 @@
                             <asp:TextBox ID="txtConfirm" TextMode="Password" runat="server"></asp:TextBox>
                             <br /><br />
                             <asp:Button ID="btnUpdatePW" runat="server" Text="Update Password" OnClick="btnUpdatePW_Click" />
+                            <br />
                             <asp:Label id ="lblUpdatePWError" ForeColor="Red" runat="server"></asp:Label>
                         </div>
 
@@ -47,6 +48,7 @@
                             <br /><br />
 
                             <asp:Button ID="btnUpdateInfo" runat="server" Text="Update Account Information" OnClick="btnUpdateInfo_Click" />
+                            <br />
                             <asp:Label id ="lblUpdateInfoError" ForeColor="Red" runat="server"></asp:Label>
 
                         </div>

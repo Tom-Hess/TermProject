@@ -34,6 +34,7 @@
                         </div>
                         <div class="form-group" style="text-align:center">
                             <asp:Button runat="server" ID="btnSubmit" Text="Register" OnClick="btnSubmit_Click" />
+                            <br />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
 

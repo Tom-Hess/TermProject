@@ -280,9 +280,20 @@ namespace TermProject.LoginB
 
         protected void btnM10submit_Click(object sender, EventArgs e)
         {
+            int temp;
+            Int64 temp2;
             if (txtM10ID.Text == "")
                 lblM10msg.Text = "ID cannot be blank. ";
-            else if (txtM10ID.Text)
+            else if (!int.TryParse(txtM10ID.Text, out temp))
+                lblM10msg.Text = "ID cannot convert to int. ";
+            else if (txtM10size.Text == "")
+                lblM10msg.Text = "Size cannot be blank. ";
+            else if (!Int64.TryParse(txtM10size.Text, out temp2))
+                lblM10msg.Text = "Size must be an integer. "; 
+            else
+            {
+                P2WS.updateStorageCapacity(temp, temp2, verificationToken);
+            }
         }
     }
 }

@@ -182,6 +182,20 @@
                             <asp:Label runat="server" ID="lblM10msg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
                         <br />
+                        <div class="form-group">
+                            <p>
+                                Web Method 11: delete an account. Input: ID. Output: Number of rows affected by this action. Use Method 1 to verify result of this acction.
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" ID="lblM10ID" Text="ID: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM11ID"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Button runat="server" ID="Button1" Text="Method 10 Submit" OnClick="btnM10submit_Click"  />
+                            <asp:Label runat="server" ID="Label13" Text="" ForeColor="#FF3300"></asp:Label>
+                        </div>
+                        <br />
                     </form>
                 </div>
             </div>

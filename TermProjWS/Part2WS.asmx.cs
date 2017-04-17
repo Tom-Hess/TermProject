@@ -254,8 +254,9 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public void DeleteFile(int fileID, int verification)
+        public int DeleteFile(int fileID, int verification)
         {
+            int temp = 0;
             if (verification == verificationToken)
             {
                 myCommand.Parameters.Clear();
@@ -268,8 +269,11 @@ namespace TermProjWS
                 myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);
 
-                myDB.DoUpdateUsingCmdObj(myCommand);
+                temp = myDB.DoUpdateUsingCmdObj(myCommand);
+                return temp;
             }
+            else
+                return temp;
 
         }
         [WebMethod]

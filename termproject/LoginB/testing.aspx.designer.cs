@@ -211,6 +211,42 @@ namespace TermProject.LoginB {
         protected global::System.Web.UI.WebControls.FileUpload fuUpload;
         
         /// <summary>
+        /// Label15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label15;
+        
+        /// <summary>
+        /// txtM3email control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtM3email;
+        
+        /// <summary>
+        /// Label16 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label16;
+        
+        /// <summary>
+        /// txtM3ID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtM3ID;
+        
+        /// <summary>
         /// btnM3submit control.
         /// </summary>
         /// <remarks>
@@ -607,13 +643,13 @@ namespace TermProject.LoginB {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// txtM11Affected control.
+        /// lblM11row control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtM11Affected;
+        protected global::System.Web.UI.WebControls.Label lblM11row;
         
         /// <summary>
         /// btnM11submit control.
@@ -661,13 +697,13 @@ namespace TermProject.LoginB {
         protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// txtM12affected control.
+        /// lblM12row control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtM12affected;
+        protected global::System.Web.UI.WebControls.Label lblM12row;
         
         /// <summary>
         /// btnM12submit control.

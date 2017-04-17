@@ -131,7 +131,11 @@
         </s:complexType>
       </s:element>
       <s:element name="DeleteFileResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="getFile">
         <s:complexType>

@@ -57,11 +57,16 @@
                         <br />
                         <div class="form-group">
                             <p>
-                                Web Method 3: get a file and upload a file. Input: File. Output: boolean. Result will be displayed in the label below. File will be upload into Web Method 1's user's cloud.
+                                Web Method 3: get a file and upload a file. Input: name, type, length, file in binary form, email, accountID, imagePath. Output: boolean. 
                             </p>
                         </div>
                         <div class="form-group">
                             <asp:FileUpload ID="fuUpload" runat="server" />
+                            <br />
+                            <asp:Label runat="server" ID="Label15" Text="Email: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM3email"></asp:TextBox>
+                            <asp:Label runat="server" ID="Label16" Text="ID: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtM3ID"></asp:TextBox>
                             <br />
                             <asp:Button runat="server" ID="btnM3submit" Text="Method 3 Submit" OnClick="btnM3submit_Click" />
                             <asp:Label runat="server" ID="lblM3msg" Text=""></asp:Label>
@@ -125,7 +130,6 @@
                             <p>
                                 Web Method 7: delete a file from user's cloud. Input: FileID. Output: none. User Web Method 4 verify the result.
                             </p>
-
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" ID="Label6" Text="FileID: "></asp:Label>
@@ -191,7 +195,7 @@
                             <asp:Label runat="server" ID="lblM10ID" Text="ID: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtM11ID"></asp:TextBox>
                             <asp:Label runat="server" ID="Label11" Text="Rows affected: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtM11Affected"></asp:TextBox>
+                            <asp:Label runat="server" ID="lblM11row" Text=""></asp:Label>
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnM11submit" Text="Method 11 Submit" OnClick="btnM11submit_Click" />
@@ -207,7 +211,7 @@
                             <asp:Label runat="server" ID="lblM12ID" Text="ID: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtM12ID"></asp:TextBox>
                             <asp:Label runat="server" ID="Label12" Text="Rows affected: "></asp:Label>
-                            <asp:TextBox runat="server" ID="txtM12affected"></asp:TextBox>
+                            <asp:Label runat="server" ID="lblM12row" Text=""></asp:Label>
                         </div>
                         <div class="form-group">
                             <asp:Button runat="server" ID="btnM12submit" Text="Method 12 Submit" OnClick="btnM12submit_Click" />
@@ -245,7 +249,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <asp:Button runat="server" ID="btnM13submit" Text="Method 13 Submit" />
+                            <asp:Button runat="server" ID="btnM13submit" Text="Method 13 Submit" OnClick="btnM13submit_Click1" />
                             <asp:Label runat="server" ID="lblM13msg" Text="" ForeColor="#FF3300"></asp:Label>
                         </div>
                         <br />

@@ -88,11 +88,8 @@ namespace TermProject.Admin
         {
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
-            //Int64 size = -(Convert.ToInt64(gvManagement.Rows[index].Cells[4].Text));
-            //Don't need to update the account's size. It is deleted
 
             int flag = P2WS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
-            //Delete transaction and account at the same time
 
             if (flag == 0)
                 lblMsg.Text = "No rows were affected by this action. ";
@@ -102,7 +99,6 @@ namespace TermProject.Admin
             {
                 lblMsg.Text = "Delted all files and account information in regard to " +
                     gvManagement.Rows[index].Cells[1].Text + ". ";
-                //P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             }
             showFiles();
         }

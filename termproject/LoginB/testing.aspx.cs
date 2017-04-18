@@ -155,7 +155,7 @@ namespace TermProject.LoginB
                     else
                     {
                         if (P2WS.uploadFile(fileTitle, fileType, fileLength, fileData,
-                        txtM3email.Text, m3ID, imagePath, verificationToken))
+                        txtM3email.Text, m3ID, imagePath, fileExtension, verificationToken))
                         {
                             lblM3msg.ForeColor = System.Drawing.Color.Green;
                             lblM3msg.Text = "Successfully uploaded " + fileTitle;

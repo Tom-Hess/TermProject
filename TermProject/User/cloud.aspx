@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div>
-                            <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+                            <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCommand="gvFiles_RowCommand">
                                 <Columns>
                                     <%--<asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
                                         ControlStyle-Width="100" ControlStyle-Height="100">
@@ -32,6 +32,12 @@
                                     <asp:CommandField ButtonType="Button" EditText="Rename" ShowEditButton="True" ShowHeader="True" />
                                     <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
 
+                                    <asp:TemplateField HeaderText="Download">  
+                                    <ItemTemplate>  
+                                        <asp:LinkButton ID="lnkDownload" runat="server" CausesValidation="False" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                            CommandName="Download" Text='<%# Eval("title") %>' />  
+                                    </ItemTemplate>  
+                                    </asp:TemplateField>  
                                 </Columns>
 
                                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />

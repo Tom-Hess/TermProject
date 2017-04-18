@@ -87,14 +87,17 @@
     </None>
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
+    <Content Include="Web References\Part2WS\FileData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\Part2WS\Reference.map">
+    <None Include="Web References\Part2WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -243,17 +246,6 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\Part2WS\</RelPath>
-      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>TermProject_Part2WS_Part2WS</CachedSettingsPropName>
-    </WebReferenceUrl>
     <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/TermProjectWS/registrationws.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RegistrationWS\</RelPath>
@@ -264,6 +256,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TermProject_RegistrationWS_RegistrationWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://localhost:52728/Part2WS.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Part2WS\</RelPath>
+      <UpdateFromURL>http://localhost:52728/Part2WS.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TermProject_Part2WS_Part2WS</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>

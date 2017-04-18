@@ -117,7 +117,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int accountID, string imagePath, int verification)
+        public bool uploadFile(string title, string type, Int64 length, byte[] data, string email, int accountID, string imagePath, string extension, int verification)
         {
             if(verification == verificationToken)
             {
@@ -127,6 +127,11 @@ namespace TermProjWS
                 myCommand.CommandText = "TPuploadFile";
 
                 SqlParameter myParameter = new SqlParameter("@title", title);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@extension", extension);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);
@@ -421,6 +426,62 @@ namespace TermProjWS
                 return flag;
         }
 
+        [WebMethod]
+        public byte[] GetFileData(int fileID, Int64 fileSize, int verification)
+        {
+            byte[] data = new byte[fileSize];
 
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetFileData";
+
+                SqlParameter myParameter = new SqlParameter("@fileID", fileID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+
+            data = (byte[])(myDB.GetField("data", 0));
+            return data;
+
+        }
+
+        [WebMethod]
+        public FileData getAllFileInfo(int fileID, int verification)
+        {
+            FileData returnFile = new FileData();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetFileInfoGivenID";
+
+                SqlParameter myParameter = new SqlParameter("@ID", fileID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myDB.GetDataSetUsingCmdObj(myCommand);
+
+
+                returnFile.FileID = fileID;
+                returnFile.AccountID = Convert.ToInt32(myDB.GetField("accountID", 0));
+                returnFile.Data = (byte[])myDB.GetField("data", 0);
+                returnFile.Email = myDB.GetField("email", 0).ToString();
+                returnFile.Title = myDB.GetField("title", 0).ToString();
+                returnFile.Type = myDB.GetField("type", 0).ToString();
+                returnFile.ImagePath = myDB.GetField("imagePath", 0).ToString();
+                returnFile.Length = Convert.ToInt64(myDB.GetField("length", 0));
+                returnFile.Timestamp = (DateTime)(myDB.GetField("timestamp", 0));
+                returnFile.Extension = myDB.GetField("extension", 0).ToString();
+            }
+            return returnFile;
+        }
     }
 }

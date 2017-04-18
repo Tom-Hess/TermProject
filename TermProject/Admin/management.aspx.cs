@@ -86,6 +86,7 @@ namespace TermProject.Admin
 
         protected void gvManagement_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            lblMsg.ForeColor = System.Drawing.Color.Red;
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
 
@@ -94,10 +95,11 @@ namespace TermProject.Admin
             if (flag == 0)
                 lblMsg.Text = "No rows were affected by this action. ";
             else if (flag == -1)
-                lblMsg.Text = "An exception occured while perform this action. ";
+                lblMsg.Text = "An exception occured while performing this action. ";
             else
             {
-                lblMsg.Text = "Delted all files and account information in regard to " +
+                lblMsg.ForeColor = System.Drawing.Color.Green;
+                lblMsg.Text = "Delted all files and account information in regards to " +
                     gvManagement.Rows[index].Cells[1].Text + ". ";
             }
             showFiles();
@@ -132,7 +134,7 @@ namespace TermProject.Admin
                 {
                     lblMsg.ForeColor = System.Drawing.Color.Green;
                     lblMsg.Text = "Account " + userID.ToString() +
-                        "'s password has been resetted to default password. ";
+                        "'s password has been resetted to the default password. ";
                 }
             }
         }

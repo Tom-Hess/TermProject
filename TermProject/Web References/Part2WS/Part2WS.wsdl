@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="GetAccountInfo">
@@ -53,6 +53,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="imagePath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="extension" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -235,6 +236,51 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetFileData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileSize" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileDataResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllFileInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllFileInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAllFileInfoResult" type="tns:FileData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FileData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FileID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Timestamp" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImagePath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAccountInfoSoapIn">
@@ -315,6 +361,18 @@
   <wsdl:message name="resetPassordSoapOut">
     <wsdl:part name="parameters" element="tns:resetPassordResponse" />
   </wsdl:message>
+  <wsdl:message name="GetFileDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileData" />
+  </wsdl:message>
+  <wsdl:message name="GetFileDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllFileInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:getAllFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="getAllFileInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:getAllFileInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="Part2WSSoap">
     <wsdl:operation name="GetAccountInfo">
       <wsdl:input message="tns:GetAccountInfoSoapIn" />
@@ -367,6 +425,14 @@
     <wsdl:operation name="resetPassord">
       <wsdl:input message="tns:resetPassordSoapIn" />
       <wsdl:output message="tns:resetPassordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <wsdl:input message="tns:GetFileDataSoapIn" />
+      <wsdl:output message="tns:GetFileDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllFileInfo">
+      <wsdl:input message="tns:getAllFileInfoSoapIn" />
+      <wsdl:output message="tns:getAllFileInfoSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Part2WSSoap" type="tns:Part2WSSoap">
@@ -481,6 +547,24 @@
     </wsdl:operation>
     <wsdl:operation name="resetPassord">
       <soap:operation soapAction="http://tempuri.org/resetPassord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <soap:operation soapAction="http://tempuri.org/GetFileData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllFileInfo">
+      <soap:operation soapAction="http://tempuri.org/getAllFileInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -608,13 +692,31 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetFileData">
+      <soap12:operation soapAction="http://tempuri.org/GetFileData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllFileInfo">
+      <soap12:operation soapAction="http://tempuri.org/getAllFileInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Part2WS">
     <wsdl:port name="Part2WSSoap" binding="tns:Part2WSSoap">
-      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx" />
+      <soap:address location="http://localhost:52728/Part2WS.asmx" />
     </wsdl:port>
     <wsdl:port name="Part2WSSoap12" binding="tns:Part2WSSoap12">
-      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx" />
+      <soap12:address location="http://localhost:52728/Part2WS.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

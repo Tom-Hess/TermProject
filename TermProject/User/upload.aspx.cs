@@ -43,10 +43,15 @@ namespace TermProject.User
                 byte[] fileData = new byte[fileLength];
 
                 fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
+                
                 string fileTitle = fuUpload.PostedFile.FileName;
+                string fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
+
+                int index = fileTitle.IndexOf(".");
+                if (index > 0)
+                    fileTitle = fileTitle.Substring(0, index);
                 string fileType = fuUpload.PostedFile.ContentType;
 
-                string fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
                 fileExtension = fileExtension.ToLower();
 
                 string imagePath;
@@ -98,7 +103,7 @@ namespace TermProject.User
                 else
                 {
                     if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData,
-                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, Convert.ToInt32(Session["verification"])))
+                    Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, fileExtension, Convert.ToInt32(Session["verification"])))
                     {
                         lblMsg.ForeColor = System.Drawing.Color.Green;
                         lblMsg.Text = "Successfully uploaded " + fileTitle;

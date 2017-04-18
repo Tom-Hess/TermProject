@@ -11,7 +11,7 @@
                     <h3 class="panel-title"><strong>Management</strong></h3>
                 </div>
                 <div class="panel-body">
-                    <form id="form1" runat="server">
+                    <form id="form1" runat="server" style="text-align:center">
                         <div>
                             <asp:Label runat="server" ID="lblMsg" ForeColor="Red" Text=""></asp:Label>
                         </div>

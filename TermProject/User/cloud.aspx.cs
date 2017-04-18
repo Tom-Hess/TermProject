@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TermProject.Part2WS;
 using TermProjectLibrary;
 
 namespace TermProject.User
@@ -90,6 +91,36 @@ namespace TermProject.User
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
 
+        }
+
+        protected void gvFiles_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "Download")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                string fileName = gvFiles.Rows[rowIndex].Cells[2].Text;
+                int fileID = Convert.ToInt32(gvFiles.Rows[rowIndex].Cells[1].Text);
+
+                Int64 fileSize = Convert.ToInt64(gvFiles.Rows[rowIndex].Cells[4].Text);
+                byte[] fileData = new byte[fileSize];
+                FileData myFile = new FileData();
+
+                //fileData = P2WS.GetFileData(fileID, fileSize, Convert.ToInt32(Session["verification"]));
+                myFile = P2WS.getAllFileInfo(fileID, Convert.ToInt32(Session["verification"]));
+                fileData = myFile.Data;
+                string contentType = myFile.Type;
+                string extension = myFile.Extension;
+
+                Response.Clear();
+                Response.ContentType = contentType;
+                Response.AddHeader("Content-Length", fileSize.ToString());
+                Response.AddHeader("Content-Disposition", "attachment; filename = " + fileName + extension);
+                Response.OutputStream.Write(fileData, 0, fileData.Length);
+                Response.Flush();
+                Response.End();
+            }
+
+            
         }
     }
 }

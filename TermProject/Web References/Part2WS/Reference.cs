@@ -56,6 +56,10 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback resetPassordOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetFileDataOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getAllFileInfoOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -134,6 +138,12 @@ namespace TermProject.Part2WS {
         public event resetPassordCompletedEventHandler resetPassordCompleted;
         
         /// <remarks/>
+        public event GetFileDataCompletedEventHandler GetFileDataCompleted;
+        
+        /// <remarks/>
+        public event getAllFileInfoCompletedEventHandler getAllFileInfoCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Person GetAccountInfo(string email, int verification) {
             object[] results = this.Invoke("GetAccountInfo", new object[] {
@@ -199,7 +209,7 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/uploadFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int accountID, string imagePath, int verification) {
+        public bool uploadFile(string title, string type, long length, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, string email, int accountID, string imagePath, string extension, int verification) {
             object[] results = this.Invoke("uploadFile", new object[] {
                         title,
                         type,
@@ -208,17 +218,18 @@ namespace TermProject.Part2WS {
                         email,
                         accountID,
                         imagePath,
+                        extension,
                         verification});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, int verification) {
-            this.uploadFileAsync(title, type, length, data, email, accountID, imagePath, verification, null);
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, string extension, int verification) {
+            this.uploadFileAsync(title, type, length, data, email, accountID, imagePath, extension, verification, null);
         }
         
         /// <remarks/>
-        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, int verification, object userState) {
+        public void uploadFileAsync(string title, string type, long length, byte[] data, string email, int accountID, string imagePath, string extension, int verification, object userState) {
             if ((this.uploadFileOperationCompleted == null)) {
                 this.uploadFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnuploadFileOperationCompleted);
             }
@@ -230,6 +241,7 @@ namespace TermProject.Part2WS {
                         email,
                         accountID,
                         imagePath,
+                        extension,
                         verification}, this.uploadFileOperationCompleted, userState);
         }
         
@@ -558,6 +570,71 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetFileData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] GetFileData(int fileID, long fileSize, int verification) {
+            object[] results = this.Invoke("GetFileData", new object[] {
+                        fileID,
+                        fileSize,
+                        verification});
+            return ((byte[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetFileDataAsync(int fileID, long fileSize, int verification) {
+            this.GetFileDataAsync(fileID, fileSize, verification, null);
+        }
+        
+        /// <remarks/>
+        public void GetFileDataAsync(int fileID, long fileSize, int verification, object userState) {
+            if ((this.GetFileDataOperationCompleted == null)) {
+                this.GetFileDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetFileDataOperationCompleted);
+            }
+            this.InvokeAsync("GetFileData", new object[] {
+                        fileID,
+                        fileSize,
+                        verification}, this.GetFileDataOperationCompleted, userState);
+        }
+        
+        private void OnGetFileDataOperationCompleted(object arg) {
+            if ((this.GetFileDataCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetFileDataCompleted(this, new GetFileDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getAllFileInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public FileData getAllFileInfo(int fileID, int verification) {
+            object[] results = this.Invoke("getAllFileInfo", new object[] {
+                        fileID,
+                        verification});
+            return ((FileData)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllFileInfoAsync(int fileID, int verification) {
+            this.getAllFileInfoAsync(fileID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getAllFileInfoAsync(int fileID, int verification, object userState) {
+            if ((this.getAllFileInfoOperationCompleted == null)) {
+                this.getAllFileInfoOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllFileInfoOperationCompleted);
+            }
+            this.InvokeAsync("getAllFileInfo", new object[] {
+                        fileID,
+                        verification}, this.getAllFileInfoOperationCompleted, userState);
+        }
+        
+        private void OngetAllFileInfoOperationCompleted(object arg) {
+            if ((this.getAllFileInfoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllFileInfoCompleted(this, new getAllFileInfoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -653,6 +730,136 @@ namespace TermProject.Part2WS {
             }
             set {
                 this.storageUsedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class FileData {
+        
+        private int fileIDField;
+        
+        private string emailField;
+        
+        private System.DateTime timestampField;
+        
+        private byte[] dataField;
+        
+        private long lengthField;
+        
+        private string titleField;
+        
+        private string typeField;
+        
+        private int accountIDField;
+        
+        private string imagePathField;
+        
+        private string extensionField;
+        
+        /// <remarks/>
+        public int FileID {
+            get {
+                return this.fileIDField;
+            }
+            set {
+                this.fileIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime Timestamp {
+            get {
+                return this.timestampField;
+            }
+            set {
+                this.timestampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] Data {
+            get {
+                return this.dataField;
+            }
+            set {
+                this.dataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long Length {
+            get {
+                return this.lengthField;
+            }
+            set {
+                this.lengthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Title {
+            get {
+                return this.titleField;
+            }
+            set {
+                this.titleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Type {
+            get {
+                return this.typeField;
+            }
+            set {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AccountID {
+            get {
+                return this.accountIDField;
+            }
+            set {
+                this.accountIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ImagePath {
+            get {
+                return this.imagePathField;
+            }
+            set {
+                this.imagePathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Extension {
+            get {
+                return this.extensionField;
+            }
+            set {
+                this.extensionField = value;
             }
         }
     }
@@ -925,6 +1132,58 @@ namespace TermProject.Part2WS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void GetFileDataCompletedEventHandler(object sender, GetFileDataCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetFileDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetFileDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public byte[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((byte[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void getAllFileInfoCompletedEventHandler(object sender, getAllFileInfoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAllFileInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAllFileInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public FileData Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((FileData)(this.results[0]));
             }
         }
     }

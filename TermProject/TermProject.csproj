@@ -71,6 +71,7 @@
     <Content Include="Admin\management.aspx" />
     <Content Include="Admin\log.aspx" />
     <Content Include="Admin\registration.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="LoginB\home.aspx" />
     <Content Include="LoginB\login.aspx" />
     <Content Include="LoginB\registration.aspx" />
@@ -145,6 +146,9 @@
     </Compile>
     <Compile Include="Admin\registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LoginB\login.Master.cs">
       <DependentUpon>login.Master</DependentUpon>

@@ -26,6 +26,7 @@ namespace TermProject.LoginB
                 {
                     txtEmail.Text = userLogin["UserName"].ToString();
                     txtPassword.Attributes["value"] = userLogin["Password"].ToString();
+                    chkRemember.Checked = true;
                 }
             }
         }

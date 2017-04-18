@@ -66,6 +66,9 @@ namespace TermProject.User
 
                 switch(fileExtension)
                 {
+                    case ".pdf":
+                        imagePath = "~/Images/pdf.jpg";
+                        break;
                     case ".jpg":
                         imagePath = "~/Images/jpg.png";
                         break;
@@ -73,6 +76,7 @@ namespace TermProject.User
                         imagePath = "~/Images/jpeg.jpg";
                         break;
                     case ".docx":
+                    case ".doc":
                         imagePath = "~/Images/word.jpg";
                         break;
                     case ".gif":
@@ -86,6 +90,15 @@ namespace TermProject.User
                         break;
                     case ".pptx":
                         imagePath = "~/Images/pptx.png";
+                        break;
+                    case ".exe":
+                        imagePath = "~/Images/exe.jpg";
+                        break;
+                    case ".mp3":
+                        imagePath = "~/Images/mp3.jpg";
+                        break;
+                    case ".zip":
+                        imagePath = "~/Images/zip.jpg";
                         break;
                     default:
                         imagePath = "~/Images/unknown.png";

@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TermProject", "TermProject\TermProject.csproj", "{3E22DEB8-A879-4EF7-855C-743D59D57DCC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54A1762D-3EA2-435B-B016-4A119433ECC8} = {54A1762D-3EA2-435B-B016-4A119433ECC8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TermProjectLibrary", "TermProjectLibrary\TermProjectLibrary.csproj", "{7192D7F4-FF2E-4DCE-A2F4-9619226C32C2}"
 EndProject

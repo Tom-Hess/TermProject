@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\TermProjectWS.pubxml" />
     <None Include="Properties\PublishProfiles\TermProjWS.pubxml" />
     <None Include="Properties\PublishProfiles\tpws.pubxml" />
     <None Include="Web.Debug.config">

@@ -41,11 +41,19 @@ namespace TermProject.User
             {
                 int fileLength = fuUpload.PostedFile.ContentLength;
                 byte[] fileData = new byte[fileLength];
-
+                string fileExtension;
                 fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
                 
+
                 string fileTitle = fuUpload.PostedFile.FileName;
-                string fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
+                try
+                {
+                    fileExtension = fileTitle.Substring(fileTitle.LastIndexOf("."));
+                }catch(Exception ex)
+                {
+                    lblMsg.Text = "Unknown file type";
+                    return;
+                }
 
                 int index = fileTitle.IndexOf(".");
                 if (index > 0)

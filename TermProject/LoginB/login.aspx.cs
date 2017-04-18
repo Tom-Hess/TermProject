@@ -14,6 +14,7 @@ namespace TermProject.LoginB
     {
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
+        CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -69,19 +70,44 @@ namespace TermProject.LoginB
                     int accountID = Convert.ToInt32(loginArray[2]);
                     Session["AccountID"] = accountID;
                     Session["verification"] = 112358;
+                    FileCloud cloud = new FileCloud();
 
-                    if (accountType ==1)
+                    if (CloudWS.checkCloudExists(accountID))
                     {
-                        Session["Login"] = 1;
-                        Session["Email"] = txtEmail.Text;
-                        Response.Redirect("~/Admin/management.aspx");
+                        if (CloudWS.getFileCloud(accountID) != null) 
+                        {
+                            cloud = (FileCloud)(CloudWS.getFileCloud(accountID));
+                        }
                     }
-                    else
+                    else  
                     {
-                        Session["Login"] = 0;
-                        Session["Email"] = txtEmail.Text;
-                        Response.Redirect("~/User/cloud.aspx");
+                        CloudWS.createCloud(accountID);
                     }
+
+                    Session["cloud"] = cloud;
+
+                    switch (accountType)
+                    {
+                        case 1:
+                            //Admin
+                            Session["Login"] = 1;
+                            Session["Email"] = txtEmail.Text;
+                            Response.Redirect("~/Admin/management.aspx");
+                            break;
+                        case 2:
+                            // SUPER admin
+                            Session["Login"] = 2;
+                            Session["Email"] = txtEmail.Text;
+                            Response.Redirect("~/Admin/management.aspx");
+                            break;
+                        default:
+                            // User
+                            Session["Login"] = 0;
+                            Session["Email"] = txtEmail.Text;
+                            Response.Redirect("~/User/cloud.aspx");
+                            break;
+                    }
+
                 }else
                 {
                     lblMsg.Text = "Invalid login credentials.";

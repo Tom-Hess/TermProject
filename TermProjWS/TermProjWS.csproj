@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CloudWS.asmx" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\TermProjectWS.pubxml" />
     <None Include="Properties\PublishProfiles\TermProjWS.pubxml" />
@@ -83,6 +84,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloudWS.asmx.cs">
+      <DependentUpon>CloudWS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FileData.cs" />
     <Compile Include="Part2WS.asmx.cs">
       <DependentUpon>Part2WS.asmx</DependentUpon>

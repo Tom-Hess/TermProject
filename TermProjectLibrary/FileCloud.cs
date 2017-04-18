@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TermProjectLibrary
+{
+    [Serializable]
+    public class FileCloud
+    {
+        private ArrayList files = new ArrayList(); // arraylist of the current user's files
+
+        public ArrayList Files { get; set; }
+
+    }
+}

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="writeCloud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileCloud" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeCloudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="writeCloudResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkCloudExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkCloudExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkCloudExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFileCloud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFileCloudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getFileCloudResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createCloud">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="createCloudResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="createCloudResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="writeCloudSoapIn">
+    <wsdl:part name="parameters" element="tns:writeCloud" />
+  </wsdl:message>
+  <wsdl:message name="writeCloudSoapOut">
+    <wsdl:part name="parameters" element="tns:writeCloudResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkCloudExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:checkCloudExists" />
+  </wsdl:message>
+  <wsdl:message name="checkCloudExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:checkCloudExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFileCloudSoapIn">
+    <wsdl:part name="parameters" element="tns:getFileCloud" />
+  </wsdl:message>
+  <wsdl:message name="getFileCloudSoapOut">
+    <wsdl:part name="parameters" element="tns:getFileCloudResponse" />
+  </wsdl:message>
+  <wsdl:message name="createCloudSoapIn">
+    <wsdl:part name="parameters" element="tns:createCloud" />
+  </wsdl:message>
+  <wsdl:message name="createCloudSoapOut">
+    <wsdl:part name="parameters" element="tns:createCloudResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CloudWSSoap">
+    <wsdl:operation name="writeCloud">
+      <wsdl:input message="tns:writeCloudSoapIn" />
+      <wsdl:output message="tns:writeCloudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkCloudExists">
+      <wsdl:input message="tns:checkCloudExistsSoapIn" />
+      <wsdl:output message="tns:checkCloudExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getFileCloud">
+      <wsdl:input message="tns:getFileCloudSoapIn" />
+      <wsdl:output message="tns:getFileCloudSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="createCloud">
+      <wsdl:input message="tns:createCloudSoapIn" />
+      <wsdl:output message="tns:createCloudSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CloudWSSoap" type="tns:CloudWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="writeCloud">
+      <soap:operation soapAction="http://tempuri.org/writeCloud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkCloudExists">
+      <soap:operation soapAction="http://tempuri.org/checkCloudExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFileCloud">
+      <soap:operation soapAction="http://tempuri.org/getFileCloud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCloud">
+      <soap:operation soapAction="http://tempuri.org/createCloud" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CloudWSSoap12" type="tns:CloudWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="writeCloud">
+      <soap12:operation soapAction="http://tempuri.org/writeCloud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkCloudExists">
+      <soap12:operation soapAction="http://tempuri.org/checkCloudExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFileCloud">
+      <soap12:operation soapAction="http://tempuri.org/getFileCloud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createCloud">
+      <soap12:operation soapAction="http://tempuri.org/createCloud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CloudWS">
+    <wsdl:port name="CloudWSSoap" binding="tns:CloudWSSoap">
+      <soap:address location="http://localhost:52728/CloudWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CloudWSSoap12" binding="tns:CloudWSSoap12">
+      <soap12:address location="http://localhost:52728/CloudWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

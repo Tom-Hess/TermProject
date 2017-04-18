@@ -109,12 +109,25 @@ namespace TermProject.User
 
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
+                Part2WS.FileData newFileData = new Part2WS.FileData();
+                newFileData.AccountID = Convert.ToInt32(Session["AccountID"]);
+                newFileData.Email = Session["email"].ToString();
+                newFileData.Timestamp = DateTime.Now;
+                newFileData.Title = fileTitle;
+                newFileData.Type = fileType;
+                newFileData.Length = fileLength;
+                newFileData.ImagePath = imagePath;
+                newFileData.Extension = fileExtension;
+
+                FileCloud cloud = (FileCloud)Session["cloud"];
+                cloud.Files.Add(newFileData);
+
                 DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, Convert.ToInt32(Session["verification"]));
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
                 Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
 
                 if (tempFile.Tables[0].Rows.Count > 0)
-                {//if file name exist in the DB
+                {//if file name already exists in the DB
                     lblMsg.Text = "File name exist in the your Cloud. ";
                 }
                 else if (projectedRemainStorage > myAccount.StorageSpace)

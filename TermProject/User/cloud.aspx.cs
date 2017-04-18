@@ -33,6 +33,7 @@ namespace TermProject.User
             {
                 showFiles();
             }
+            FileCloud cloud = (FileCloud)Session["cloud"];
         }
 
         protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

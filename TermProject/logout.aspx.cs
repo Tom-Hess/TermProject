@@ -13,7 +13,7 @@ namespace TermProject
         {
             if(!IsPostBack)
             {
-                Session["Login"] = null;
+                Session.Abandon();
                 Response.Redirect("~/LoginB/home.aspx");
             }
         }

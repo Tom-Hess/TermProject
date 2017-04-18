@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TermProjectLibrary
 {
+    [Serializable]
     public class FileData
     {
         int fileID;
@@ -25,6 +26,7 @@ namespace TermProjectLibrary
 
         }
 
+        //with Data
         public FileData(int fileID, string email, DateTime timestamp, byte[] data, 
             Int64 length, string title, string type, int accountID, string imagePath, string extension)
         {
@@ -40,16 +42,74 @@ namespace TermProjectLibrary
             this.extension = extension;
         }
 
-        public int FileID { get; set; }
-        public string Email { get; set; }
-        public DateTime Timestamp { get; set; }
-        public byte[] Data { get; set; }
-        public Int64 Length { get; set; }
-        public string Title { get; set; }
-        public string Type { get; set; }
-        public int AccountID { get; set; }
-        public string ImagePath { get; set; }
-        public string Extension { get; set; }
-        
+        //with no Data
+        public FileData(int fileID, string email, DateTime timestamp, 
+            Int64 length, string title, string type, int accountID, string imagePath, string extension)
+        {
+            this.fileID = fileID;
+            this.email = email;
+            this.timestamp = timestamp;
+            this.length = length;
+            this.title = title;
+            this.type = type;
+            this.accountID = accountID;
+            this.imagePath = imagePath;
+            this.extension = extension;
+        }
+
+        public int FileID
+        {
+            get { return this.fileID; }
+            set { fileID = value; }
+        }
+
+        public string Email
+        {
+            get { return this.email; }
+            set { this.email = value; }
+        }
+        public DateTime Timestamp
+        {
+            get { return this.timestamp; }
+            set { this.timestamp = value; }
+        }
+
+        public byte[] Data
+        {
+            get { return this.data; }
+            set { this.data = value; }
+        }
+
+        public Int64 Length
+        {
+            get { return this.length; }
+            set { this.length = value; }
+        }
+        public string Title
+        {
+            get { return this.title; }
+            set { this.title = value; }
+        }
+        public string Type
+        {
+            get { return this.type; }
+            set { this.type = value; }
+        }
+        public int AccountID
+        {
+            get { return this.accountID; }
+            set { this.accountID = value; }
+        }
+        public string ImagePath
+        {
+            get { return this.imagePath; }
+            set { this.imagePath = value; }
+        }
+        public string Extension
+        {
+            get { return this.extension; }
+            set { this.extension = value; }
+        }
+
     }
 }

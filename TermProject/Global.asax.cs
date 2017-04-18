@@ -10,7 +10,7 @@ namespace TermProject
 {
     public class Global : System.Web.HttpApplication
     {
-        Serialize s = new Serialize();
+        CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -43,9 +43,8 @@ namespace TermProject
             {
                 // Write uploaded files to the DB using serialization
                 object files = Session["Files"];
-                string email = Session["Email"].ToString();
-
-
+                int accountID = Convert.ToInt32(Session["accountID"]);
+                CloudWS.writeCloud(files, accountID);
             }
 
         }

@@ -14,7 +14,7 @@
       <s:element name="addDownloadDataResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="addDownloadDataResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="addDownloadDataResult" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>

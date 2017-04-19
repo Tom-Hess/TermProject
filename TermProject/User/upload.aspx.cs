@@ -119,7 +119,7 @@ namespace TermProject.User
                 newFileData.Length = fileLength;
                 newFileData.ImagePath = imagePath;
                 newFileData.Extension = fileExtension;
-                newFileData.FileID = CloudWS.getMaxFileID(Convert.ToInt32(Session["verification"]))+1;
+                
 
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
                 Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
@@ -138,14 +138,11 @@ namespace TermProject.User
                 }
                 else
                 {
-                    if (CloudWS.addDownloadData(Convert.ToInt32(Session["AccountID"]), fileData, Convert.ToInt32(Session["verification"])))
-                    {
-                        lblMsg.ForeColor = System.Drawing.Color.Green;
-                        lblMsg.Text = "Successfully uploaded " + fileTitle;
-                    }else
-                    {
-                        lblMsg.Text = "Failed to upload file. ";
-                    }
+                    int ID = CloudWS.addDownloadData(Convert.ToInt32(Session["AccountID"]), fileData, Convert.ToInt32(Session["verification"]));
+                    lblMsg.ForeColor = System.Drawing.Color.Green;
+                    lblMsg.Text = "Successfully uploaded " + fileTitle;
+                    newFileData.FileID = ID;
+
                     cloud = (FileCloud)Session["cloud"];
                     cloud.Files.Add(newFileData);
 

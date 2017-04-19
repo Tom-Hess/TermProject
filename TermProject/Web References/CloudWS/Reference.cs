@@ -79,12 +79,12 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool addDownloadData(int accountID, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, int verification) {
+        public int addDownloadData(int accountID, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, int verification) {
             object[] results = this.Invoke("addDownloadData", new object[] {
                         accountID,
                         data,
                         verification});
-            return ((bool)(results[0]));
+            return ((int)(results[0]));
         }
         
         /// <remarks/>
@@ -176,10 +176,10 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
-        public bool Result {
+        public int Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((int)(this.results[0]));
             }
         }
     }

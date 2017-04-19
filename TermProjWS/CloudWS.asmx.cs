@@ -25,8 +25,9 @@ namespace TermProjWS
         SqlCommand myCommand = new SqlCommand();
 
         [WebMethod]
-        public bool addDownloadData (int accountID, byte[] data, int verification)
+        public int addDownloadData (int accountID, byte[] data, int verification)
         {
+            int returnID = 0;
             if (verification == verificationToken)
             {
                 myCommand.Parameters.Clear();
@@ -37,11 +38,19 @@ namespace TermProjWS
                 myCommand.Parameters.AddWithValue("@data", data);
 
                 myDB.DoUpdateUsingCmdObj(myCommand);
-                return true;
+
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetMaxFileID";
+                myDB.GetDataSetUsingCmdObj(myCommand);
+
+                returnID = Convert.ToInt32(myDB.GetField("maxID", 0));
+                return returnID;
 
             }else
             {
-                return false;
+                return returnID;
             }
         }
 
@@ -57,7 +66,7 @@ namespace TermProjWS
                 myCommand.CommandText = "TPgetMaxFileID";
                 myDB.GetDataSetUsingCmdObj(myCommand);
 
-                returnID = Convert.ToInt32(myDB.GetField("MaxID", 0));
+                returnID = Convert.ToInt32(myDB.GetField("maxID", 0));
                 return returnID;
 
             }

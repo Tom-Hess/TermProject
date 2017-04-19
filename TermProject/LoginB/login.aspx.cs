@@ -15,6 +15,7 @@ namespace TermProject.LoginB
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
+        Serialize mySerialization = new Serialize();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -73,16 +74,16 @@ namespace TermProject.LoginB
 
                     FileCloud cloud = new FileCloud();
 
-                    if (CloudWS.checkCloudExists(accountID))
+                    if (mySerialization.checkCloudExists(accountID))
                     {
-                        if (CloudWS.getFileCloud(accountID) != null) 
+                        if (mySerialization.getFileCloud(accountID) != null) 
                         {
-                            cloud = (FileCloud)(CloudWS.getFileCloud(accountID));
+                            cloud = (FileCloud)(mySerialization.getFileCloud(accountID));
                         }
                     }
                     else  
                     {
-                        CloudWS.createCloud(accountID);
+                        mySerialization.createCloud(accountID);
                     }
 
                     Session["cloud"] = cloud;

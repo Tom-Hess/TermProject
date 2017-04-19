@@ -19,15 +19,15 @@
                                         ControlStyle-Width="100" ControlStyle-Height="100">
                                         <ControlStyle Height="100px" Width="100px"></ControlStyle>
                                     </asp:ImageField>--%>
-                                    <asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
+                                    <asp:ImageField DataImageUrlField="ImagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
                                         ControlStyle-Width="50" ControlStyle-Height="50">
                                         <ControlStyle Height="50px" Width="50px"></ControlStyle>
                                         <ItemStyle Height="50px" Width="50px"></ItemStyle>
                                     </asp:ImageField>
-                                    <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="File ID" SortExpression="title" />
-                                    <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />
-                                    <asp:BoundField DataField="timestamp" ReadOnly="true" HeaderText="Time Added" SortExpression="timestamp" />
-                                    <asp:BoundField DataField="length" ReadOnly="true" HeaderText="Size (Bytes)" SortExpression="length" />
+                                    <asp:BoundField DataField="FileID" ReadOnly="true" HeaderText="File ID" SortExpression="title" />
+                                    <asp:BoundField DataField="Title" HeaderText="File Name" SortExpression="title" />
+                                    <asp:BoundField DataField="Timestamp" ReadOnly="true" HeaderText="Time Added" SortExpression="timestamp" />
+                                    <asp:BoundField DataField="Length" ReadOnly="true" HeaderText="Size (Bytes)" SortExpression="length" />
 
                                     <asp:CommandField ButtonType="Button" EditText="Rename" ShowEditButton="True" ShowHeader="True" />
                                     <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />

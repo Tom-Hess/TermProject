@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -31,9 +32,13 @@ namespace TermProject.User
 
             if (!IsPostBack)
             {
-                showFiles();
+                //showFiles();
+                FileCloud cloud = (FileCloud)Session["cloud"];
+                ArrayList Files = new ArrayList(cloud.Files);
+                gvFiles.DataSource = Files;
+                gvFiles.DataBind();
             }
-            FileCloud cloud = (FileCloud)Session["cloud"];
+            
         }
 
         protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

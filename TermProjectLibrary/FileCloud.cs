@@ -13,11 +13,6 @@ namespace TermProjectLibrary
     {
         private ArrayList files = new ArrayList(); // arraylist of the current user's files
 
-        public FileCloud()
-        {
-
-        }
-
         public ArrayList Files
         {
             get

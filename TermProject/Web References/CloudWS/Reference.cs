@@ -29,13 +29,9 @@ namespace TermProject.CloudWS {
     [System.Web.Services.WebServiceBindingAttribute(Name="CloudWSSoap", Namespace="http://tempuri.org/")]
     public partial class CloudWS : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback writeCloudOperationCompleted;
+        private System.Threading.SendOrPostCallback addDownloadDataOperationCompleted;
         
-        private System.Threading.SendOrPostCallback checkCloudExistsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback getFileCloudOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback createCloudOperationCompleted;
+        private System.Threading.SendOrPostCallback getMaxFileIDOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -76,132 +72,70 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
-        public event writeCloudCompletedEventHandler writeCloudCompleted;
+        public event addDownloadDataCompletedEventHandler addDownloadDataCompleted;
         
         /// <remarks/>
-        public event checkCloudExistsCompletedEventHandler checkCloudExistsCompleted;
+        public event getMaxFileIDCompletedEventHandler getMaxFileIDCompleted;
         
         /// <remarks/>
-        public event getFileCloudCompletedEventHandler getFileCloudCompleted;
-        
-        /// <remarks/>
-        public event createCloudCompletedEventHandler createCloudCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/writeCloud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int writeCloud(object fileCloud, int accountID) {
-            object[] results = this.Invoke("writeCloud", new object[] {
-                        fileCloud,
-                        accountID});
-            return ((int)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void writeCloudAsync(object fileCloud, int accountID) {
-            this.writeCloudAsync(fileCloud, accountID, null);
-        }
-        
-        /// <remarks/>
-        public void writeCloudAsync(object fileCloud, int accountID, object userState) {
-            if ((this.writeCloudOperationCompleted == null)) {
-                this.writeCloudOperationCompleted = new System.Threading.SendOrPostCallback(this.OnwriteCloudOperationCompleted);
-            }
-            this.InvokeAsync("writeCloud", new object[] {
-                        fileCloud,
-                        accountID}, this.writeCloudOperationCompleted, userState);
-        }
-        
-        private void OnwriteCloudOperationCompleted(object arg) {
-            if ((this.writeCloudCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.writeCloudCompleted(this, new writeCloudCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/checkCloudExists", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool checkCloudExists(int accountID) {
-            object[] results = this.Invoke("checkCloudExists", new object[] {
-                        accountID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool addDownloadData(int accountID, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, int verification) {
+            object[] results = this.Invoke("addDownloadData", new object[] {
+                        accountID,
+                        data,
+                        verification});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void checkCloudExistsAsync(int accountID) {
-            this.checkCloudExistsAsync(accountID, null);
+        public void addDownloadDataAsync(int accountID, byte[] data, int verification) {
+            this.addDownloadDataAsync(accountID, data, verification, null);
         }
         
         /// <remarks/>
-        public void checkCloudExistsAsync(int accountID, object userState) {
-            if ((this.checkCloudExistsOperationCompleted == null)) {
-                this.checkCloudExistsOperationCompleted = new System.Threading.SendOrPostCallback(this.OncheckCloudExistsOperationCompleted);
+        public void addDownloadDataAsync(int accountID, byte[] data, int verification, object userState) {
+            if ((this.addDownloadDataOperationCompleted == null)) {
+                this.addDownloadDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddDownloadDataOperationCompleted);
             }
-            this.InvokeAsync("checkCloudExists", new object[] {
-                        accountID}, this.checkCloudExistsOperationCompleted, userState);
+            this.InvokeAsync("addDownloadData", new object[] {
+                        accountID,
+                        data,
+                        verification}, this.addDownloadDataOperationCompleted, userState);
         }
         
-        private void OncheckCloudExistsOperationCompleted(object arg) {
-            if ((this.checkCloudExistsCompleted != null)) {
+        private void OnaddDownloadDataOperationCompleted(object arg) {
+            if ((this.addDownloadDataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.checkCloudExistsCompleted(this, new checkCloudExistsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.addDownloadDataCompleted(this, new addDownloadDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getFileCloud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public object getFileCloud(int accountID) {
-            object[] results = this.Invoke("getFileCloud", new object[] {
-                        accountID});
-            return ((object)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void getFileCloudAsync(int accountID) {
-            this.getFileCloudAsync(accountID, null);
-        }
-        
-        /// <remarks/>
-        public void getFileCloudAsync(int accountID, object userState) {
-            if ((this.getFileCloudOperationCompleted == null)) {
-                this.getFileCloudOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetFileCloudOperationCompleted);
-            }
-            this.InvokeAsync("getFileCloud", new object[] {
-                        accountID}, this.getFileCloudOperationCompleted, userState);
-        }
-        
-        private void OngetFileCloudOperationCompleted(object arg) {
-            if ((this.getFileCloudCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.getFileCloudCompleted(this, new getFileCloudCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/createCloud", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int createCloud(int accountID) {
-            object[] results = this.Invoke("createCloud", new object[] {
-                        accountID});
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getMaxFileID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int getMaxFileID(int verification) {
+            object[] results = this.Invoke("getMaxFileID", new object[] {
+                        verification});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void createCloudAsync(int accountID) {
-            this.createCloudAsync(accountID, null);
+        public void getMaxFileIDAsync(int verification) {
+            this.getMaxFileIDAsync(verification, null);
         }
         
         /// <remarks/>
-        public void createCloudAsync(int accountID, object userState) {
-            if ((this.createCloudOperationCompleted == null)) {
-                this.createCloudOperationCompleted = new System.Threading.SendOrPostCallback(this.OncreateCloudOperationCompleted);
+        public void getMaxFileIDAsync(int verification, object userState) {
+            if ((this.getMaxFileIDOperationCompleted == null)) {
+                this.getMaxFileIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetMaxFileIDOperationCompleted);
             }
-            this.InvokeAsync("createCloud", new object[] {
-                        accountID}, this.createCloudOperationCompleted, userState);
+            this.InvokeAsync("getMaxFileID", new object[] {
+                        verification}, this.getMaxFileIDOperationCompleted, userState);
         }
         
-        private void OncreateCloudOperationCompleted(object arg) {
-            if ((this.createCloudCompleted != null)) {
+        private void OngetMaxFileIDOperationCompleted(object arg) {
+            if ((this.getMaxFileIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.createCloudCompleted(this, new createCloudCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.getMaxFileIDCompleted(this, new getMaxFileIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -226,43 +160,17 @@ namespace TermProject.CloudWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void writeCloudCompletedEventHandler(object sender, writeCloudCompletedEventArgs e);
+    public delegate void addDownloadDataCompletedEventHandler(object sender, addDownloadDataCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class writeCloudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class addDownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal writeCloudCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public int Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((int)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void checkCloudExistsCompletedEventHandler(object sender, checkCloudExistsCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class checkCloudExistsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal checkCloudExistsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal addDownloadDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -278,43 +186,17 @@ namespace TermProject.CloudWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void getFileCloudCompletedEventHandler(object sender, getFileCloudCompletedEventArgs e);
+    public delegate void getMaxFileIDCompletedEventHandler(object sender, getMaxFileIDCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class getFileCloudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class getMaxFileIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal getFileCloudCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public object Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((object)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    public delegate void createCloudCompletedEventHandler(object sender, createCloudCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class createCloudCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal createCloudCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal getMaxFileIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

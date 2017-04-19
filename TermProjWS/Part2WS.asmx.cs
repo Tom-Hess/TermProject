@@ -26,6 +26,7 @@ namespace TermProjWS
         int verificationToken = 112358;
         string defaultPassword = "password";
         [WebMethod]
+
         public Person GetAccountInfo(string email, int verification)
         {
             Person accountInfo = new Person();

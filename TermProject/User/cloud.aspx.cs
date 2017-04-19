@@ -32,11 +32,8 @@ namespace TermProject.User
 
             if (!IsPostBack)
             {
-                //showFiles();
-                FileCloud cloud = (FileCloud)Session["cloud"];
-                ArrayList Files = new ArrayList(cloud.Files);
-                gvFiles.DataSource = Files;
-                gvFiles.DataBind();
+                showFiles();
+                
             }
             
         }
@@ -81,9 +78,9 @@ namespace TermProject.User
 
         public void showFiles()
         {
-            myDS = P2WS.getFiles(Convert.ToInt32(Session["AccountID"]), Convert.ToInt32(Session["verification"]));
-
-            gvFiles.DataSource = myDS;
+            FileCloud cloud = (FileCloud)Session["cloud"];
+            ArrayList Files = new ArrayList(cloud.Files);
+            gvFiles.DataSource = Files;
             gvFiles.DataBind();
         }
 
@@ -93,6 +90,11 @@ namespace TermProject.User
             int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[1].Text);
             Int64 size = -(Convert.ToInt64(gvFiles.Rows[index].Cells[4].Text));
 
+            FileCloud cloud = (FileCloud)Session["cloud"];
+            cloud.Files.RemoveAt(index);
+            Session["cloud"] = cloud;
+
+            //delete the file in the DB
             P2WS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();

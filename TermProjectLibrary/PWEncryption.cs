@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TermProjWS
+namespace TermProjectLibrary
 {
     public class PWEncryption
     {

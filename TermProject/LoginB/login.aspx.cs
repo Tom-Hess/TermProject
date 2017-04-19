@@ -15,6 +15,7 @@ namespace TermProject.LoginB
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
+        PWEncryption myEncryption = new PWEncryption();
         Serialize mySerialization = new Serialize();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,9 +27,17 @@ namespace TermProject.LoginB
                 //if a cookie has been created, load the user's login information into the textboxes
                 if (Request.Cookies["UserCookie"] != null)
                 {
-                    txtEmail.Text = userLogin["UserName"].ToString();
-                    txtPassword.Attributes["value"] = userLogin["Password"].ToString();
-                    chkRemember.Checked = true;
+                    try
+                    {
+                        txtEmail.Text = userLogin["UserName"].ToString();
+                        string pw = myEncryption.DecryptString(userLogin["Password"]);
+                        txtPassword.Attributes["value"] = pw;
+                        chkRemember.Checked = true;
+                    } catch (Exception ex)
+                    {
+                        userLogin.Expires = DateTime.Now.AddDays(-1);
+                    }
+
                 }
             }
         }
@@ -64,7 +73,11 @@ namespace TermProject.LoginB
 
                     }
                     myUserCookie.Values["UserName"] = txtEmail.Text;
-                    myUserCookie.Values["Password"] = txtPassword.Text;
+                    //encrypt PW
+                    string pw = txtPassword.Text;
+                    pw = myEncryption.EncryptString(pw);
+
+                    myUserCookie.Values["Password"] = pw;
                     Response.Cookies.Add(myUserCookie);
 
                     int accountType = Convert.ToInt32(loginArray[1]);

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Connection.cs" />
     <Compile Include="FileCloud.cs" />
+    <Compile Include="PWEncryption.cs" />
     <Compile Include="Serialize.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

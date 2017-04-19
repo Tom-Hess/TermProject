@@ -95,7 +95,6 @@
     </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PWEncryption.cs" />
     <Compile Include="RegistrationWS.asmx.cs">
       <DependentUpon>RegistrationWS.asmx</DependentUpon>
       <SubType>Component</SubType>

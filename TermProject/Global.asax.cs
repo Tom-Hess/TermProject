@@ -39,10 +39,10 @@ namespace TermProject
 
         protected void Session_End(object sender, EventArgs e)
         {
-            if(Session["Files"] != null)
+            if(Session["cloud"] != null)
             {
                 // Write uploaded files to the DB using serialization
-                object files = Session["Files"];
+                object files = Session["cloud"];
                 int accountID = Convert.ToInt32(Session["accountID"]);
                 CloudWS.writeCloud(files, accountID);
             }

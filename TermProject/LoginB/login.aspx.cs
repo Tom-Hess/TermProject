@@ -70,6 +70,7 @@ namespace TermProject.LoginB
                     int accountID = Convert.ToInt32(loginArray[2]);
                     Session["AccountID"] = accountID;
                     Session["verification"] = 112358;
+
                     FileCloud cloud = new FileCloud();
 
                     if (CloudWS.checkCloudExists(accountID))

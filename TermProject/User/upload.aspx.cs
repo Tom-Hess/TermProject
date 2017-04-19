@@ -119,8 +119,7 @@ namespace TermProject.User
                 newFileData.ImagePath = imagePath;
                 newFileData.Extension = fileExtension;
 
-                FileCloud cloud = (FileCloud)Session["cloud"];
-                cloud.Files.Add(newFileData);
+
 
                 DataSet tempFile = myUpload.getFile(Session["email"].ToString(), fileTitle, Convert.ToInt32(Session["verification"]));
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
@@ -136,6 +135,8 @@ namespace TermProject.User
                 }
                 else
                 {
+                    FileCloud cloud = (FileCloud)Session["cloud"];
+                    cloud.Files.Add(newFileData);
                     if (myUpload.uploadFile(fileTitle, fileType, fileLength, fileData,
                     Session["email"].ToString(), Convert.ToInt32(Session["AccountID"]), imagePath, fileExtension, Convert.ToInt32(Session["verification"])))
                     {

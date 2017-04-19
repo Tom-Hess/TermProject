@@ -9,7 +9,7 @@
                     <br />
                     <h3 class="panel-title"><strong>Login</strong></h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="text-align:center">
                     <form id="form1" runat="server">
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>

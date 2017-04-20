@@ -35,6 +35,8 @@ namespace TermProject.CloudWS {
         
         private System.Threading.SendOrPostCallback getDownloadDataOperationCompleted;
         
+        private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +83,9 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         public event getDownloadDataCompletedEventHandler getDownloadDataCompleted;
+        
+        /// <remarks/>
+        public event DeleteFileCompletedEventHandler DeleteFileCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -179,6 +184,37 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/DeleteFile", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int DeleteFile(int fileID, int verification) {
+            object[] results = this.Invoke("DeleteFile", new object[] {
+                        fileID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteFileAsync(int fileID, int verification) {
+            this.DeleteFileAsync(fileID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteFileAsync(int fileID, int verification, object userState) {
+            if ((this.DeleteFileOperationCompleted == null)) {
+                this.DeleteFileOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteFileOperationCompleted);
+            }
+            this.InvokeAsync("DeleteFile", new object[] {
+                        fileID,
+                        verification}, this.DeleteFileOperationCompleted, userState);
+        }
+        
+        private void OnDeleteFileOperationCompleted(object arg) {
+            if ((this.DeleteFileCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteFileCompleted(this, new DeleteFileCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -271,6 +307,32 @@ namespace TermProject.CloudWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((byte[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void DeleteFileCompletedEventHandler(object sender, DeleteFileCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

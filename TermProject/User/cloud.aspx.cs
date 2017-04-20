@@ -17,6 +17,9 @@ namespace TermProject.User
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
         Validation myValidation = new Validation();
+        FileCloud cloud = new FileCloud();
+        FileData myFile = new FileData();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToInt32(Session["Login"]) == 1)
@@ -34,9 +37,7 @@ namespace TermProject.User
             if (!IsPostBack)
             {
                 showFiles();
-                
             }
-            
         }
 
         protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -66,9 +67,17 @@ namespace TermProject.User
                 lblMsg.Text = "Invalid file name";
             }else
             {
-                //update the file in the DB
-                P2WS.UpdateFile(fileID, fileName, Convert.ToInt32(Session["verification"]));
+                //update the file name in the arraylist
+                cloud = (FileCloud)Session["cloud"];
 
+                for (int i = 0; i<cloud.Files.Count; i++)
+                {
+                    myFile = (FileData)cloud.Files[i];
+
+                    if (myFile.FileID == fileID)
+                        myFile.Title = fileName;
+                        break;
+                }
                 gvFiles.EditIndex = -1;
                 showFiles();
             }
@@ -89,19 +98,28 @@ namespace TermProject.User
             int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[1].Text);
             Int64 size = -(Convert.ToInt64(gvFiles.Rows[index].Cells[4].Text));
 
-            FileCloud cloud = (FileCloud)Session["cloud"];
-            cloud.Files.RemoveAt(index);
+            cloud = (FileCloud)Session["cloud"];
+
+            for (int i = 0; i < cloud.Files.Count; i++)
+            {
+                myFile = (FileData)cloud.Files[i];
+
+                if (myFile.FileID == fileID)
+                    cloud.Files.RemoveAt(i);
+                break;
+            }
             Session["cloud"] = cloud;
 
             //delete the file in the DB
-            P2WS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
+            CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
+            //update user's storage used
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
-
         }
 
         protected void gvFiles_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            //Download LinkButton is clicked
             if(e.CommandName == "Download")
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -110,8 +128,6 @@ namespace TermProject.User
 
                 Int64 fileSize = Convert.ToInt64(gvFiles.Rows[rowIndex].Cells[4].Text);
 
-                FileCloud cloud = new FileCloud();
-                FileData myFile = new FileData();
 
                 cloud = (FileCloud)Session["cloud"];
 
@@ -120,23 +136,19 @@ namespace TermProject.User
                     myFile = (FileData)cloud.Files[i];
 
                     if (myFile.FileID == fileID)
-                    {
                         break;
-                    }else
-                    {
-                        lblMsg.Text = "File ID not found in the database.";
-                        return;
-                    }
                 }
 
 
                 byte[] fileDataBytes = new byte[fileSize];
+
                 //get file's data from download DB
                 fileDataBytes = CloudWS.getDownloadData(fileID, fileSize, Convert.ToInt32(Session["verification"]));
 
                 string contentType = myFile.Type;
                 string extension = myFile.Extension;
 
+                //send file to the user's browser
                 Response.Clear();
                 Response.ContentType = contentType;
                 Response.AddHeader("Content-Length", fileSize.ToString());

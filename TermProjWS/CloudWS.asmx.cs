@@ -98,7 +98,29 @@ namespace TermProjWS
                 data = (byte[])myDB.GetField("fileData", 0);
             }
             return data;
+        }
 
+        [WebMethod]
+        public int DeleteFile(int fileID, int verification)
+        {
+            int temp = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeleteFileP3";
+
+                SqlParameter myParameter = new SqlParameter("@ID", fileID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                temp = myDB.DoUpdateUsingCmdObj(myCommand);
+                return temp;
+            }
+            else
+                return temp;
 
         }
     }

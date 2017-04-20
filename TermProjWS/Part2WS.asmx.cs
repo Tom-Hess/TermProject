@@ -268,7 +268,7 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPDeleteFile";
+                myCommand.CommandText = "TPdeleteFile";
 
                 SqlParameter myParameter = new SqlParameter("@ID", fileID);
                 myParameter.Direction = ParameterDirection.Input;

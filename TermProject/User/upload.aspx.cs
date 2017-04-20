@@ -42,11 +42,8 @@ namespace TermProject.User
             }else
             {
                 int fileLength = fuUpload.PostedFile.ContentLength;
-                //byte[] fileData = new byte[fileLength];
                 byte[] fileData = ReadFully(fuUpload.PostedFile.InputStream, fileLength);
                 string fileExtension;
-                //fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
-                //Int64 fileLength = fileData.Length;
 
                 string fileTitle = fuUpload.PostedFile.FileName;
                 try
@@ -122,13 +119,23 @@ namespace TermProject.User
                 
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), 
                     Convert.ToInt32(Session["verification"]));
-                //Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
                 FileCloud cloud = (FileCloud)Session["cloud"];
-                
-                //if (tempFile.Tables[0].Rows.Count > 0)
-                //{//if file name already exists in the DB
-                //    lblMsg.Text = "File name exist in the your Cloud. ";
-                //}
+
+                FileData myFile = new FileData();
+
+                for (int i = 0; i < cloud.Files.Count; i++)
+                {
+                    myFile = (FileData)cloud.Files[i];
+
+                    if (myFile.Title == fileTitle)
+                    {
+                        //add updating existing file
+                        lblMsg.Text = "File title already in use!";
+                        break;
+                    }
+
+                }
+
                 if (fileLength > (myAccount.StorageSpace - myAccount.StorageUsed))
                 {//If file size is bigger than the user's current balance
                     lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";

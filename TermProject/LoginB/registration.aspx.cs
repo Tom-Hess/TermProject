@@ -14,7 +14,7 @@ namespace TermProject.LoginB
     {
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
-        Int64 userCapacity = 1000000000;
+        Int64 userCapacity = 10000000;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -63,7 +63,6 @@ namespace TermProject.LoginB
             HttpCookie myUserCookie = new HttpCookie("UserCookie");
 
             //create the Admin in the Database, display message
-            //Person newAdmin = new Person();
             RegistrationWS.Person newPerson = new RegistrationWS.Person();
             newPerson.AccountType = 0;
             newPerson.Email = txtEmail.Text;

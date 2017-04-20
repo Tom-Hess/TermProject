@@ -48,6 +48,21 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="DeleteFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteFileResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="addDownloadDataSoapIn">
@@ -68,6 +83,12 @@
   <wsdl:message name="getDownloadDataSoapOut">
     <wsdl:part name="parameters" element="tns:getDownloadDataResponse" />
   </wsdl:message>
+  <wsdl:message name="DeleteFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWSSoap">
     <wsdl:operation name="addDownloadData">
       <wsdl:input message="tns:addDownloadDataSoapIn" />
@@ -80,6 +101,10 @@
     <wsdl:operation name="getDownloadData">
       <wsdl:input message="tns:getDownloadDataSoapIn" />
       <wsdl:output message="tns:getDownloadDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <wsdl:input message="tns:DeleteFileSoapIn" />
+      <wsdl:output message="tns:DeleteFileSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWSSoap" type="tns:CloudWSSoap">
@@ -111,6 +136,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWSSoap12" type="tns:CloudWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -134,6 +168,15 @@
     </wsdl:operation>
     <wsdl:operation name="getDownloadData">
       <soap12:operation soapAction="http://tempuri.org/getDownloadData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteFile" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

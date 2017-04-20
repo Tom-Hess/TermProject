@@ -42,10 +42,11 @@ namespace TermProject.User
             }else
             {
                 int fileLength = fuUpload.PostedFile.ContentLength;
-                byte[] fileData = new byte[fileLength];
+                //byte[] fileData = new byte[fileLength];
+                byte[] fileData = ReadFully(fuUpload.PostedFile.InputStream, fileLength);
                 string fileExtension;
-                fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
-                
+                //fuUpload.PostedFile.InputStream.Read(fileData, 0, fileLength);
+                //Int64 fileLength = fileData.Length;
 
                 string fileTitle = fuUpload.PostedFile.FileName;
                 try
@@ -106,8 +107,7 @@ namespace TermProject.User
                         imagePath = "~/Images/unknown.png";
                         break;
                 }
-
-
+                
                 lblMsg.Text = fileData.ToString() + fileTitle;
 
                 Part2WS.FileData newFileData = new Part2WS.FileData();
@@ -120,15 +120,11 @@ namespace TermProject.User
                 newFileData.ImagePath = imagePath;
                 newFileData.Extension = fileExtension;
                 
-
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), 
                     Convert.ToInt32(Session["verification"]));
                 //Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
                 FileCloud cloud = (FileCloud)Session["cloud"];
-
-
-
-
+                
                 //if (tempFile.Tables[0].Rows.Count > 0)
                 //{//if file name already exists in the DB
                 //    lblMsg.Text = "File name exist in the your Cloud. ";
@@ -149,9 +145,52 @@ namespace TermProject.User
 
                     cloud = (FileCloud)Session["cloud"];
                     cloud.Files.Add(newFileData);
-
                 }
             }
+        }
+                
+        public static byte[] ReadFully(Stream stream, int initialLength)
+        {//http://www.yoda.arachsys.com/csharp/readbinary.html
+            // If we've been passed an unhelpful initial length, just
+            // use 32K.
+            if (initialLength < 1)
+            {
+                initialLength = 32768;
+            }
+
+            byte[] buffer = new byte[initialLength];
+            int read = 0;
+
+            int chunk;
+            while ((chunk = stream.Read(buffer, read, buffer.Length - read)) > 0)
+            {
+                read += chunk;
+
+                // If we've reached the end of our buffer, check to see if there's
+                // any more information
+                if (read == buffer.Length)
+                {
+                    int nextByte = stream.ReadByte();
+
+                    // End of stream? If so, we're done
+                    if (nextByte == -1)
+                    {
+                        return buffer;
+                    }
+
+                    // Nope. Resize the buffer, put in the byte we've just
+                    // read, and continue
+                    byte[] newBuffer = new byte[buffer.Length * 2];
+                    Array.Copy(buffer, newBuffer, buffer.Length);
+                    newBuffer[read] = (byte)nextByte;
+                    buffer = newBuffer;
+                    read++;
+                }
+            }
+            // Buffer is now too big. Shrink it.
+            byte[] ret = new byte[read];
+            Array.Copy(buffer, ret, read);
+            return ret;
         }
     }
 }

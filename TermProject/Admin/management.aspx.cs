@@ -16,6 +16,7 @@ namespace TermProject.Admin
         DataSet myDS = new DataSet();
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Validation myValidation = new Validation();
+        CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,7 +47,6 @@ namespace TermProject.Admin
 
         protected void gvManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            //lblMsg.Text = "";
             int rowIndex = e.RowIndex;
             Int64 capacity;
             TextBox Tbox;
@@ -90,7 +90,8 @@ namespace TermProject.Admin
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
 
-            int flag = P2WS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
+            //Delete the account and all of its cloud data
+            int flag = CloudWS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
 
             if (flag == 0)
                 lblMsg.Text = "No rows were affected by this action. ";
@@ -99,7 +100,7 @@ namespace TermProject.Admin
             else
             {
                 lblMsg.ForeColor = System.Drawing.Color.Green;
-                lblMsg.Text = "Delted all files and account information in regards to " +
+                lblMsg.Text = "Deleted all files and account information in regards to " +
                     gvManagement.Rows[index].Cells[1].Text + ". ";
             }
             showFiles();
@@ -114,13 +115,8 @@ namespace TermProject.Admin
                 // CommandArgument property.
                 int index = Convert.ToInt32(e.CommandArgument);
 
-                // Retrieve the row that contains the button 
-                // from the Rows collection.
-                //GridViewRow row = gvManagement.Rows[index];
-
                 int userID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
 
-                // Add code here to add the item to the shopping cart.
                 int flag = P2WS.resetPassord(userID, Convert.ToInt32(Session["verification"]));
                 if (flag == 0)
                 {

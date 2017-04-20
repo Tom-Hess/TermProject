@@ -37,6 +37,8 @@ namespace TermProject.CloudWS {
         
         private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
         
+        private System.Threading.SendOrPostCallback deleteAccountOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -86,6 +88,9 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         public event DeleteFileCompletedEventHandler DeleteFileCompleted;
+        
+        /// <remarks/>
+        public event deleteAccountCompletedEventHandler deleteAccountCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -215,6 +220,37 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int deleteAccount(int ID, int verification) {
+            object[] results = this.Invoke("deleteAccount", new object[] {
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteAccountAsync(int ID, int verification) {
+            this.deleteAccountAsync(ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void deleteAccountAsync(int ID, int verification, object userState) {
+            if ((this.deleteAccountOperationCompleted == null)) {
+                this.deleteAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteAccountOperationCompleted);
+            }
+            this.InvokeAsync("deleteAccount", new object[] {
+                        ID,
+                        verification}, this.deleteAccountOperationCompleted, userState);
+        }
+        
+        private void OndeleteAccountOperationCompleted(object arg) {
+            if ((this.deleteAccountCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteAccountCompleted(this, new deleteAccountCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -324,6 +360,32 @@ namespace TermProject.CloudWS {
         private object[] results;
         
         internal DeleteFileCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void deleteAccountCompletedEventHandler(object sender, deleteAccountCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteAccountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteAccountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

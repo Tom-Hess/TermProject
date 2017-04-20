@@ -75,8 +75,10 @@ namespace TermProject.User
                     myFile = (FileData)cloud.Files[i];
 
                     if (myFile.FileID == fileID)
+                    {
                         myFile.Title = fileName;
                         break;
+                    }
                 }
                 gvFiles.EditIndex = -1;
                 showFiles();
@@ -105,8 +107,10 @@ namespace TermProject.User
                 myFile = (FileData)cloud.Files[i];
 
                 if (myFile.FileID == fileID)
+                {
                     cloud.Files.RemoveAt(i);
-                break;
+                    break;
+                }
             }
             Session["cloud"] = cloud;
 

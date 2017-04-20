@@ -15,6 +15,7 @@ namespace TermProject.LoginB
         Validation myValidation = new Validation();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
         Int64 userCapacity = 10000000;
+        PWEncryption myEncryption = new PWEncryption();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -82,7 +83,8 @@ namespace TermProject.LoginB
 
                 }
                 myUserCookie.Values["UserName"] = txtEmail.Text;
-                myUserCookie.Values["Password"] = txtPassword.Text;
+
+                myUserCookie.Values["Password"] = myEncryption.EncryptString(txtPassword.Text);
                 Response.Cookies.Add(myUserCookie);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Account successfully created.');window.location ='login.aspx';", true);
             }

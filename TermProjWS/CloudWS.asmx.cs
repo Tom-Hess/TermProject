@@ -123,5 +123,29 @@ namespace TermProjWS
                 return temp;
 
         }
+
+        [WebMethod]
+        public int deleteAccount(int ID, int verification)
+        {
+            int flag = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeleteAccountP3";
+
+                SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+                //Flag represense number of rows affected,-1 if exception occured, 
+            }
+            else
+                return flag; //return zero
+        }
     }
 }

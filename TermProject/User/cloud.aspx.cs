@@ -15,6 +15,7 @@ namespace TermProject.User
     {
         DataSet myDS = new DataSet();
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
+        CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
         Validation myValidation = new Validation();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -108,12 +109,31 @@ namespace TermProject.User
                 int fileID = Convert.ToInt32(gvFiles.Rows[rowIndex].Cells[1].Text);
 
                 Int64 fileSize = Convert.ToInt64(gvFiles.Rows[rowIndex].Cells[4].Text);
-                byte[] fileData = new byte[fileSize];
+
+                FileCloud cloud = new FileCloud();
                 FileData myFile = new FileData();
 
-                //fileData = P2WS.GetFileData(fileID, fileSize, Convert.ToInt32(Session["verification"]));
-                myFile = P2WS.getAllFileInfo(fileID, Convert.ToInt32(Session["verification"]));
-                fileData = myFile.Data;
+                cloud = (FileCloud)Session["cloud"];
+
+                for(int i = 0; i < cloud.Files.Count; i++)
+                {
+                    myFile = (FileData)cloud.Files[i];
+
+                    if (myFile.FileID == fileID)
+                    {
+                        break;
+                    }else
+                    {
+                        lblMsg.Text = "File ID not found in the database.";
+                        return;
+                    }
+                }
+
+
+                byte[] fileDataBytes = new byte[fileSize];
+                //get file's data from download DB
+                fileDataBytes = CloudWS.getDownloadData(fileID, fileSize, Convert.ToInt32(Session["verification"]));
+
                 string contentType = myFile.Type;
                 string extension = myFile.Extension;
 
@@ -121,7 +141,7 @@ namespace TermProject.User
                 Response.ContentType = contentType;
                 Response.AddHeader("Content-Length", fileSize.ToString());
                 Response.AddHeader("Content-Disposition", "attachment; filename = " + fileName + extension);
-                Response.OutputStream.Write(fileData, 0, fileData.Length);
+                Response.OutputStream.Write(fileDataBytes, 0, fileDataBytes.Length);
                 Response.Flush();
                 Response.End();
             }

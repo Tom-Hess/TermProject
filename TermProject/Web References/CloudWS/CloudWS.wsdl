@@ -32,6 +32,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getDownloadData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="fileLength" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getDownloadDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getDownloadDataResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="addDownloadDataSoapIn">
@@ -46,6 +62,12 @@
   <wsdl:message name="getMaxFileIDSoapOut">
     <wsdl:part name="parameters" element="tns:getMaxFileIDResponse" />
   </wsdl:message>
+  <wsdl:message name="getDownloadDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getDownloadData" />
+  </wsdl:message>
+  <wsdl:message name="getDownloadDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getDownloadDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="CloudWSSoap">
     <wsdl:operation name="addDownloadData">
       <wsdl:input message="tns:addDownloadDataSoapIn" />
@@ -54,6 +76,10 @@
     <wsdl:operation name="getMaxFileID">
       <wsdl:input message="tns:getMaxFileIDSoapIn" />
       <wsdl:output message="tns:getMaxFileIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadData">
+      <wsdl:input message="tns:getDownloadDataSoapIn" />
+      <wsdl:output message="tns:getDownloadDataSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CloudWSSoap" type="tns:CloudWSSoap">
@@ -76,6 +102,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getDownloadData">
+      <soap:operation soapAction="http://tempuri.org/getDownloadData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CloudWSSoap12" type="tns:CloudWSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -90,6 +125,15 @@
     </wsdl:operation>
     <wsdl:operation name="getMaxFileID">
       <soap12:operation soapAction="http://tempuri.org/getMaxFileID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDownloadData">
+      <soap12:operation soapAction="http://tempuri.org/getDownloadData" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -24,6 +24,7 @@ namespace TermProjWS
         int verificationToken = 112358;
         SqlCommand myCommand = new SqlCommand();
 
+        //adds the file's actual data to the database
         [WebMethod]
         public int addDownloadData (int accountID, byte[] data, int verification)
         {
@@ -54,6 +55,7 @@ namespace TermProjWS
             }
         }
 
+        //returns the max file ID in the database
         [WebMethod]
         public int getMaxFileID(int verification)
         {
@@ -74,6 +76,30 @@ namespace TermProjWS
             {
                 return 0;
             }
+        }
+
+
+        //returns the download data from the database
+        [WebMethod]
+        public byte[] getDownloadData (int fileID, Int64 fileLength, int verification)
+        {
+            byte[] data = new byte[fileLength];
+
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetDownloadData";
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+
+                myDB.GetDataSetUsingCmdObj(myCommand);
+
+                data = (byte[])myDB.GetField("fileData", 0);
+            }
+            return data;
+
+
         }
     }
 }

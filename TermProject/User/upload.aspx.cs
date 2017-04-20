@@ -123,16 +123,28 @@ namespace TermProject.User
 
                 myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), 
                     Convert.ToInt32(Session["verification"]));
-                //Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
                 FileCloud cloud = (FileCloud)Session["cloud"];
 
 
+                //add checking if file name already exists
+                FileData myFile = new FileData();
+
+                cloud = (FileCloud)Session["cloud"];
+
+                for (int i = 0; i < cloud.Files.Count; i++)
+                {
+                    myFile = (FileData)cloud.Files[i];
+
+                    if (myFile.Title == fileTitle)
+                    {
+                        //add updating existing file
+                        lblMsg.Text = "File title already in use!";
+                        break;
+                    }
+
+                }
 
 
-                //if (tempFile.Tables[0].Rows.Count > 0)
-                //{//if file name already exists in the DB
-                //    lblMsg.Text = "File name exist in the your Cloud. ";
-                //}
                 if (fileLength > (myAccount.StorageSpace - myAccount.StorageUsed))
                 {//If file size is bigger than the user's current balance
                     lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";
@@ -149,7 +161,6 @@ namespace TermProject.User
 
                     cloud = (FileCloud)Session["cloud"];
                     cloud.Files.Add(newFileData);
-
                 }
             }
         }

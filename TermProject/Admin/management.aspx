@@ -22,7 +22,9 @@
                                 OnRowUpdating="gvManagement_RowUpdating" 
                                 OnRowDeleting="gvManagement_RowDeleting"
                                 OnRowResetting="gvManagment_RowResetting" 
-                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" OnRowCommand="gvManagement_RowCommand" >
+                                OnRowCommand="gvManagement_RowCommand"
+                                OnPageIndexChanging="gvManagment_PageIndexChanging"
+                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True" PageSize="10" >
                                 <Columns>
                                     <asp:BoundField DataField="AccountID" ReadOnly="true" HeaderText="User ID" SortExpression="Name" />
                                     <asp:BoundField DataField="Name" ReadOnly="true" HeaderText="User Name" SortExpression="Name" />

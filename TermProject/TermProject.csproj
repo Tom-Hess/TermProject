@@ -89,16 +89,11 @@
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <None Include="Web References\CloudWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\Part2WS\Part2WS.disco" />
-    <Content Include="Web References\RegistrationWS\Reference.map">
+    <None Include="Web References\CloudWS\CloudWS.wsdl" />
+    <Content Include="Web References\CloudWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
@@ -107,6 +102,10 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\Part2WS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
@@ -121,6 +120,7 @@
   <ItemGroup>
     <Content Include="User\upload.aspx" />
     <Content Include="User\account.aspx" />
+    <None Include="Web References\Part2WS\Part2WS.disco" />
     <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -261,6 +261,9 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:52728/CloudWS.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\CloudWS\</RelPath>
@@ -294,9 +297,6 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TermProject_RegistrationWS_RegistrationWS</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

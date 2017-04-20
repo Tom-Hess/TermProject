@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TermProject.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TermProject_CloudWS_CloudWS" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:52728/CloudWS.asmx</Value>
+    <Setting Name="TermProject_Part2WS_Part2WS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:52728/Part2WS.asmx</Value>
     </Setting>
     <Setting Name="TermProject_RegistrationWS_RegistrationWS" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost:52728/RegistrationWS.asmx</Value>
     </Setting>
-    <Setting Name="TermProject_Part2WS_Part2WS" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:52728/Part2WS.asmx</Value>
+    <Setting Name="TermProject_CloudWS_CloudWS" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:52728/CloudWS.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

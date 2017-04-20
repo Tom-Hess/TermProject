@@ -71,8 +71,6 @@ namespace TermProject.User
                 gvFiles.EditIndex = -1;
                 showFiles();
             }
-
-            
         }
 
 

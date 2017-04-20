@@ -139,6 +139,13 @@ namespace TermProject.Admin
             }
         }
 
+        protected void gvManagment_PageIndexChanging(Object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
+        {
+            // Set the GridView to display the correct page
+            gvManagement.PageIndex = e.NewPageIndex;
+            showFiles();
+        }
+
 
     }
 }

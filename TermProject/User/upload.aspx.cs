@@ -121,24 +121,28 @@ namespace TermProject.User
                 newFileData.Extension = fileExtension;
                 
 
-                myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), Convert.ToInt32(Session["verification"]));
-                Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
+                myAccount = myUpload.GetAccountInfo(Session["email"].ToString(), 
+                    Convert.ToInt32(Session["verification"]));
+                //Int64 projectedRemainStorage = fileLength + myAccount.StorageUsed;
                 FileCloud cloud = (FileCloud)Session["cloud"];
 
 
-                
+
 
                 //if (tempFile.Tables[0].Rows.Count > 0)
                 //{//if file name already exists in the DB
                 //    lblMsg.Text = "File name exist in the your Cloud. ";
                 //}
-                if (projectedRemainStorage > myAccount.StorageSpace)
+                if (fileLength > (myAccount.StorageSpace - myAccount.StorageUsed))
                 {//If file size is bigger than the user's current balance
                     lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";
                 }
                 else
                 {
-                    int ID = CloudWS.addDownloadData(Convert.ToInt32(Session["AccountID"]), fileData, Convert.ToInt32(Session["verification"]));
+                    int ID = CloudWS.addDownloadData(Convert.ToInt32(Session["AccountID"]), 
+                        fileData, Convert.ToInt32(Session["verification"]));
+                    myUpload.updateStorageUsed(Session["email"].ToString(), fileLength,
+                        Convert.ToInt32(Session["verification"]));
                     lblMsg.ForeColor = System.Drawing.Color.Green;
                     lblMsg.Text = "Successfully uploaded " + fileTitle;
                     newFileData.FileID = ID;

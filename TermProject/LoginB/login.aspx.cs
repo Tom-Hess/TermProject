@@ -98,8 +98,6 @@ namespace TermProject.LoginB
                     }
                         else
                             mySerialization.createCloud(accountID);
-                    
-                    
 
                     Session["trash"] = trash;
                     Session["cloud"] = cloud;

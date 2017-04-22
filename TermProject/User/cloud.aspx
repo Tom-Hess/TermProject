@@ -56,6 +56,8 @@
 
                         <br /><br />
                         <asp:Button ID="btnDeleteAll" runat="server" Text="Delete All Files" OnClick="btnDeleteAll_Click" />
+                        &nbsp&nbsp
+                        <asp:Button ID="btnSync" runat="server" Text="Sync with Server" OnClick="btnSync_Click" />
                     </form>
                 </div>
             </div>

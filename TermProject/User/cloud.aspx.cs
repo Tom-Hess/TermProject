@@ -20,6 +20,7 @@ namespace TermProject.User
         FileCloud cloud = new FileCloud();
         FileCloud trash = new FileCloud();
         FileData myFile = new FileData();
+        Serialize mySerialization = new Serialize();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -197,6 +198,25 @@ namespace TermProject.User
             lblMsg.Text = "All files sent to the trash.";
 
             showFiles();
+        }
+
+        protected void btnSync_Click(object sender, EventArgs e)
+        {
+            if (Session["cloud"] != null)
+            {
+                // write uploaded files to the DB 
+                object files = Session["cloud"];
+                int accountID = Convert.ToInt32(Session["accountID"]);
+                mySerialization.writeCloud(files, accountID);
+            }
+
+            if (Session["trash"] != null)
+            {
+                // write deleted files to the DB 
+                object files = Session["trash"];
+                int accountID = Convert.ToInt32(Session["accountID"]);
+                mySerialization.writeTrash(files, accountID);
+            }
         }
     }
 }

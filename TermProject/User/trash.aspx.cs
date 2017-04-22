@@ -77,5 +77,24 @@ namespace TermProject.User
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
         }
+
+        protected void btnEmptyTrash_Click(object sender, EventArgs e)
+        {
+            trash = (FileCloud)Session["trash"];
+            int accountID = Convert.ToInt32(Session["accountID"]);
+
+            foreach(FileData file in trash.Files)
+            {
+                int fileID = file.FileID;
+                CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
+            }
+
+            trash = new FileCloud();
+            Session["trash"] = trash;
+
+            showFiles();
+            lblMsg.Text = "All files were deleted.";
+
+        }
     }
 }

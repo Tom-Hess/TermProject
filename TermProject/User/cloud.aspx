@@ -1,8 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/User.Master" AutoEventWireup="true" CodeBehind="cloud.aspx.cs" Inherits="TermProject.User.WebForm2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<script language="javascript" type="text/javascript">
+    function fnConfirmDelete() {
+    return confirm("Are you sure you want to send all files to the trash?");
+    }    
+</script>
+
     <div class="container" style="margin-top: 30px">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -30,7 +38,7 @@
                                     <asp:BoundField DataField="Length" ReadOnly="true" HeaderText="Size (Bytes)" SortExpression="length" />
 
                                     <asp:CommandField ButtonType="Button" EditText="Rename" ShowEditButton="True" ShowHeader="True" />
-                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" />
+                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button"  />
 
                                     <asp:TemplateField HeaderText="Download">  
                                     <ItemTemplate>  
@@ -55,7 +63,7 @@
                         <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
 
                         <br /><br />
-                        <asp:Button ID="btnDeleteAll" runat="server" Text="Delete All Files" OnClick="btnDeleteAll_Click" />
+                        <asp:Button ID="btnDeleteAll" runat="server" Text="Delete All Files" onClientClick="return fnConfirmDelete();" OnClick="btnDeleteAll_Click" />
                         &nbsp&nbsp
                         <asp:Button ID="btnSync" runat="server" Text="Sync with Server" OnClick="btnSync_Click" />
                     </form>

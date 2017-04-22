@@ -10,7 +10,7 @@
                     <br />
                     <h3 class="panel-title"><strong>Register New Admin</strong></h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="text-align:center">
                     <form id="form2" runat="server">
                         <div class="form-group">
                             <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>

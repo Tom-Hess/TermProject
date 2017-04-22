@@ -2,6 +2,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <script language="javascript" type="text/javascript">
+    function fnConfirmDelete() {
+    return confirm("Are you sure you want to delete all files? This cannot be undone.");
+    }    
+</script>
 <div class="container" style="margin-top: 30px">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -9,7 +14,7 @@
                     <br />
                     <h3 class="panel-title"><strong>Trash</strong></h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="text-align:center">
                     <form id="form1" runat="server">
                         <div>
                             <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" >
@@ -40,6 +45,8 @@
                             </asp:GridView>
                         </div>
                         <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
+                        <br /><br />
+                        <asp:Button ID="btnEmptyTrash" runat="server" Text="Empty Trash" onClientClick="return fnConfirmDelete();" OnClick="btnEmptyTrash_Click"/>
                     </form>
                 </div>
             </div>

@@ -183,15 +183,6 @@ namespace TermProject.User
             {
                 trash.Files.Add(file);
             }
-            //remove files from cloud
-
-            //for (int i = 0; i < cloud.Files.Count; i++)
-            //{
-            //    myFile = (FileData)cloud.Files[i];
-            //    trash.Files.Add(myFile);
-            //    cloud.Files.RemoveAt(i);
-            //    i--;
-            //}
             cloud = new FileCloud();
             Session["trash"] = trash;
             Session["cloud"] = cloud;

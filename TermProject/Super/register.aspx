@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoginB/login.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="TermProject.LoginB.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Super/Super.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="TermProject.Super.WebForm1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -7,12 +8,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Login</strong></h3>
+                    <h3 class="panel-title"><strong>Register New Admin</strong></h3>
                 </div>
-                <div class="panel-body" style="text-align:center">
-                    <form id="form1" runat="server">
+                <div class="panel-body">
+                    <form id="form2" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>
+                            <asp:Label runat="server" ID="lblName" Text="Name: "></asp:Label>
+                            <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
+                        </div>
+                        <div class="form-group">
+                            <asp:Label runat="server" ID="lblEmail" Text="Email: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
                         </div>
                         <div class="form-group">
@@ -20,14 +25,13 @@
                             <asp:TextBox runat="server" TextMode="Password" ID="txtPassword"></asp:TextBox>
                         </div>
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblRemember" Text="Remember me "></asp:Label>
-                            <asp:CheckBox runat="server" ID="chkRemember" />
+                            <asp:Label runat="server" ID="lblConfirm" Text="Confirm Password: "></asp:Label>
+                            <asp:TextBox runat="server" TextMode="Password" ID="txtConfirm"></asp:TextBox>
                         </div>
-                        <div class="form-group" style="text-align:center">
-                            <asp:Button runat="server" ID="btnLogin" Text="Log In" OnClick="btnLogin_Click" />
+                        <div class="form-group" style="text-align: center">
+                            <asp:Button runat="server" ID="btnSubmit" Text="Register" OnClick="btnSubmit_Click" />
                             <br />
                             <asp:Label runat="server" ID="lblMsg" Text="" ForeColor="#FF3300"></asp:Label>
-
                         </div>
                         <br />
                     </form>
@@ -37,7 +41,4 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
-    <p>
-        For testing purpose only: ID: user@user, password: user. ID: admin@admin, password: t. ID: super@super, password: super.
-    </p>
 </asp:Content>

@@ -86,8 +86,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Content Include="Super\register.aspx" />
+    <Content Include="Super\log.aspx" />
+    <Content Include="Super\adminManagement.aspx" />
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
+    <Content Include="Super\Super.Master" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -203,6 +207,34 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Super\Super.Master.cs">
+      <DependentUpon>Super.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Super\Super.Master.designer.cs">
+      <DependentUpon>Super.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Super\register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Super\register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Super\log.aspx.cs">
+      <DependentUpon>log.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Super\log.aspx.designer.cs">
+      <DependentUpon>log.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Super\adminManagement.aspx.cs">
+      <DependentUpon>adminManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Super\adminManagement.aspx.designer.cs">
+      <DependentUpon>adminManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

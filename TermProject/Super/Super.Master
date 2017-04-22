@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="TermProject.Admin.Admin" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Super.master.cs" Inherits="TermProject.Super.Super" %>
 
 <!DOCTYPE html>
 
@@ -71,7 +71,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#page-bottom">Temple Cloud - Administrator
+                <a class="navbar-brand" href="#page-bottom">Temple Cloud - Super Administrator
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,12 +81,14 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="management.aspx">Account Management</a>
+                        <a href="register.aspx">Register Administrator</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="log.aspx">Transaction Log</a>
+                        <a href="log.aspx">Administrator Log</a>
                     </li>
-
+                    <li class="page-scroll">
+                        <a href="adminManagement.aspx">Administrator Management</a>
+                    </li>
                     <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>
                     </li>

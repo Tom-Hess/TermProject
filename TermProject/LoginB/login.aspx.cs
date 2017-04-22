@@ -113,7 +113,7 @@ namespace TermProject.LoginB
                             // SUPER admin
                             Session["Login"] = 2;
                             Session["Email"] = txtEmail.Text;
-                            Response.Redirect("~/Admin/management.aspx");
+                            Response.Redirect("~/Super/adminManagement.aspx");
                             break;
                         default:
                             // User

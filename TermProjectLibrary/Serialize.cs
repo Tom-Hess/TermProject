@@ -16,7 +16,6 @@ namespace TermProjectLibrary
         SqlCommand objCommand = new SqlCommand();
 
 
-        // This function uses binary serialization to serialize an Object to a MemoryStream
         public MemoryStream SerializeToMemoryStream(Object objToSerialize)
         {
             BinaryFormatter serializer = new BinaryFormatter();
@@ -25,7 +24,6 @@ namespace TermProjectLibrary
             return memoryStream;
         }
 
-        // This function uses binary deserialization to reconstruct an Object from a MemoryStream
         public Object DeserializeFromMemoryStream(MemoryStream memoryStream)
         {
             BinaryFormatter deserializer = new BinaryFormatter();
@@ -35,7 +33,6 @@ namespace TermProjectLibrary
             return deserializedObject;
         }
 
-        // This function uses binary serialization to serialize an Object to a Byte Array
         public Byte[] SerializeToByteArray(Object objToSerialize)
         {
             BinaryFormatter serializer = new BinaryFormatter();
@@ -46,7 +43,6 @@ namespace TermProjectLibrary
             return byteArray;
         }
 
-        // This function uses binary deserialization to reconstruct an Object from a Byte Array
         public Object DeserializeFromByteArray(Byte[] byteArray)
         {
             BinaryFormatter deserializer = new BinaryFormatter();
@@ -64,11 +60,27 @@ namespace TermProjectLibrary
             int returnValue;
 
             byteArray = SerializeToByteArray(fileCloud);
-            //this updates cart that already exists
             objCommand.CommandText = "TPwriteCloud";
             objCommand.CommandType = CommandType.StoredProcedure;
 
             objCommand.Parameters.AddWithValue("@fileCloud", byteArray);
+            objCommand.Parameters.AddWithValue("@accountID", accountID);
+            returnValue = myDB.DoUpdateUsingCmdObj(objCommand);
+            return returnValue;
+        }
+
+        public int writeTrash(Object fileCloud, int accountID)
+        {
+            Byte[] byteArray;
+            SqlCommand objCommand = new SqlCommand();
+
+            int returnValue;
+
+            byteArray = SerializeToByteArray(fileCloud);
+            objCommand.CommandText = "TPwriteTrash";
+            objCommand.CommandType = CommandType.StoredProcedure;
+
+            objCommand.Parameters.AddWithValue("@fileCloudTrash", byteArray);
             objCommand.Parameters.AddWithValue("@accountID", accountID);
             returnValue = myDB.DoUpdateUsingCmdObj(objCommand);
             return returnValue;
@@ -127,12 +139,29 @@ namespace TermProjectLibrary
             }
         }
 
-        // add the user ID to the cloud database
-        
+        //get a user's cloud trash data on login
+        public Object getFileCloudTrash(int accountID)
+        {
+            SqlCommand objCommand = new SqlCommand();
+            DataSet myDS;
+            Byte[] byteArray;
 
+            objCommand.CommandText = "TPgetFileCloudTrash";
+            objCommand.CommandType = CommandType.StoredProcedure;
 
+            objCommand.Parameters.AddWithValue("@accountID", accountID);
+            myDS = myDB.GetDataSetUsingCmdObj(objCommand);
+            DataRow fileCloud = myDS.Tables[0].Rows[0];
 
-
-
+            if (fileCloud["fileCloudTrash"] != DBNull.Value)
+            {
+                byteArray = (Byte[])fileCloud["fileCloudTrash"];
+                return DeserializeFromByteArray(byteArray);
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

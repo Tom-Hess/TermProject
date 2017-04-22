@@ -89,14 +89,15 @@
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
+    <Content Include="User\trash.aspx" />
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <Content Include="Web References\CloudWS\Reference.map">
+    <None Include="Web References\CloudWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
@@ -231,6 +232,13 @@
     </Compile>
     <Compile Include="User\cloud.aspx.designer.cs">
       <DependentUpon>cloud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\trash.aspx.cs">
+      <DependentUpon>trash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\trash.aspx.designer.cs">
+      <DependentUpon>trash.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\CloudWS\Reference.cs">
       <AutoGen>True</AutoGen>

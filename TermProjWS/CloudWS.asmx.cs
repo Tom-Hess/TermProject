@@ -147,5 +147,53 @@ namespace TermProjWS
             else
                 return flag; //return zero
         }
+
+        [WebMethod]
+        public int deleteAllFiles(int ID, int verification)
+        {
+            int flag = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeleteAllFiles";
+
+                SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+                //Flag represense number of rows affected,-1 if exception occured, 
+            }
+            else
+                return flag; //return zero
+        }
+
+        [WebMethod]
+        public int resetStorageUsed(int ID, int verification)
+        {
+            int flag = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPresetStorageUsed";
+
+                SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+                //Flag represense number of rows affected,-1 if exception occured, 
+            }
+            else
+                return flag; //return zero
+        }
     }
 }

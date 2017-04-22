@@ -42,12 +42,19 @@ namespace TermProject
         {
             if(Session["cloud"] != null)
             {
-                // Write uploaded files to the DB using serialization
+                // write uploaded files to the DB 
                 object files = Session["cloud"];
                 int accountID = Convert.ToInt32(Session["accountID"]);
                 mySerialization.writeCloud(files, accountID);
             }
 
+            if (Session["trash"] != null)
+            {
+                // write uploaded files to the DB 
+                object files = Session["trash"];
+                int accountID = Convert.ToInt32(Session["accountID"]);
+                mySerialization.writeTrash(files, accountID);
+            }
         }
 
         protected void Application_End(object sender, EventArgs e)

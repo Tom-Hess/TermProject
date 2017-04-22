@@ -86,12 +86,14 @@ namespace TermProject.LoginB
                     Session["verification"] = 112358;
 
                     FileCloud cloud = new FileCloud();
+                    FileCloud trash = new FileCloud();
 
                     if (mySerialization.checkCloudExists(accountID))
                     {
                         if (mySerialization.getFileCloud(accountID) != null) 
                         {
                             cloud = (FileCloud)(mySerialization.getFileCloud(accountID));
+                            trash = (FileCloud)(mySerialization.getFileCloudTrash(accountID));
                         }
                     }
                     else  
@@ -99,6 +101,7 @@ namespace TermProject.LoginB
                         mySerialization.createCloud(accountID);
                     }
 
+                    Session["trash"] = trash;
                     Session["cloud"] = cloud;
 
                     switch (accountType)

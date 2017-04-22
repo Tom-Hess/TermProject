@@ -23,7 +23,7 @@ namespace TermProject.CloudWS {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="CloudWSSoap", Namespace="http://tempuri.org/")]
@@ -38,6 +38,10 @@ namespace TermProject.CloudWS {
         private System.Threading.SendOrPostCallback DeleteFileOperationCompleted;
         
         private System.Threading.SendOrPostCallback deleteAccountOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deleteAllFilesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback resetStorageUsedOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -91,6 +95,12 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         public event deleteAccountCompletedEventHandler deleteAccountCompleted;
+        
+        /// <remarks/>
+        public event deleteAllFilesCompletedEventHandler deleteAllFilesCompleted;
+        
+        /// <remarks/>
+        public event resetStorageUsedCompletedEventHandler resetStorageUsedCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -251,6 +261,68 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteAllFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int deleteAllFiles(int ID, int verification) {
+            object[] results = this.Invoke("deleteAllFiles", new object[] {
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void deleteAllFilesAsync(int ID, int verification) {
+            this.deleteAllFilesAsync(ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void deleteAllFilesAsync(int ID, int verification, object userState) {
+            if ((this.deleteAllFilesOperationCompleted == null)) {
+                this.deleteAllFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteAllFilesOperationCompleted);
+            }
+            this.InvokeAsync("deleteAllFiles", new object[] {
+                        ID,
+                        verification}, this.deleteAllFilesOperationCompleted, userState);
+        }
+        
+        private void OndeleteAllFilesOperationCompleted(object arg) {
+            if ((this.deleteAllFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deleteAllFilesCompleted(this, new deleteAllFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/resetStorageUsed", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int resetStorageUsed(int ID, int verification) {
+            object[] results = this.Invoke("resetStorageUsed", new object[] {
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void resetStorageUsedAsync(int ID, int verification) {
+            this.resetStorageUsedAsync(ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void resetStorageUsedAsync(int ID, int verification, object userState) {
+            if ((this.resetStorageUsedOperationCompleted == null)) {
+                this.resetStorageUsedOperationCompleted = new System.Threading.SendOrPostCallback(this.OnresetStorageUsedOperationCompleted);
+            }
+            this.InvokeAsync("resetStorageUsed", new object[] {
+                        ID,
+                        verification}, this.resetStorageUsedOperationCompleted, userState);
+        }
+        
+        private void OnresetStorageUsedOperationCompleted(object arg) {
+            if ((this.resetStorageUsedCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.resetStorageUsedCompleted(this, new resetStorageUsedCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -270,11 +342,11 @@ namespace TermProject.CloudWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void addDownloadDataCompletedEventHandler(object sender, addDownloadDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class addDownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -296,11 +368,11 @@ namespace TermProject.CloudWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void getMaxFileIDCompletedEventHandler(object sender, getMaxFileIDCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getMaxFileIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -322,11 +394,11 @@ namespace TermProject.CloudWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void getDownloadDataCompletedEventHandler(object sender, getDownloadDataCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class getDownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -348,11 +420,11 @@ namespace TermProject.CloudWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void DeleteFileCompletedEventHandler(object sender, DeleteFileCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class DeleteFileCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -374,11 +446,11 @@ namespace TermProject.CloudWS {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void deleteAccountCompletedEventHandler(object sender, deleteAccountCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class deleteAccountCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -386,6 +458,58 @@ namespace TermProject.CloudWS {
         private object[] results;
         
         internal deleteAccountCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void deleteAllFilesCompletedEventHandler(object sender, deleteAllFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class deleteAllFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal deleteAllFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void resetStorageUsedCompletedEventHandler(object sender, resetStorageUsedCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class resetStorageUsedCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal resetStorageUsedCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

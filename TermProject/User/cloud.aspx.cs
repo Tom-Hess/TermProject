@@ -18,6 +18,7 @@ namespace TermProject.User
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
         Validation myValidation = new Validation();
         FileCloud cloud = new FileCloud();
+        FileCloud trash = new FileCloud();
         FileData myFile = new FileData();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace TermProject.User
             Int64 size = -(Convert.ToInt64(gvFiles.Rows[index].Cells[4].Text));
 
             cloud = (FileCloud)Session["cloud"];
-
+            trash = (FileCloud)Session["trash"];
             for (int i = 0; i < cloud.Files.Count; i++)
             {
                 myFile = (FileData)cloud.Files[i];
@@ -109,13 +110,15 @@ namespace TermProject.User
                 if (myFile.FileID == fileID)
                 {
                     cloud.Files.RemoveAt(i);
+                    trash.Files.Add(myFile);
                     break;
                 }
             }
             Session["cloud"] = cloud;
-
+            Session["trash"] = trash;
+            
             //delete the file in the DB
-            CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
+            //CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
             //update user's storage used
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
@@ -143,7 +146,6 @@ namespace TermProject.User
                         break;
                 }
 
-
                 byte[] fileDataBytes = new byte[fileSize];
 
                 //get file's data from download DB
@@ -161,8 +163,31 @@ namespace TermProject.User
                 Response.Flush();
                 Response.End();
             }
+        }
 
+        protected void btnDeleteAll_Click(object sender, EventArgs e)
+        {
+            cloud = (FileCloud)Session["cloud"];
+            trash = (FileCloud)Session["trash"];
+            int accountID = Convert.ToInt32(Session["accountID"]);
+            CloudWS.deleteAllFiles(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
+            CloudWS.resetStorageUsed(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
+
+            Serialize mySerialization = new Serialize();
+            mySerialization.createCloud(accountID);
             
+            //add files to the trash
+            for (int i = 0; i < cloud.Files.Count; i++)
+            {
+                myFile = (FileData)cloud.Files[i];
+                trash.Files.Add(myFile);
+                cloud.Files.RemoveAt(i);
+            }
+            Session["trash"] = trash;
+            Session["cloud"] = cloud;
+            lblMsg.Text = "All files sent to the trash.";
+
+            showFiles();
         }
     }
 }

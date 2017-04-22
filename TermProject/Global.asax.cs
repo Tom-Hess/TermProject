@@ -50,7 +50,7 @@ namespace TermProject
 
             if (Session["trash"] != null)
             {
-                // write uploaded files to the DB 
+                // write deleted files to the DB 
                 object files = Session["trash"];
                 int accountID = Convert.ToInt32(Session["accountID"]);
                 mySerialization.writeTrash(files, accountID);

@@ -90,16 +90,16 @@ namespace TermProject.LoginB
 
                     if (mySerialization.checkCloudExists(accountID))
                     {
-                        if (mySerialization.getFileCloud(accountID) != null) 
-                        {
-                            cloud = (FileCloud)(mySerialization.getFileCloud(accountID));
-                            trash = (FileCloud)(mySerialization.getFileCloudTrash(accountID));
-                        }
+                        if (mySerialization.getFileCloud(accountID) != null)
+                            {
+                                cloud = (FileCloud)(mySerialization.getFileCloud(accountID));
+                                trash = (FileCloud)(mySerialization.getFileCloudTrash(accountID));
+                            }
                     }
-                    else  
-                    {
-                        mySerialization.createCloud(accountID);
-                    }
+                        else
+                            mySerialization.createCloud(accountID);
+                    
+                    
 
                     Session["trash"] = trash;
                     Session["cloud"] = cloud;

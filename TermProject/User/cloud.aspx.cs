@@ -38,7 +38,8 @@ namespace TermProject.User
             if (!IsPostBack)
             {
                 showFiles();
-            }
+                
+            }   
         }
 
         protected void gvFiles_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -93,6 +94,10 @@ namespace TermProject.User
             ArrayList Files = new ArrayList(cloud.Files);
             gvFiles.DataSource = Files;
             gvFiles.DataBind();
+            if (gvFiles.Rows.Count > 0)
+                btnDeleteAll.Visible = true;
+            else
+                btnDeleteAll.Visible = false;
         }
 
         protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -170,19 +175,23 @@ namespace TermProject.User
             cloud = (FileCloud)Session["cloud"];
             trash = (FileCloud)Session["trash"];
             int accountID = Convert.ToInt32(Session["accountID"]);
-            CloudWS.deleteAllFiles(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
             CloudWS.resetStorageUsed(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
 
-            Serialize mySerialization = new Serialize();
-            mySerialization.createCloud(accountID);
-            
             //add files to the trash
-            for (int i = 0; i < cloud.Files.Count; i++)
+            foreach (FileData file in cloud.Files)
             {
-                myFile = (FileData)cloud.Files[i];
-                trash.Files.Add(myFile);
-                cloud.Files.RemoveAt(i);
+                trash.Files.Add(file);
             }
+            //remove files from cloud
+
+            //for (int i = 0; i < cloud.Files.Count; i++)
+            //{
+            //    myFile = (FileData)cloud.Files[i];
+            //    trash.Files.Add(myFile);
+            //    cloud.Files.RemoveAt(i);
+            //    i--;
+            //}
+            cloud = new FileCloud();
             Session["trash"] = trash;
             Session["cloud"] = cloud;
             lblMsg.Text = "All files sent to the trash.";

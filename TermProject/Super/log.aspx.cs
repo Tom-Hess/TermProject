@@ -9,7 +9,7 @@ using TermProjectLibrary;
 using TermProject.RegistrationWS;
 using System.Data;
 
-namespace TermProject.Admin
+namespace TermProject.Super
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
@@ -18,7 +18,7 @@ namespace TermProject.Admin
         DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) != 1)
+            if (Convert.ToInt32(Session["Login"]) != 2)
             {
                 Response.Redirect("../logout.aspx");
             }
@@ -27,7 +27,8 @@ namespace TermProject.Admin
         protected void btnFind_Click(object sender, EventArgs e)
         {
             DateTime begin, end;
-            if (myValidation.IsEmpty(txtEmail.Text)) {
+            if (myValidation.IsEmpty(txtEmail.Text))
+            {
                 lblMsg.Text = "Email cannot be blank. ";
                 txtEmail.Focus();
             }
@@ -66,11 +67,14 @@ namespace TermProject.Admin
                 //passed all validation. Show the transactions in the gridview.
                 string email = txtEmail.Text;
 
-                myDS = P2WS.getUploadHistory(email, begin, end, Convert.ToInt32(Session["verification"]));
+                //myDS = P2WS.getUploadHistory(email, begin, end, Convert.ToInt32(Session["verification"]));
+
+                //Need code to search new db
+
                 gvTransactionLog.DataSource = myDS;
                 gvTransactionLog.DataBind();
             }
-            
+
         }
     }
 }

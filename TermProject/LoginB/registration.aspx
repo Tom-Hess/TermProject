@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Registration</strong></h3>
+                    <h3 class="panel-title"><strong>User Registration</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
@@ -47,4 +47,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
+    <p>
+        To register an administrator, contact Super Administrator
+    </p>
 </asp:Content>

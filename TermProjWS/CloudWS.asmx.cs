@@ -195,5 +195,23 @@ namespace TermProjWS
             else
                 return flag; //return zero
         }
+
+        [WebMethod]
+        public void logUserTransaction(int accountID, string description, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPlogUserTransaction";
+
+                myCommand.Parameters.AddWithValue("accountID", accountID);
+                myCommand.Parameters.AddWithValue("description", description);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+                //Flag represense number of rows affected,-1 if exception occured, 
+            }
+        }
     }
 }

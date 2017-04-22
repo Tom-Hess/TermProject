@@ -80,6 +80,8 @@ namespace TermProject.User
                     if (myFile.FileID == fileID)
                     {
                         myFile.Title = fileName;
+                        CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]), 
+                            "Renamed file #" + myFile.FileID + " to " + fileName, Convert.ToInt32(Session["verification"]));
                         break;
                     }
                 }
@@ -106,6 +108,7 @@ namespace TermProject.User
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[1].Text);
             Int64 size = -(Convert.ToInt64(gvFiles.Rows[index].Cells[4].Text));
+            CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]), "Deleted file with ID #" + fileID, Convert.ToInt32(Session["verification"]));
 
             cloud = (FileCloud)Session["cloud"];
             trash = (FileCloud)Session["trash"];
@@ -122,10 +125,7 @@ namespace TermProject.User
             }
             Session["cloud"] = cloud;
             Session["trash"] = trash;
-            
-            //delete the file in the DB
-            //CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
-            //update user's storage used
+
             P2WS.updateStorageUsed(Session["email"].ToString(), size, Convert.ToInt32(Session["verification"]));
             showFiles();
         }
@@ -177,7 +177,7 @@ namespace TermProject.User
             trash = (FileCloud)Session["trash"];
             int accountID = Convert.ToInt32(Session["accountID"]);
             CloudWS.resetStorageUsed(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
-
+            CloudWS.logUserTransaction(accountID, "Deleted all files in their cloud", Convert.ToInt32(Session["verification"]));
             //add files to the trash
             foreach (FileData file in cloud.Files)
             {

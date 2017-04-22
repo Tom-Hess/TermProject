@@ -43,6 +43,8 @@ namespace TermProject.CloudWS {
         
         private System.Threading.SendOrPostCallback resetStorageUsedOperationCompleted;
         
+        private System.Threading.SendOrPostCallback logUserTransactionOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -101,6 +103,9 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         public event resetStorageUsedCompletedEventHandler resetStorageUsedCompleted;
+        
+        /// <remarks/>
+        public event logUserTransactionCompletedEventHandler logUserTransactionCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -323,6 +328,38 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/logUserTransaction", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void logUserTransaction(int accountID, string description, int verification) {
+            this.Invoke("logUserTransaction", new object[] {
+                        accountID,
+                        description,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void logUserTransactionAsync(int accountID, string description, int verification) {
+            this.logUserTransactionAsync(accountID, description, verification, null);
+        }
+        
+        /// <remarks/>
+        public void logUserTransactionAsync(int accountID, string description, int verification, object userState) {
+            if ((this.logUserTransactionOperationCompleted == null)) {
+                this.logUserTransactionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnlogUserTransactionOperationCompleted);
+            }
+            this.InvokeAsync("logUserTransaction", new object[] {
+                        accountID,
+                        description,
+                        verification}, this.logUserTransactionOperationCompleted, userState);
+        }
+        
+        private void OnlogUserTransactionOperationCompleted(object arg) {
+            if ((this.logUserTransactionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.logUserTransactionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -522,6 +559,10 @@ namespace TermProject.CloudWS {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void logUserTransactionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

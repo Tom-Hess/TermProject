@@ -20,7 +20,7 @@ namespace TermProject.Admin
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) == 1)
+            if (Convert.ToInt32(Session["Login"]) == 2)
             {
                 if (!IsPostBack)
                 {

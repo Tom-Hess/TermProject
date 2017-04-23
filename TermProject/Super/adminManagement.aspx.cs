@@ -20,7 +20,7 @@ namespace TermProject.Super
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) != 2)
+            if (Convert.ToInt32(Session["Login"]) != 3)
             {
                 Response.Redirect("../logout.aspx");
             }

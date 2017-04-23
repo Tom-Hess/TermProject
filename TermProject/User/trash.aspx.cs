@@ -23,23 +23,17 @@ namespace TermProject.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) == 1)
+            if (Convert.ToInt32(Session["Login"]) != 1)
             {
-                Response.Redirect("~/Admin/management.aspx");
-            }
-            else if (Convert.ToInt32(Session["Login"]) == 0)
+                Response.Redirect("../logout.aspx");
+            }else
             {
-            }
-            else
-            {
-                Response.Redirect("~/LoginB/home.aspx");
-            }
-
-            if (!IsPostBack)
-            {
-                showFiles();
-                if(gvFiles.Rows.Count == 0)
-                    btnEmptyTrash.Visible = false;
+                if (!IsPostBack)
+                {
+                    showFiles();
+                    if (gvFiles.Rows.Count == 0)
+                        btnEmptyTrash.Visible = false;
+                }
             }
         }
 

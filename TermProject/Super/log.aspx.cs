@@ -19,7 +19,7 @@ namespace TermProject.Super
         DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) != 2)
+            if (Convert.ToInt32(Session["Login"]) != 3)
             {
                 Response.Redirect("../logout.aspx");
             }

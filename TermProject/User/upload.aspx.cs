@@ -20,16 +20,9 @@ namespace TermProject.User
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) == 1)
+            if (Convert.ToInt32(Session["Login"]) != 1)
             {
-                Response.Redirect("~/Admin/management.aspx");
-            }
-            else if (Convert.ToInt32(Session["Login"]) == 0)
-            {
-            }
-            else
-            {
-                Response.Redirect("~/LoginB/home.aspx");
+                Response.Redirect("../logout.aspx");
             }
         }
 

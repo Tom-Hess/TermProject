@@ -18,16 +18,9 @@ namespace TermProject.User
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(Session["Login"]) == 1)
+            if (Convert.ToInt32(Session["Login"]) != 1)
             {
-                Response.Redirect("~/Admin/management.aspx");
-            }
-            else if (Convert.ToInt32(Session["Login"]) == 0)
-            {
-            }
-            else
-            {
-                Response.Redirect("~/LoginB/home.aspx");
+                Response.Redirect("../logout.aspx");
             }
             //create person object for the user's current information
             accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString(), Convert.ToInt32(Session["verification"]));

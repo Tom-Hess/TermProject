@@ -106,19 +106,19 @@ namespace TermProject.LoginB
                     {
                         case 1:
                             //Admin
-                            Session["Login"] = 1;
+                            Session["Login"] = 2;
                             Session["Email"] = txtEmail.Text;
                             Response.Redirect("~/Admin/management.aspx");
                             break;
                         case 2:
                             // SUPER admin
-                            Session["Login"] = 2;
+                            Session["Login"] = 3;
                             Session["Email"] = txtEmail.Text;
                             Response.Redirect("~/Super/adminManagement.aspx");
                             break;
                         default:
                             // User
-                            Session["Login"] = 0;
+                            Session["Login"] = 1;
                             Session["Email"] = txtEmail.Text;
                             Response.Redirect("~/User/cloud.aspx");
                             break;

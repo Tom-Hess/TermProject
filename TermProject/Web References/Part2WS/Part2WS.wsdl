@@ -25,6 +25,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="AccountType" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="StorageSpace" type="s:long" />
           <s:element minOccurs="1" maxOccurs="1" name="StorageUsed" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountID" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="UpdateAccount">
@@ -194,10 +195,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getAllAdmin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAllAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAllAdminResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="updateStorageCapacity">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="capacity" type="s:long" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
@@ -210,6 +233,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -225,6 +249,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
         </s:complexType>
@@ -281,6 +306,44 @@
           <s:element minOccurs="0" maxOccurs="1" name="Extension" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="activateOrDeactivate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="activateOrDeactivateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="activateOrDeactivateResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAdminLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAdminLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAdminLogResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAccountInfoSoapIn">
@@ -343,6 +406,12 @@
   <wsdl:message name="getAllAccountSoapOut">
     <wsdl:part name="parameters" element="tns:getAllAccountResponse" />
   </wsdl:message>
+  <wsdl:message name="getAllAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:getAllAdmin" />
+  </wsdl:message>
+  <wsdl:message name="getAllAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:getAllAdminResponse" />
+  </wsdl:message>
   <wsdl:message name="updateStorageCapacitySoapIn">
     <wsdl:part name="parameters" element="tns:updateStorageCapacity" />
   </wsdl:message>
@@ -372,6 +441,18 @@
   </wsdl:message>
   <wsdl:message name="getAllFileInfoSoapOut">
     <wsdl:part name="parameters" element="tns:getAllFileInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="activateOrDeactivateSoapIn">
+    <wsdl:part name="parameters" element="tns:activateOrDeactivate" />
+  </wsdl:message>
+  <wsdl:message name="activateOrDeactivateSoapOut">
+    <wsdl:part name="parameters" element="tns:activateOrDeactivateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAdminLogSoapIn">
+    <wsdl:part name="parameters" element="tns:getAdminLog" />
+  </wsdl:message>
+  <wsdl:message name="getAdminLogSoapOut">
+    <wsdl:part name="parameters" element="tns:getAdminLogResponse" />
   </wsdl:message>
   <wsdl:portType name="Part2WSSoap">
     <wsdl:operation name="GetAccountInfo">
@@ -414,6 +495,10 @@
       <wsdl:input message="tns:getAllAccountSoapIn" />
       <wsdl:output message="tns:getAllAccountSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getAllAdmin">
+      <wsdl:input message="tns:getAllAdminSoapIn" />
+      <wsdl:output message="tns:getAllAdminSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateStorageCapacity">
       <wsdl:input message="tns:updateStorageCapacitySoapIn" />
       <wsdl:output message="tns:updateStorageCapacitySoapOut" />
@@ -433,6 +518,14 @@
     <wsdl:operation name="getAllFileInfo">
       <wsdl:input message="tns:getAllFileInfoSoapIn" />
       <wsdl:output message="tns:getAllFileInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="activateOrDeactivate">
+      <wsdl:input message="tns:activateOrDeactivateSoapIn" />
+      <wsdl:output message="tns:activateOrDeactivateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAdminLog">
+      <wsdl:input message="tns:getAdminLogSoapIn" />
+      <wsdl:output message="tns:getAdminLogSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Part2WSSoap" type="tns:Part2WSSoap">
@@ -527,6 +620,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getAllAdmin">
+      <soap:operation soapAction="http://tempuri.org/getAllAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateStorageCapacity">
       <soap:operation soapAction="http://tempuri.org/updateStorageCapacity" style="document" />
       <wsdl:input>
@@ -565,6 +667,24 @@
     </wsdl:operation>
     <wsdl:operation name="getAllFileInfo">
       <soap:operation soapAction="http://tempuri.org/getAllFileInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activateOrDeactivate">
+      <soap:operation soapAction="http://tempuri.org/activateOrDeactivate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAdminLog">
+      <soap:operation soapAction="http://tempuri.org/getAdminLog" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -665,6 +785,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getAllAdmin">
+      <soap12:operation soapAction="http://tempuri.org/getAllAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="updateStorageCapacity">
       <soap12:operation soapAction="http://tempuri.org/updateStorageCapacity" style="document" />
       <wsdl:input>
@@ -703,6 +832,24 @@
     </wsdl:operation>
     <wsdl:operation name="getAllFileInfo">
       <soap12:operation soapAction="http://tempuri.org/getAllFileInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="activateOrDeactivate">
+      <soap12:operation soapAction="http://tempuri.org/activateOrDeactivate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAdminLog">
+      <soap12:operation soapAction="http://tempuri.org/getAdminLog" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

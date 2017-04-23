@@ -67,6 +67,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
           </s:sequence>
         </s:complexType>

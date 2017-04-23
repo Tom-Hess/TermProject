@@ -73,7 +73,7 @@ namespace TermProject.Super
             if (RegWS.AddAccount(newPerson))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert",
-                    "alert('Admin successfully created.');window.location ='management.aspx';", true);
+                    "alert('Admin successfully created.');window.location ='adminManagement.aspx';", true);
             }
             else
             {

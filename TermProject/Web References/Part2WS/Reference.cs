@@ -50,6 +50,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback getAllAccountOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getAllAdminOperationCompleted;
+        
         private System.Threading.SendOrPostCallback updateStorageCapacityOperationCompleted;
         
         private System.Threading.SendOrPostCallback deleteAccountOperationCompleted;
@@ -59,6 +61,10 @@ namespace TermProject.Part2WS {
         private System.Threading.SendOrPostCallback GetFileDataOperationCompleted;
         
         private System.Threading.SendOrPostCallback getAllFileInfoOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback activateOrDeactivateOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getAdminLogOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -129,6 +135,9 @@ namespace TermProject.Part2WS {
         public event getAllAccountCompletedEventHandler getAllAccountCompleted;
         
         /// <remarks/>
+        public event getAllAdminCompletedEventHandler getAllAdminCompleted;
+        
+        /// <remarks/>
         public event updateStorageCapacityCompletedEventHandler updateStorageCapacityCompleted;
         
         /// <remarks/>
@@ -142,6 +151,12 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event getAllFileInfoCompletedEventHandler getAllFileInfoCompleted;
+        
+        /// <remarks/>
+        public event activateOrDeactivateCompletedEventHandler activateOrDeactivateCompleted;
+        
+        /// <remarks/>
+        public event getAdminLogCompletedEventHandler getAdminLogCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -476,26 +491,57 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getAllAdmin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getAllAdmin(int verification) {
+            object[] results = this.Invoke("getAllAdmin", new object[] {
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAllAdminAsync(int verification) {
+            this.getAllAdminAsync(verification, null);
+        }
+        
+        /// <remarks/>
+        public void getAllAdminAsync(int verification, object userState) {
+            if ((this.getAllAdminOperationCompleted == null)) {
+                this.getAllAdminOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAllAdminOperationCompleted);
+            }
+            this.InvokeAsync("getAllAdmin", new object[] {
+                        verification}, this.getAllAdminOperationCompleted, userState);
+        }
+        
+        private void OngetAllAdminOperationCompleted(object arg) {
+            if ((this.getAllAdminCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAllAdminCompleted(this, new getAllAdminCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateStorageCapacity", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void updateStorageCapacity(int ID, long capacity, int verification) {
+        public void updateStorageCapacity(int ID, int adminID, long capacity, int verification) {
             this.Invoke("updateStorageCapacity", new object[] {
                         ID,
+                        adminID,
                         capacity,
                         verification});
         }
         
         /// <remarks/>
-        public void updateStorageCapacityAsync(int ID, long capacity, int verification) {
-            this.updateStorageCapacityAsync(ID, capacity, verification, null);
+        public void updateStorageCapacityAsync(int ID, int adminID, long capacity, int verification) {
+            this.updateStorageCapacityAsync(ID, adminID, capacity, verification, null);
         }
         
         /// <remarks/>
-        public void updateStorageCapacityAsync(int ID, long capacity, int verification, object userState) {
+        public void updateStorageCapacityAsync(int ID, int adminID, long capacity, int verification, object userState) {
             if ((this.updateStorageCapacityOperationCompleted == null)) {
                 this.updateStorageCapacityOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateStorageCapacityOperationCompleted);
             }
             this.InvokeAsync("updateStorageCapacity", new object[] {
                         ID,
+                        adminID,
                         capacity,
                         verification}, this.updateStorageCapacityOperationCompleted, userState);
         }
@@ -509,25 +555,27 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deleteAccount", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int deleteAccount(int ID, int verification) {
+        public int deleteAccount(int ID, int adminID, int verification) {
             object[] results = this.Invoke("deleteAccount", new object[] {
                         ID,
+                        adminID,
                         verification});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void deleteAccountAsync(int ID, int verification) {
-            this.deleteAccountAsync(ID, verification, null);
+        public void deleteAccountAsync(int ID, int adminID, int verification) {
+            this.deleteAccountAsync(ID, adminID, verification, null);
         }
         
         /// <remarks/>
-        public void deleteAccountAsync(int ID, int verification, object userState) {
+        public void deleteAccountAsync(int ID, int adminID, int verification, object userState) {
             if ((this.deleteAccountOperationCompleted == null)) {
                 this.deleteAccountOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeleteAccountOperationCompleted);
             }
             this.InvokeAsync("deleteAccount", new object[] {
                         ID,
+                        adminID,
                         verification}, this.deleteAccountOperationCompleted, userState);
         }
         
@@ -540,25 +588,27 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/resetPassord", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public int resetPassord(int ID, int verification) {
+        public int resetPassord(int ID, int adminID, int verification) {
             object[] results = this.Invoke("resetPassord", new object[] {
                         ID,
+                        adminID,
                         verification});
             return ((int)(results[0]));
         }
         
         /// <remarks/>
-        public void resetPassordAsync(int ID, int verification) {
-            this.resetPassordAsync(ID, verification, null);
+        public void resetPassordAsync(int ID, int adminID, int verification) {
+            this.resetPassordAsync(ID, adminID, verification, null);
         }
         
         /// <remarks/>
-        public void resetPassordAsync(int ID, int verification, object userState) {
+        public void resetPassordAsync(int ID, int adminID, int verification, object userState) {
             if ((this.resetPassordOperationCompleted == null)) {
                 this.resetPassordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnresetPassordOperationCompleted);
             }
             this.InvokeAsync("resetPassord", new object[] {
                         ID,
+                        adminID,
                         verification}, this.resetPassordOperationCompleted, userState);
         }
         
@@ -635,6 +685,70 @@ namespace TermProject.Part2WS {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/activateOrDeactivate", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int activateOrDeactivate(int userID, int adminID, int verification) {
+            object[] results = this.Invoke("activateOrDeactivate", new object[] {
+                        userID,
+                        adminID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void activateOrDeactivateAsync(int userID, int adminID, int verification) {
+            this.activateOrDeactivateAsync(userID, adminID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void activateOrDeactivateAsync(int userID, int adminID, int verification, object userState) {
+            if ((this.activateOrDeactivateOperationCompleted == null)) {
+                this.activateOrDeactivateOperationCompleted = new System.Threading.SendOrPostCallback(this.OnactivateOrDeactivateOperationCompleted);
+            }
+            this.InvokeAsync("activateOrDeactivate", new object[] {
+                        userID,
+                        adminID,
+                        verification}, this.activateOrDeactivateOperationCompleted, userState);
+        }
+        
+        private void OnactivateOrDeactivateOperationCompleted(object arg) {
+            if ((this.activateOrDeactivateCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.activateOrDeactivateCompleted(this, new activateOrDeactivateCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getAdminLog", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getAdminLog(int adminID, int verification) {
+            object[] results = this.Invoke("getAdminLog", new object[] {
+                        adminID,
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getAdminLogAsync(int adminID, int verification) {
+            this.getAdminLogAsync(adminID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getAdminLogAsync(int adminID, int verification, object userState) {
+            if ((this.getAdminLogOperationCompleted == null)) {
+                this.getAdminLogOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetAdminLogOperationCompleted);
+            }
+            this.InvokeAsync("getAdminLog", new object[] {
+                        adminID,
+                        verification}, this.getAdminLogOperationCompleted, userState);
+        }
+        
+        private void OngetAdminLogOperationCompleted(object arg) {
+            if ((this.getAdminLogCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getAdminLogCompleted(this, new getAdminLogCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -672,6 +786,8 @@ namespace TermProject.Part2WS {
         private long storageSpaceField;
         
         private long storageUsedField;
+        
+        private int accountIDField;
         
         /// <remarks/>
         public string Email {
@@ -730,6 +846,16 @@ namespace TermProject.Part2WS {
             }
             set {
                 this.storageUsedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int AccountID {
+            get {
+                return this.accountIDField;
+            }
+            set {
+                this.accountIDField = value;
             }
         }
     }
@@ -1082,6 +1208,32 @@ namespace TermProject.Part2WS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void getAllAdminCompletedEventHandler(object sender, getAllAdminCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAllAdminCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAllAdminCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
     public delegate void updateStorageCapacityCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -1184,6 +1336,58 @@ namespace TermProject.Part2WS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((FileData)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void activateOrDeactivateCompletedEventHandler(object sender, activateOrDeactivateCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class activateOrDeactivateCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal activateOrDeactivateCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void getAdminLogCompletedEventHandler(object sender, getAdminLogCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getAdminLogCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getAdminLogCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
             }
         }
     }

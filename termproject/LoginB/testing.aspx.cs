@@ -16,6 +16,9 @@ namespace TermProject.LoginB
     {
         int verificationToken = 112358;
 
+        int adminID = 999; 
+        //For testing purpose, all assume all admin functions are performed by admin with ID 999
+
         Validation myValidation = new Validation();
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Part2WS.Person accountInfo = new Part2WS.Person();
@@ -332,7 +335,7 @@ namespace TermProject.LoginB
                 lblM10msg.Text = "Size must be an integer. ";
             else
             {
-                P2WS.updateStorageCapacity(temp, temp2, verificationToken);
+                P2WS.updateStorageCapacity(temp, adminID, temp2, verificationToken);
             }
         }
 
@@ -345,7 +348,7 @@ namespace TermProject.LoginB
                 lblM11msg.Text = "ID must be an positive integer. ";
             else
             {
-                lblM11row.Text = P2WS.deleteAccount(temp, verificationToken).ToString();
+                lblM11row.Text = P2WS.deleteAccount(temp, adminID, verificationToken).ToString();
             }
         }
 
@@ -359,7 +362,7 @@ namespace TermProject.LoginB
                 lblM12msg.Text = "ID must be an positive integer. ";
             else
             {
-                lblM12row.Text = P2WS.resetPassord(temp, verificationToken).ToString();
+                lblM12row.Text = P2WS.resetPassord(temp, adminID, verificationToken).ToString();
             }
         }
 

@@ -15,6 +15,7 @@ namespace TermProject.Super
     {
         Validation myValidation = new Validation();
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
+        Part2WS.Person myAdmin = new Part2WS.Person();
         DataSet myDS = new DataSet();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,13 +67,11 @@ namespace TermProject.Super
             {
                 //passed all validation. Show the transactions in the gridview.
                 string email = txtEmail.Text;
+                myAdmin = P2WS.GetAccountInfo(txtEmail.Text, Convert.ToInt32(Session["verification"]));
+                myDS = P2WS.getAdminLog(myAdmin.AccountID, Convert.ToInt32(Session["verification"]));
 
-                //myDS = P2WS.getUploadHistory(email, begin, end, Convert.ToInt32(Session["verification"]));
-
-                //Need code to search new db
-
-                gvTransactionLog.DataSource = myDS;
-                gvTransactionLog.DataBind();
+                gvLog.DataSource = myDS;
+                gvLog.DataBind();
             }
 
         }

@@ -34,54 +34,22 @@ namespace TermProject.Super
 
         }
 
-        protected void gvManagement_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            gvManagement.EditIndex = -1;
-            showFiles();
-        }
+        //protected void gvManagement_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        //{
+        //}
 
-        protected void gvManagement_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            gvManagement.EditIndex = e.NewEditIndex;
-            showFiles();
-        }
+        //protected void gvManagement_RowEditing(object sender, GridViewEditEventArgs e)
+        //{
+        //}
 
-        protected void gvManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            int rowIndex = e.RowIndex;
-            Int64 capacity;
-            TextBox Tbox;
-            int accountID = Convert.ToInt32(gvManagement.Rows[rowIndex].Cells[0].Text);
-
-            Tbox = (TextBox)gvManagement.Rows[rowIndex].Cells[3].Controls[0];
-            string storageCapacity = Tbox.Text;
-
-            if (myValidation.IsEmpty(storageCapacity))
-            {
-                lblMsg.Text = "Storage Capacity cannot be blank. ";
-                return;
-            }
-            else if (!Int64.TryParse(storageCapacity, out capacity))
-            {
-                lblMsg.Text = "Storage Capacity must be an integer. ";
-                return;
-            }
-            else if (capacity < Convert.ToInt64(gvManagement.Rows[rowIndex].Cells[4].Text))
-            {//StorageCapacity cannot be smaller than StorageUsed
-                lblMsg.Text = "Cannot set Storage Capacity lower than current cloud Storage size. ";
-                return;
-            }
-            else
-            {
-                P2WS.updateStorageCapacity(accountID, Int64.Parse(storageCapacity), Convert.ToInt32(Session["verification"]));
-            }
-            gvManagement.EditIndex = -1;
-            showFiles();
-        }
+        //protected void gvManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+            
+        //}
 
         public void showFiles()
         {
-            myDS = P2WS.getAllAccount(Convert.ToInt32(Session["Verification"]));
+            myDS = P2WS.getAllAdmin(Convert.ToInt32(Session["Verification"]));
             gvManagement.DataSource = myDS;
             gvManagement.DataBind();
         }
@@ -91,9 +59,11 @@ namespace TermProject.Super
             lblMsg.ForeColor = System.Drawing.Color.Red;
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+            int adminID = Convert.ToInt32(Session["AccountID"]); 
+            //This line really doesn't do anything. Super's action won't be recorded.
 
             //Delete the account and all of its cloud data
-            int flag = CloudWS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
+            int flag = CloudWS.deleteAccount(fileID, adminID, Convert.ToInt32(Session["verification"]));
 
             if (flag == 0)
                 lblMsg.Text = "No rows were affected by this action. ";
@@ -118,8 +88,9 @@ namespace TermProject.Super
                 int index = Convert.ToInt32(e.CommandArgument);
 
                 int userID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
-
-                int flag = P2WS.resetPassord(userID, Convert.ToInt32(Session["verification"]));
+                
+                int flag = P2WS.resetPassord(userID, Convert.ToInt32(Session["AccountID"]), Convert.ToInt32(Session["verification"]));
+                //The middle parameter doesn't do anything. Super's action won't be recorded.
                 if (flag == 0)
                 {
                     lblMsg.Text = "Unable to locate this account. ";
@@ -142,6 +113,10 @@ namespace TermProject.Super
             // Set the GridView to display the correct page
             gvManagement.PageIndex = e.NewPageIndex;
             showFiles();
+        }
+
+        protected void gvManagement_Sorting(object sender, GridViewSortEventArgs e)
+        {
         }
     }
 }

@@ -8,12 +8,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Transaction History</strong></h3>
+                    <h3 class="panel-title"><strong>Administrator Log</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <div class="form-group">
-                            <asp:Label runat="server" ID="lblEmail" Text="Email Address: "></asp:Label>
+                            <asp:Label runat="server" ID="lblEmail" Text="Administrator Email Address: "></asp:Label>
                             <asp:TextBox runat="server" ID="txtEmail"></asp:TextBox>
                             <br />
                             <br />
@@ -28,28 +28,25 @@
                         </div>
                         <br />
                         <div>
-                            <asp:GridView ID="gvTransactionLog" HorizontalAlign="Center" AutoGenerateColumns="false" runat="server">
+                            <asp:GridView ID="gvLog" HorizontalAlign="Center" AutoGenerateColumns="False" 
+                                runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                <AlternatingRowStyle BackColor="White" />
                                 <Columns>
-                                    <asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
-                                        ControlStyle-Width="50" ControlStyle-Height="50">
-                                        <ControlStyle Height="50px" Width="50px"></ControlStyle>
-                                        <ItemStyle Height="50px" Width="50px"></ItemStyle>
-                                    </asp:ImageField>
-                                    <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="ID" SortExpression="title" />
-                                    <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />
-                                    <asp:BoundField DataField="type" ReadOnly="true" HeaderText="Type" SortExpression="type" />
-                                    <asp:BoundField DataField="timestamp" ReadOnly="true" HeaderText="Time Added" SortExpression="timestamp" />
-                                    <asp:BoundField DataField="length" ReadOnly="true" HeaderText="Size" SortExpression="length" />
+                                    <asp:BoundField DataField="AccountID" ReadOnly="true" HeaderText="User ID" SortExpression="Id" />
+                                    <asp:BoundField DataField="Action" ReadOnly="true" HeaderText="Action" />
+                                    <asp:BoundField DataField="Timestamp" ReadOnly="true" HeaderText="Timestamp" />
+                                    <asp:BoundField DataField="StorageCapacity" ReadOnly="true" HeaderText="Capacity"  />
                                 </Columns>
-                                <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
-                                <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
-                                <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
-                                <RowStyle BackColor="White" ForeColor="#003399" />
-                                <SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                                <SortedAscendingCellStyle BackColor="#EDF6F6" />
-                                <SortedAscendingHeaderStyle BackColor="#0D4AC4" />
-                                <SortedDescendingCellStyle BackColor="#D6DFDF" />
-                                <SortedDescendingHeaderStyle BackColor="#002876" />
+                                <EditRowStyle BackColor="#2461BF" />
+                                <FooterStyle BackColor="#507CD1" ForeColor="White" Font-Bold="True" />
+                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#EFF3FB" />
+                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
                             </asp:GridView>
                         </div>
                     </form>

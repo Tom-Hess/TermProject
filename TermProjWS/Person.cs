@@ -39,5 +39,7 @@ namespace TermProjWS
         public Int64 StorageSpace { get; set; }
 
         public Int64 StorageUsed { get; set; }
+
+        public int AccountID { get; set; }
     }
 }

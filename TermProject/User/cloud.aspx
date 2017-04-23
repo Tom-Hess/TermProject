@@ -23,10 +23,6 @@
                         <div>
                             <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" OnRowCancelingEdit="gvFiles_RowCancelingEdit" OnRowEditing="gvFiles_RowEditing" OnRowUpdating="gvFiles_RowUpdating" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCommand="gvFiles_RowCommand">
                                 <Columns>
-                                    <%--<asp:ImageField DataImageUrlField="imagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
-                                        ControlStyle-Width="100" ControlStyle-Height="100">
-                                        <ControlStyle Height="100px" Width="100px"></ControlStyle>
-                                    </asp:ImageField>--%>
                                     <asp:ImageField DataImageUrlField="ImagePath" ReadOnly="true" HeaderText="Image" ItemStyle-Height="50px" ItemStyle-Width="50px"
                                         ControlStyle-Width="50" ControlStyle-Height="50">
                                         <ControlStyle Height="50px" Width="50px"></ControlStyle>
@@ -63,7 +59,8 @@
                         <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
 
                         <br /><br />
-                        <asp:Button ID="btnDeleteAll" runat="server" Text="Delete All Files" onClientClick="return fnConfirmDelete();" OnClick="btnDeleteAll_Click" />
+                        <asp:Button ID="btnDeleteAll" runat="server" Text="Delete All Files" 
+                            onClientClick="return fnConfirmDelete();" OnClick="btnDeleteAll_Click" />
                         &nbsp&nbsp
                         <asp:Button ID="btnSync" runat="server" Text="Sync with Server" OnClick="btnSync_Click" />
                     </form>

@@ -17,7 +17,7 @@ namespace TermProject.Admin
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Validation myValidation = new Validation();
         CloudWS.CloudWS CloudWS = new CloudWS.CloudWS();
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToInt32(Session["Login"]) == 1)
@@ -52,7 +52,7 @@ namespace TermProject.Admin
             TextBox Tbox;
             int accountID = Convert.ToInt32(gvManagement.Rows[rowIndex].Cells[0].Text);
 
-            Tbox = (TextBox)gvManagement.Rows[rowIndex].Cells[3].Controls[0];
+            Tbox = (TextBox)gvManagement.Rows[rowIndex].Cells[4].Controls[0];
             string storageCapacity = Tbox.Text;
 
             if (myValidation.IsEmpty(storageCapacity))
@@ -64,14 +64,15 @@ namespace TermProject.Admin
                 lblMsg.Text = "Storage Capacity must be an integer. ";
                 return;
             }
-            else if (capacity < Convert.ToInt64(gvManagement.Rows[rowIndex].Cells[4].Text))
+            else if (capacity < Convert.ToInt64(gvManagement.Rows[rowIndex].Cells[5].Text))
             {//StorageCapacity cannot be smaller than StorageUsed
                 lblMsg.Text = "Cannot set Storage Capacity lower than current cloud Storage size. ";
                 return;
             }
             else
             {
-                P2WS.updateStorageCapacity(accountID, Int64.Parse(storageCapacity), Convert.ToInt32(Session["verification"]));
+                int adminID = Convert.ToInt32(Session["AccountID"]);
+                P2WS.updateStorageCapacity(accountID, adminID, Int64.Parse(storageCapacity), Convert.ToInt32(Session["verification"]));
             }
             gvManagement.EditIndex = -1;
             showFiles();
@@ -84,40 +85,19 @@ namespace TermProject.Admin
             gvManagement.DataBind();
         }
 
-        protected void gvManagement_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            lblMsg.ForeColor = System.Drawing.Color.Red;
-            int index = e.RowIndex;
-            int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
-
-            //Delete the account and all of its cloud data
-            int flag = CloudWS.deleteAccount(fileID, Convert.ToInt32(Session["verification"]));
-
-            if (flag == 0)
-                lblMsg.Text = "No rows were affected by this action. ";
-            else if (flag == -1)
-                lblMsg.Text = "An exception occured while performing this action. ";
-            else
-            {
-                lblMsg.ForeColor = System.Drawing.Color.Green;
-                lblMsg.Text = "Deleted all files and account information in regards to " +
-                    gvManagement.Rows[index].Cells[1].Text + ". ";
-            }
-            showFiles();
-        }
-
         protected void gvManagement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
             lblMsg.ForeColor = System.Drawing.Color.Red;
             if (e.CommandName == "ResetPassword")
             {
                 // Retrieve the row index stored in the 
                 // CommandArgument property.
-                int index = Convert.ToInt32(e.CommandArgument);
 
                 int userID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
 
-                int flag = P2WS.resetPassord(userID, Convert.ToInt32(Session["verification"]));
+                int adminID = Convert.ToInt32(Session["AccountID"]);
+                int flag = P2WS.resetPassord(userID, adminID, Convert.ToInt32(Session["verification"]));
                 if (flag == 0)
                 {
                     lblMsg.Text = "Unable to locate this account. ";
@@ -133,6 +113,51 @@ namespace TermProject.Admin
                         "'s password has been resetted to the default password. ";
                 }
             }
+            else if (e.CommandName == "activateORDeactiavate")
+            {
+                int adminID = Convert.ToInt32(Session["AccountID"]);
+                int userID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+                int accountType = Convert.ToInt32(gvManagement.Rows[index].Cells[2].Text);
+                int rowsAffected = P2WS.activateOrDeactivate(userID, adminID, 
+                    Convert.ToInt32(Session["verification"]));
+
+                if (rowsAffected == 0)
+                    lblMsg.Text = "No row was affected by this action. ";
+                else if (rowsAffected == 1)
+                    lblMsg.Text = "One row was affected by this action. ";
+                else if (rowsAffected == -1)
+                    lblMsg.Text = "Exception occured. ";
+                else if (rowsAffected == 2 )
+                {
+                    lblMsg.ForeColor = System.Drawing.Color.Green;
+                    if (accountType == 0)
+                        lblMsg.Text = "Account ID " + userID + " has been activated. ";
+                    else
+                        lblMsg.Text = "Account ID " + userID + " has been deactivated. ";
+                    showFiles();
+                }
+            }
+            else if (e.CommandName == "Delete")
+            {
+                lblMsg.ForeColor = System.Drawing.Color.Red;
+                int fileID = Convert.ToInt32(gvManagement.Rows[index].Cells[0].Text);
+
+                int adminID = Convert.ToInt32(Session["AccountID"]);
+                //Delete the account and all of its cloud data
+                int flag = CloudWS.deleteAccount(fileID, adminID, Convert.ToInt32(Session["verification"]));
+
+                if (flag == 0)
+                    lblMsg.Text = "No rows were affected by this action. ";
+                else if (flag == -1)
+                    lblMsg.Text = "An exception occured while performing this action. ";
+                else
+                {
+                    lblMsg.ForeColor = System.Drawing.Color.Green;
+                    lblMsg.Text = "Deleted all files and account information in regards to " +
+                        gvManagement.Rows[index].Cells[1].Text + ". ";
+                }
+                showFiles();
+            }
         }
 
         protected void gvManagment_PageIndexChanging(Object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
@@ -142,6 +167,9 @@ namespace TermProject.Admin
             showFiles();
         }
 
+        protected void gvManagement_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
 
+        }
     }
 }

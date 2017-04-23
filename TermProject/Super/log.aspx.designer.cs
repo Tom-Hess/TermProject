@@ -94,12 +94,12 @@ namespace TermProject.Super {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
-        /// gvTransactionLog control.
+        /// gvLog control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTransactionLog;
+        protected global::System.Web.UI.WebControls.GridView gvLog;
     }
 }

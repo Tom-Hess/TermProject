@@ -57,6 +57,7 @@ namespace TermProjWS
                 accountInfo.StorageSpace = storageSpace;
                 accountInfo.StorageUsed = storageUsed;
                 accountInfo.AccountType = int.Parse(myDB.GetField("AccountType", 0).ToString());
+                accountInfo.AccountID = int.Parse(myDB.GetField("AccountID", 0).ToString());
             }
             return accountInfo;
         }
@@ -351,7 +352,23 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public void updateStorageCapacity(int ID, Int64 capacity, int verification)
+        public DataSet getAllAdmin(int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetAllAdmin";
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+            return myDS;
+        }
+
+        [WebMethod]
+        public void updateStorageCapacity(int ID, int adminID, Int64 capacity, int verification)
         {
             if (verification == verificationToken)
             {
@@ -365,6 +382,11 @@ namespace TermProjWS
                 myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);
 
+                myParameter = new SqlParameter("@adminID", adminID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
                 myParameter = new SqlParameter("@storageCapacity", capacity);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.BigInt;
@@ -374,7 +396,7 @@ namespace TermProjWS
             }
         }
         [WebMethod]
-        public int deleteAccount(int ID, int verification)
+        public int deleteAccount(int ID, int adminID, int verification)
         {
             int flag = 0;
             if (verification == verificationToken)
@@ -389,6 +411,11 @@ namespace TermProjWS
                 myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);
 
+                myParameter = new SqlParameter("@adminID", adminID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
                 flag = myDB.DoUpdateUsingCmdObj(myCommand);
                 return flag;
                 //Flag represense number of rows affected,-1 if exception occured, 
@@ -398,7 +425,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public int resetPassord(int ID, int verification)
+        public int resetPassord(int ID, int adminID, int verification)
         {
             string encryptedDP = myEncryption.EncryptString(defaultPassword);
             int flag = 0;// rows affected by this action, -1 if except occured
@@ -411,6 +438,11 @@ namespace TermProjWS
                 myCommand.CommandText = "TPresetPassword";
 
                 SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@adminID", adminID);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);
@@ -483,6 +515,56 @@ namespace TermProjWS
                 returnFile.Extension = myDB.GetField("extension", 0).ToString();
             }
             return returnFile;
+        }
+
+        [WebMethod]
+        public int activateOrDeactivate(int userID, int adminID, int verification)
+        {
+            int temp = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPactivateOrDeactivateAccount";
+
+                SqlParameter myParameter = new SqlParameter("@userID", userID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@adminID", adminID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                temp = myDB.DoUpdateUsingCmdObj(myCommand);
+                return temp;
+            }
+            else
+                return temp;
+
+        }
+
+        [WebMethod]
+        public DataSet getAdminLog(int adminID, int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetAdminLog";
+
+                SqlParameter myParameter = new SqlParameter("@adminID", adminID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+            return myDS;
         }
     }
 }

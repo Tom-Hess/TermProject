@@ -38,6 +38,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
     <p>
-        For testing purpose only: ID: user@user, password: user. ID: admin@admin, password: t. ID: super@super, password: super.
+        For testing purpose only: ID: user@user, password: user. ID: admin@admin, password: admin. ID: super@super, password: super.
     </p>
 </asp:Content>

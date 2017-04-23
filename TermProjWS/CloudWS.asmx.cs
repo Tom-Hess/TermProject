@@ -125,7 +125,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public int deleteAccount(int ID, int verification)
+        public int deleteAccount(int ID, int adminID, int verification)
         {
             int flag = 0;
             if (verification == verificationToken)
@@ -136,6 +136,11 @@ namespace TermProjWS
                 myCommand.CommandText = "TPdeleteAccountP3";
 
                 SqlParameter myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@adminID", adminID);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.Int;
                 myCommand.Parameters.Add(myParameter);

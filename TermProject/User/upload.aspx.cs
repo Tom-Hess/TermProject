@@ -148,7 +148,7 @@ namespace TermProject.User
                         {
                             //add updating existing file
                             lblMsg.Text = "File title already in use!";
-                            break;
+                            return;
                         }
 
                     }
@@ -163,6 +163,9 @@ namespace TermProject.User
                             fileData, Convert.ToInt32(Session["verification"]));
                         myUpload.updateStorageUsed(Session["email"].ToString(), fileLength,
                             Convert.ToInt32(Session["verification"]));
+                        CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]), 
+                            "Uploaded file with ID #" + ID, Convert.ToInt32(Session["verification"]));
+
                         lblMsg.ForeColor = System.Drawing.Color.Green;
                         lblMsg.Text = "Successfully uploaded " + fileTitle;
                         newFileData.FileID = ID;

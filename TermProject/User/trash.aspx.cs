@@ -38,6 +38,8 @@ namespace TermProject.User
             if (!IsPostBack)
             {
                 showFiles();
+                if(gvFiles.Rows.Count == 0)
+                    btnEmptyTrash.Visible = false;
             }
         }
 
@@ -67,6 +69,8 @@ namespace TermProject.User
                 {
                     cloud.Files.Add(myFile);
                     trash.Files.RemoveAt(i);
+                    CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                            "Restored file from trash with ID #" + myFile.FileID, Convert.ToInt32(Session["verification"]));
                     break;
                 }
             }
@@ -88,6 +92,10 @@ namespace TermProject.User
                 int fileID = file.FileID;
                 CloudWS.DeleteFile(fileID, Convert.ToInt32(Session["verification"]));
             }
+
+            CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                            "Emptied their storage's trash bin", Convert.ToInt32(Session["verification"]));
+
 
             trash = new FileCloud();
             Session["trash"] = trash;

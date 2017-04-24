@@ -94,13 +94,13 @@
     <Content Include="Super\Super.Master" />
     <Content Include="User\trash.aspx" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <None Include="Web References\CloudWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\CloudWS\CloudWS.wsdl" />
+    <Content Include="Web References\CloudWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">

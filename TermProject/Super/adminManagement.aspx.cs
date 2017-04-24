@@ -64,7 +64,7 @@ namespace TermProject.Super
 
             //Delete the account and all of its cloud data
             int flag = CloudWS.deleteAccount(fileID, adminID, Convert.ToInt32(Session["verification"]));
-
+            
             if (flag == 0)
                 lblMsg.Text = "No rows were affected by this action. ";
             else if (flag == -1)

@@ -36,20 +36,20 @@ namespace TermProject.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52728/CloudWS.asmx")]
-        public string TermProject_CloudWS_CloudWS {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52728/Part2WS.asmx")]
+        public string TermProject_Part2WS_Part2WS {
             get {
-                return ((string)(this["TermProject_CloudWS_CloudWS"]));
+                return ((string)(this["TermProject_Part2WS_Part2WS"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52728/Part2WS.asmx")]
-        public string TermProject_Part2WS_Part2WS {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52728/CloudWS.asmx")]
+        public string TermProject_CloudWS_CloudWS {
             get {
-                return ((string)(this["TermProject_Part2WS_Part2WS"]));
+                return ((string)(this["TermProject_CloudWS_CloudWS"]));
             }
         }
     }

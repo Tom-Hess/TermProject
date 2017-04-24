@@ -130,18 +130,38 @@ namespace TermProject.User
                     myAccount = myUpload.GetAccountInfo(Session["email"].ToString(),
                         Convert.ToInt32(Session["verification"]));
                     FileCloud cloud = (FileCloud)Session["cloud"];
-
+                    bool exists = false;
                     FileData myFile = new FileData();
 
+                    int oldLength;
+                    int newLength;
+                    byte[] oldFileData = null;
+                    int oldFileID = 0;
+                    DateTime oldTimeStamp = DateTime.Now;
                     for (int i = 0; i < cloud.Files.Count; i++)
                     {
                         myFile = (FileData)cloud.Files[i];
 
-                        if (myFile.Title == fileTitle)
+                        if (myFile.Title == fileTitle && myFile.Type == fileType)
                         {
-                            //add updating existing file
-                            lblMsg.Text = "File title already in use!";
-                            return;
+                            exists = true;
+                            oldLength = Convert.ToInt32(myFile.Length);
+                            newLength = fileLength;
+                            newFileData.FileID = myFile.FileID;
+                            fileLength = newLength - oldLength;
+                            if(newLength == oldLength)
+                            {
+                                lblMsg.Text = "File already exists in your cloud, file was not uploaded.";
+                                return;
+                            }else
+                            {
+                                oldTimeStamp = myFile.Timestamp;
+                                myFile.Length = newLength;
+                                myFile.Timestamp = DateTime.Now;
+                                oldFileID = myFile.FileID;
+                                oldFileData = CloudWS.getDownloadData(myFile.FileID, 
+                                    myFile.Length, Convert.ToInt32(Session["verification"]));
+                            }
                         }
 
                     }
@@ -149,6 +169,25 @@ namespace TermProject.User
                     if (fileLength > (myAccount.StorageSpace - myAccount.StorageUsed))
                     {//If file size is bigger than the user's current balance
                         lblMsg.Text = "You don't have enough storage in your cloud to store this file. ";
+                    }
+                    else if(exists)
+                    {
+                        //add previous version to the DB for previous version restoration
+
+                        CloudWS.addPreviousDownloadData(Convert.ToInt32(Session["accountID"]), 
+                            oldFileData, oldFileID, oldTimeStamp, Convert.ToInt32(Session["verification"]));
+
+                        //update storage used
+                        myUpload.updateStorageUsed(Session["email"].ToString(), fileLength,
+                            Convert.ToInt32(Session["verification"]));
+
+                        //update version in DownloadData - update data given file ID and new data
+                        CloudWS.updateDownloadData(fileData, oldFileID, Convert.ToInt32(Session["verification"]));
+
+                        lblMsg.ForeColor = System.Drawing.Color.Green;
+                        lblMsg.Text = "A previous version of the file was updated.";
+                        cloud = (FileCloud)Session["cloud"];
+
                     }
                     else
                     {

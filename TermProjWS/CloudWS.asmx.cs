@@ -55,6 +55,42 @@ namespace TermProjWS
             }
         }
 
+        [WebMethod]
+        public void addPreviousDownloadData(int accountID, byte[] data, int fileID, 
+            DateTime timestamp, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPaddPreviousData";
+                myCommand.Parameters.AddWithValue("@accountID", accountID);
+                myCommand.Parameters.AddWithValue("@data", data);
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+                myCommand.Parameters.AddWithValue("@timestamp", timestamp);
+                myDB.DoUpdateUsingCmdObj(myCommand);
+
+            }
+        }
+
+        [WebMethod]
+        public void updateDownloadData(byte[] newData, int fileID,
+             int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPupdateDownloadData";
+                myCommand.Parameters.AddWithValue("@data", newData);
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+                myDB.DoUpdateUsingCmdObj(myCommand);
+
+            }
+        }
+
         //returns the max file ID in the database
         [WebMethod]
         public int getMaxFileID(int verification)
@@ -218,5 +254,7 @@ namespace TermProjWS
                 //Flag represense number of rows affected,-1 if exception occured, 
             }
         }
+
+        
     }
 }

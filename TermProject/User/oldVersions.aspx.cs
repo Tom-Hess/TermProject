@@ -53,7 +53,7 @@ namespace TermProject.User
             int index = e.RowIndex;
             int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
             Int64 size = Convert.ToInt64(gvFiles.Rows[index].Cells[3].Text);
-            DateTime timestamp = Convert.ToDateTime(gvFiles.Rows[index].Cells[2].Text);
+            string timestamp = gvFiles.Rows[index].Cells[2].Text;
             Int64 lengthDifference = 0;
 
             cloud = (FileCloud)Session["cloud"];
@@ -67,7 +67,7 @@ namespace TermProject.User
                 {
                     found = true;
                     oldLength = myFile.Length;
-                    myFile.Timestamp = timestamp;
+                    myFile.Timestamp = Convert.ToDateTime(timestamp);
                     myFile.Length = size;
                     lengthDifference = size - myFile.Length;
                     CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),

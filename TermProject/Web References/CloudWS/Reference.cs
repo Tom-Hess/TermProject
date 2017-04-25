@@ -331,7 +331,7 @@ namespace TermProject.CloudWS {
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPreviousDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         [return: System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] getPreviousDownloadData(int fileID, long fileLength, System.DateTime timestamp, int verification) {
+        public byte[] getPreviousDownloadData(int fileID, long fileLength, string timestamp, int verification) {
             object[] results = this.Invoke("getPreviousDownloadData", new object[] {
                         fileID,
                         fileLength,
@@ -341,12 +341,12 @@ namespace TermProject.CloudWS {
         }
         
         /// <remarks/>
-        public void getPreviousDownloadDataAsync(int fileID, long fileLength, System.DateTime timestamp, int verification) {
+        public void getPreviousDownloadDataAsync(int fileID, long fileLength, string timestamp, int verification) {
             this.getPreviousDownloadDataAsync(fileID, fileLength, timestamp, verification, null);
         }
         
         /// <remarks/>
-        public void getPreviousDownloadDataAsync(int fileID, long fileLength, System.DateTime timestamp, int verification, object userState) {
+        public void getPreviousDownloadDataAsync(int fileID, long fileLength, string timestamp, int verification, object userState) {
             if ((this.getPreviousDownloadDataOperationCompleted == null)) {
                 this.getPreviousDownloadDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPreviousDownloadDataOperationCompleted);
             }

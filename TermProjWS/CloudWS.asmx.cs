@@ -150,7 +150,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public byte[] getPreviousDownloadData(int fileID, Int64 fileLength, DateTime timestamp, int verification)
+        public byte[] getPreviousDownloadData(int fileID, Int64 fileLength, string timestamp, int verification)
         {
             byte[] data = new byte[fileLength];
 

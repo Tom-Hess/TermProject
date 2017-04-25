@@ -133,7 +133,7 @@ namespace TermProject.User
                     bool exists = false;
                     FileData myFile = new FileData();
 
-                    int oldLength;
+                    int oldLength = 0;
                     int newLength;
                     byte[] oldFileData = null;
                     int oldFileID = 0;
@@ -165,7 +165,7 @@ namespace TermProject.User
                                 oldFileID = myFile.FileID;
                                 //get old file's data to upload to the server
                                 oldFileData = CloudWS.getDownloadData(myFile.FileID, 
-                                    myFile.Length, Convert.ToInt32(Session["verification"]));
+                                    oldLength, Convert.ToInt32(Session["verification"]));
                             }
                         }
 
@@ -179,7 +179,7 @@ namespace TermProject.User
                     {
                         //add previous version to the DB for previous version restoration, including data and the time of upload
                         CloudWS.addPreviousDownloadData(Convert.ToInt32(Session["accountID"]), 
-                            oldFileData, oldFileID, oldTimeStamp, fileTitle, fuUpload.PostedFile.ContentLength, Convert.ToInt32(Session["verification"]));
+                            oldFileData, oldFileID, oldTimeStamp, fileTitle, oldLength, Convert.ToInt32(Session["verification"]));
 
                         //update storage used based on the difference in file lengths (new - old lengths)
                         myUpload.updateStorageUsed(Session["email"].ToString(), fileLength,

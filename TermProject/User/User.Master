@@ -111,7 +111,7 @@
                         <ul class="nav">
                             <li><a href="cloud.aspx">My Files</a></li>
                             <li><a href="trash.aspx">Trash</a></li>
-                             <!-- <li><a href="log.aspx">Transaction Log</a></li> -->
+                            <li><a href="oldVersions.aspx">Old File Versions</a></li>
                         </ul>
                     </li>
                 </ul>

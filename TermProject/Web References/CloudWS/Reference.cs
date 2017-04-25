@@ -20,6 +20,7 @@ namespace TermProject.CloudWS {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -33,9 +34,15 @@ namespace TermProject.CloudWS {
         
         private System.Threading.SendOrPostCallback addPreviousDownloadDataOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getPreviousFilesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback deletePreviousVersionsOperationCompleted;
+        
         private System.Threading.SendOrPostCallback updateDownloadDataOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMaxFileIDOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback getPreviousDownloadDataOperationCompleted;
         
         private System.Threading.SendOrPostCallback getDownloadDataOperationCompleted;
         
@@ -94,10 +101,19 @@ namespace TermProject.CloudWS {
         public event addPreviousDownloadDataCompletedEventHandler addPreviousDownloadDataCompleted;
         
         /// <remarks/>
+        public event getPreviousFilesCompletedEventHandler getPreviousFilesCompleted;
+        
+        /// <remarks/>
+        public event deletePreviousVersionsCompletedEventHandler deletePreviousVersionsCompleted;
+        
+        /// <remarks/>
         public event updateDownloadDataCompletedEventHandler updateDownloadDataCompleted;
         
         /// <remarks/>
         public event getMaxFileIDCompletedEventHandler getMaxFileIDCompleted;
+        
+        /// <remarks/>
+        public event getPreviousDownloadDataCompletedEventHandler getPreviousDownloadDataCompleted;
         
         /// <remarks/>
         public event getDownloadDataCompletedEventHandler getDownloadDataCompleted;
@@ -152,22 +168,24 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addPreviousDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void addPreviousDownloadData(int accountID, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, int fileID, System.DateTime timestamp, int verification) {
+        public void addPreviousDownloadData(int accountID, [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")] byte[] data, int fileID, System.DateTime timestamp, string title, int length, int verification) {
             this.Invoke("addPreviousDownloadData", new object[] {
                         accountID,
                         data,
                         fileID,
                         timestamp,
+                        title,
+                        length,
                         verification});
         }
         
         /// <remarks/>
-        public void addPreviousDownloadDataAsync(int accountID, byte[] data, int fileID, System.DateTime timestamp, int verification) {
-            this.addPreviousDownloadDataAsync(accountID, data, fileID, timestamp, verification, null);
+        public void addPreviousDownloadDataAsync(int accountID, byte[] data, int fileID, System.DateTime timestamp, string title, int length, int verification) {
+            this.addPreviousDownloadDataAsync(accountID, data, fileID, timestamp, title, length, verification, null);
         }
         
         /// <remarks/>
-        public void addPreviousDownloadDataAsync(int accountID, byte[] data, int fileID, System.DateTime timestamp, int verification, object userState) {
+        public void addPreviousDownloadDataAsync(int accountID, byte[] data, int fileID, System.DateTime timestamp, string title, int length, int verification, object userState) {
             if ((this.addPreviousDownloadDataOperationCompleted == null)) {
                 this.addPreviousDownloadDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddPreviousDownloadDataOperationCompleted);
             }
@@ -176,6 +194,8 @@ namespace TermProject.CloudWS {
                         data,
                         fileID,
                         timestamp,
+                        title,
+                        length,
                         verification}, this.addPreviousDownloadDataOperationCompleted, userState);
         }
         
@@ -183,6 +203,67 @@ namespace TermProject.CloudWS {
             if ((this.addPreviousDownloadDataCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.addPreviousDownloadDataCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPreviousFiles", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getPreviousFiles(int accountID, int verification) {
+            object[] results = this.Invoke("getPreviousFiles", new object[] {
+                        accountID,
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getPreviousFilesAsync(int accountID, int verification) {
+            this.getPreviousFilesAsync(accountID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getPreviousFilesAsync(int accountID, int verification, object userState) {
+            if ((this.getPreviousFilesOperationCompleted == null)) {
+                this.getPreviousFilesOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPreviousFilesOperationCompleted);
+            }
+            this.InvokeAsync("getPreviousFiles", new object[] {
+                        accountID,
+                        verification}, this.getPreviousFilesOperationCompleted, userState);
+        }
+        
+        private void OngetPreviousFilesOperationCompleted(object arg) {
+            if ((this.getPreviousFilesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getPreviousFilesCompleted(this, new getPreviousFilesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deletePreviousVersions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void deletePreviousVersions(int accountID, int verification) {
+            this.Invoke("deletePreviousVersions", new object[] {
+                        accountID,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void deletePreviousVersionsAsync(int accountID, int verification) {
+            this.deletePreviousVersionsAsync(accountID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void deletePreviousVersionsAsync(int accountID, int verification, object userState) {
+            if ((this.deletePreviousVersionsOperationCompleted == null)) {
+                this.deletePreviousVersionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeletePreviousVersionsOperationCompleted);
+            }
+            this.InvokeAsync("deletePreviousVersions", new object[] {
+                        accountID,
+                        verification}, this.deletePreviousVersionsOperationCompleted, userState);
+        }
+        
+        private void OndeletePreviousVersionsOperationCompleted(object arg) {
+            if ((this.deletePreviousVersionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deletePreviousVersionsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -244,6 +325,42 @@ namespace TermProject.CloudWS {
             if ((this.getMaxFileIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getMaxFileIDCompleted(this, new getMaxFileIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPreviousDownloadData", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] getPreviousDownloadData(int fileID, long fileLength, System.DateTime timestamp, int verification) {
+            object[] results = this.Invoke("getPreviousDownloadData", new object[] {
+                        fileID,
+                        fileLength,
+                        timestamp,
+                        verification});
+            return ((byte[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getPreviousDownloadDataAsync(int fileID, long fileLength, System.DateTime timestamp, int verification) {
+            this.getPreviousDownloadDataAsync(fileID, fileLength, timestamp, verification, null);
+        }
+        
+        /// <remarks/>
+        public void getPreviousDownloadDataAsync(int fileID, long fileLength, System.DateTime timestamp, int verification, object userState) {
+            if ((this.getPreviousDownloadDataOperationCompleted == null)) {
+                this.getPreviousDownloadDataOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPreviousDownloadDataOperationCompleted);
+            }
+            this.InvokeAsync("getPreviousDownloadData", new object[] {
+                        fileID,
+                        fileLength,
+                        timestamp,
+                        verification}, this.getPreviousDownloadDataOperationCompleted, userState);
+        }
+        
+        private void OngetPreviousDownloadDataOperationCompleted(object arg) {
+            if ((this.getPreviousDownloadDataCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getPreviousDownloadDataCompleted(this, new getPreviousDownloadDataCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -490,6 +607,36 @@ namespace TermProject.CloudWS {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void getPreviousFilesCompletedEventHandler(object sender, getPreviousFilesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getPreviousFilesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getPreviousFilesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void deletePreviousVersionsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void updateDownloadDataCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
@@ -514,6 +661,32 @@ namespace TermProject.CloudWS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void getPreviousDownloadDataCompletedEventHandler(object sender, getPreviousDownloadDataCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getPreviousDownloadDataCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getPreviousDownloadDataCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public byte[] Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((byte[])(this.results[0]));
             }
         }
     }

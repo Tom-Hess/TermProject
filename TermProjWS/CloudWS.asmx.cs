@@ -23,6 +23,7 @@ namespace TermProjWS
         DBConnect myDB = new DBConnect();
         int verificationToken = 112358;
         SqlCommand myCommand = new SqlCommand();
+        DataSet myDS = new DataSet();
 
         //adds the file's actual data to the database
         [WebMethod]
@@ -57,7 +58,7 @@ namespace TermProjWS
 
         [WebMethod]
         public void addPreviousDownloadData(int accountID, byte[] data, int fileID, 
-            DateTime timestamp, int verification)
+            DateTime timestamp, string title, int length, int verification)
         {
             if (verification == verificationToken)
             {
@@ -69,6 +70,40 @@ namespace TermProjWS
                 myCommand.Parameters.AddWithValue("@data", data);
                 myCommand.Parameters.AddWithValue("@fileID", fileID);
                 myCommand.Parameters.AddWithValue("@timestamp", timestamp);
+                myCommand.Parameters.AddWithValue("@title", title);
+                myCommand.Parameters.AddWithValue("@length", length);
+
+                myDB.DoUpdateUsingCmdObj(myCommand);
+
+            }
+        }
+
+        [WebMethod]
+        public DataSet getPreviousFiles(int accountID, int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetPreviousFiles";
+                myCommand.Parameters.AddWithValue("@accountID", accountID);
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+
+            return myDS;
+        }
+        [WebMethod]
+        public void deletePreviousVersions(int accountID, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeletePreviousVersions";
+                myCommand.Parameters.AddWithValue("@accountID", accountID);
                 myDB.DoUpdateUsingCmdObj(myCommand);
 
             }
@@ -114,6 +149,34 @@ namespace TermProjWS
             }
         }
 
+        [WebMethod]
+        public byte[] getPreviousDownloadData(int fileID, Int64 fileLength, DateTime timestamp, int verification)
+        {
+            byte[] data = new byte[fileLength];
+
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetPreviousDownloadData";
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+                myCommand.Parameters.AddWithValue("@timestamp", timestamp);
+
+                myDB.GetDataSetUsingCmdObj(myCommand);
+
+                data = (byte[])myDB.GetField("fileData", 0);
+
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeletePreviousData";
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+                myCommand.Parameters.AddWithValue("@timestamp", timestamp);
+                myDB.DoUpdateUsingCmdObj(myCommand);
+            }
+            return data;
+        }
 
         //returns the download data from the database
         [WebMethod]

@@ -149,16 +149,21 @@ namespace TermProject.User
                             newLength = fileLength;
                             newFileData.FileID = myFile.FileID;
                             fileLength = newLength - oldLength;
-                            if(newLength == oldLength)
+                            if (fileData == CloudWS.getDownloadData(myFile.FileID, oldLength, 
+                                Convert.ToInt32(Session["verification"])))
                             {
                                 lblMsg.Text = "File already exists in your cloud, file was not uploaded.";
                                 return;
                             }else
                             {
+                                //get old file's time of upload
                                 oldTimeStamp = myFile.Timestamp;
+                                //update the cloud data to the new file's size and time of upload
                                 myFile.Length = newLength;
                                 myFile.Timestamp = DateTime.Now;
+                                
                                 oldFileID = myFile.FileID;
+                                //get old file's data to upload to the server
                                 oldFileData = CloudWS.getDownloadData(myFile.FileID, 
                                     myFile.Length, Convert.ToInt32(Session["verification"]));
                             }
@@ -172,22 +177,20 @@ namespace TermProject.User
                     }
                     else if(exists)
                     {
-                        //add previous version to the DB for previous version restoration
-
+                        //add previous version to the DB for previous version restoration, including data and the time of upload
                         CloudWS.addPreviousDownloadData(Convert.ToInt32(Session["accountID"]), 
-                            oldFileData, oldFileID, oldTimeStamp, Convert.ToInt32(Session["verification"]));
+                            oldFileData, oldFileID, oldTimeStamp, fileTitle, fuUpload.PostedFile.ContentLength, Convert.ToInt32(Session["verification"]));
 
-                        //update storage used
+                        //update storage used based on the difference in file lengths (new - old lengths)
                         myUpload.updateStorageUsed(Session["email"].ToString(), fileLength,
                             Convert.ToInt32(Session["verification"]));
 
-                        //update version in DownloadData - update data given file ID and new data
+                        //update the file version in DownloadData - update data given file ID and new data
                         CloudWS.updateDownloadData(fileData, oldFileID, Convert.ToInt32(Session["verification"]));
 
                         lblMsg.ForeColor = System.Drawing.Color.Green;
                         lblMsg.Text = "A previous version of the file was updated.";
                         cloud = (FileCloud)Session["cloud"];
-
                     }
                     else
                     {

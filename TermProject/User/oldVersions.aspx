@@ -12,14 +12,29 @@
                 <div class="panel-body" style="text-align:center">
                     <form id="form1" runat="server">
                         <div>
-                            <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" OnRowDeleting="gvFiles_RowDeleting" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" >
+                            <asp:GridView ID="gvFiles" runat="server" HorizontalAlign="Center" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowCommand="gvFiles_RowCommand" >
                                 <Columns>
                                     <asp:BoundField DataField="fileID" ReadOnly="true" HeaderText="File ID" SortExpression="title" />
                                     <asp:BoundField DataField="title" HeaderText="File Name" SortExpression="title" />
                                     <asp:BoundField DataField="timestamp" ReadOnly="true" HeaderText="Time Uploaded" SortExpression="timestamp" />
                                     <asp:BoundField DataField="length" ReadOnly="true" HeaderText="Size (Bytes)" SortExpression="length" />
 
-                                    <asp:CommandField ShowDeleteButton="True" ButtonType="Button" DeleteText="Restore to this Version" />
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnRestore" runat="server" 
+                                            CommandName="Restore" 
+                                            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                            Text="Restore" />
+                                        </ItemTemplate> 
+                                    </asp:TemplateField>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:Button ID="btnDelete" runat="server" 
+                                            CommandName="DeleteRow" 
+                                            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                            Text="Delete" />
+                                        </ItemTemplate> 
+                                    </asp:TemplateField>
                                 </Columns>
 
                                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />

@@ -150,6 +150,8 @@ namespace TermProject.User
 
                 //get file's data from download DB
                 fileDataBytes = CloudWS.getDownloadData(fileID, fileSize, Convert.ToInt32(Session["verification"]));
+                CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                            "Downloaded file with ID# " + fileID, Convert.ToInt32(Session["verification"]));
 
                 string contentType = myFile.Type;
                 string extension = myFile.Extension;

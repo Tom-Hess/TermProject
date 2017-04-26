@@ -47,63 +47,8 @@ namespace TermProject.User
                 btnEmptyFiles.Visible = false;
         }
 
-        protected void gvFiles_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            //restore the previous version of the file to the user's cloud
-            int index = e.RowIndex;
-            int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
-            Int64 size = Convert.ToInt64(gvFiles.Rows[index].Cells[3].Text);
-            string timestamp = gvFiles.Rows[index].Cells[2].Text;
-            Int64 lengthDifference = 0;
-
-            cloud = (FileCloud)Session["cloud"];
-            bool found = false;
-            Int64 oldLength;
-            for (int i = 0; i < cloud.Files.Count; i++)
-            {
-                myFile = (FileData)cloud.Files[i];
-
-                if (myFile.FileID == fileID)
-                {
-                    found = true;
-                    oldLength = myFile.Length;
-                    myFile.Timestamp = Convert.ToDateTime(timestamp);
-                    myFile.Length = size;
-                    lengthDifference = size - myFile.Length;
-                    CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
-                            "Restored file ID #" + myFile.FileID + " to the version from " + 
-                            timestamp, Convert.ToInt32(Session["verification"]));
-                    break;
-                }
-            }
-
-            if(found)
-            {
-                //get previous version's data, delete from previous versions table
-                byte[] oldData = CloudWS.getPreviousDownloadData(fileID, size, timestamp, Convert.ToInt32(Session["verification"]));
-                //update downloaddata
-                CloudWS.updateDownloadData(oldData, fileID, Convert.ToInt32(Session["verification"]));
-
-                //update user's storage used 
-                P2WS.updateStorageUsed(Session["email"].ToString(), lengthDifference, Convert.ToInt32(Session["verification"]));
-                showFiles();
-                lblMsg.Text = "Successfully restored file ID #" + fileID + " to the version from " + timestamp;
-
-                CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
-                            "Restored file ID #" + fileID + " to the version from " + timestamp,
-                            Convert.ToInt32(Session["verification"]));
-
-                Session["cloud"] = cloud;
-            }else
-            {
-                lblMsg.Text = "File was not found in your cloud.";
-            }
-
-        }
-
         protected void btnEmptyFiles_Click(object sender, EventArgs e)
         {
-
             //delete from previousversions table where accountID = the current accountID
             CloudWS.deletePreviousVersions(Convert.ToInt32(Session["accountID"]), Convert.ToInt32(Session["verification"]));
 
@@ -112,6 +57,75 @@ namespace TermProject.User
 
             showFiles();
             lblMsg.Text = "All files were deleted.";
+        }
+
+        protected void gvFiles_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "DeleteRow")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
+                string timestamp = gvFiles.Rows[index].Cells[2].Text;
+                int size = Convert.ToInt32(gvFiles.Rows[index].Cells[3].Text);
+                //delete from DB where fileID = fileID and timestamp = timestamp and size = size
+                CloudWS.deletePreviousVersion(fileID, timestamp, size, Convert.ToInt32(Session["verification"]));
+                showFiles();
+                CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                            "Deleted file ID# " + fileID + "version from " + timestamp, Convert.ToInt32(Session["verification"]));
+            }
+            else
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+                //restore the previous version of the file to the user's cloud
+                int fileID = Convert.ToInt32(gvFiles.Rows[index].Cells[0].Text);
+                Int64 size = Convert.ToInt64(gvFiles.Rows[index].Cells[3].Text);
+                string timestamp = gvFiles.Rows[index].Cells[2].Text;
+                Int64 lengthDifference = 0;
+
+                cloud = (FileCloud)Session["cloud"];
+                bool found = false;
+                Int64 oldLength;
+                for (int i = 0; i < cloud.Files.Count; i++)
+                {
+                    myFile = (FileData)cloud.Files[i];
+
+                    if (myFile.FileID == fileID)
+                    {
+                        found = true;
+                        oldLength = myFile.Length;
+                        myFile.Timestamp = Convert.ToDateTime(timestamp);
+                        myFile.Length = size;
+                        lengthDifference = size - myFile.Length;
+                        CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                                "Restored file ID #" + myFile.FileID + " to the version from " +
+                                timestamp, Convert.ToInt32(Session["verification"]));
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    //get previous version's data, delete from previous versions table
+                    byte[] oldData = CloudWS.getPreviousDownloadData(fileID, size, timestamp, Convert.ToInt32(Session["verification"]));
+                    //update downloaddata
+                    CloudWS.updateDownloadData(oldData, fileID, Convert.ToInt32(Session["verification"]));
+
+                    //update user's storage used 
+                    P2WS.updateStorageUsed(Session["email"].ToString(), lengthDifference, Convert.ToInt32(Session["verification"]));
+                    showFiles();
+
+                    CloudWS.logUserTransaction(Convert.ToInt32(Session["accountID"]),
+                                "Restored file ID #" + fileID + " to the version from " + timestamp,
+                                Convert.ToInt32(Session["verification"]));
+
+                    Session["cloud"] = cloud;
+                }
+                else
+                {
+                    lblMsg.Text = "File was not found in your cloud.";
+                }
+                showFiles();
+            }
         }
     }
 }

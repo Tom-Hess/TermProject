@@ -38,6 +38,8 @@ namespace TermProject.CloudWS {
         
         private System.Threading.SendOrPostCallback deletePreviousVersionsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback deletePreviousVersionOperationCompleted;
+        
         private System.Threading.SendOrPostCallback updateDownloadDataOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMaxFileIDOperationCompleted;
@@ -105,6 +107,9 @@ namespace TermProject.CloudWS {
         
         /// <remarks/>
         public event deletePreviousVersionsCompletedEventHandler deletePreviousVersionsCompleted;
+        
+        /// <remarks/>
+        public event deletePreviousVersionCompletedEventHandler deletePreviousVersionCompleted;
         
         /// <remarks/>
         public event updateDownloadDataCompletedEventHandler updateDownloadDataCompleted;
@@ -264,6 +269,40 @@ namespace TermProject.CloudWS {
             if ((this.deletePreviousVersionsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.deletePreviousVersionsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/deletePreviousVersion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void deletePreviousVersion(int fileID, string timestamp, int size, int verification) {
+            this.Invoke("deletePreviousVersion", new object[] {
+                        fileID,
+                        timestamp,
+                        size,
+                        verification});
+        }
+        
+        /// <remarks/>
+        public void deletePreviousVersionAsync(int fileID, string timestamp, int size, int verification) {
+            this.deletePreviousVersionAsync(fileID, timestamp, size, verification, null);
+        }
+        
+        /// <remarks/>
+        public void deletePreviousVersionAsync(int fileID, string timestamp, int size, int verification, object userState) {
+            if ((this.deletePreviousVersionOperationCompleted == null)) {
+                this.deletePreviousVersionOperationCompleted = new System.Threading.SendOrPostCallback(this.OndeletePreviousVersionOperationCompleted);
+            }
+            this.InvokeAsync("deletePreviousVersion", new object[] {
+                        fileID,
+                        timestamp,
+                        size,
+                        verification}, this.deletePreviousVersionOperationCompleted, userState);
+        }
+        
+        private void OndeletePreviousVersionOperationCompleted(object arg) {
+            if ((this.deletePreviousVersionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.deletePreviousVersionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -634,6 +673,10 @@ namespace TermProject.CloudWS {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
     public delegate void deletePreviousVersionsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]
+    public delegate void deletePreviousVersionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1586.0")]

@@ -110,6 +110,23 @@ namespace TermProjWS
         }
 
         [WebMethod]
+        public void deletePreviousVersion(int fileID, string timestamp, int size, int verification)
+        {
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPdeletePreviousVersion";
+                myCommand.Parameters.AddWithValue("@fileID", fileID);
+                myCommand.Parameters.AddWithValue("@length", size);
+                myCommand.Parameters.AddWithValue("@timestamp", timestamp);
+                myDB.DoUpdateUsingCmdObj(myCommand);
+
+            }
+        }
+
+        [WebMethod]
         public void updateDownloadData(byte[] newData, int fileID,
              int verification)
         {

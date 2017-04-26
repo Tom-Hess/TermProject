@@ -67,6 +67,19 @@
       <s:element name="deletePreviousVersionsResponse">
         <s:complexType />
       </s:element>
+      <s:element name="deletePreviousVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fileID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="timestamp" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="size" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deletePreviousVersionResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="updateDownloadData">
         <s:complexType>
           <s:sequence>
@@ -225,6 +238,12 @@
   <wsdl:message name="deletePreviousVersionsSoapOut">
     <wsdl:part name="parameters" element="tns:deletePreviousVersionsResponse" />
   </wsdl:message>
+  <wsdl:message name="deletePreviousVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:deletePreviousVersion" />
+  </wsdl:message>
+  <wsdl:message name="deletePreviousVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:deletePreviousVersionResponse" />
+  </wsdl:message>
   <wsdl:message name="updateDownloadDataSoapIn">
     <wsdl:part name="parameters" element="tns:updateDownloadData" />
   </wsdl:message>
@@ -296,6 +315,10 @@
       <wsdl:input message="tns:deletePreviousVersionsSoapIn" />
       <wsdl:output message="tns:deletePreviousVersionsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="deletePreviousVersion">
+      <wsdl:input message="tns:deletePreviousVersionSoapIn" />
+      <wsdl:output message="tns:deletePreviousVersionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="updateDownloadData">
       <wsdl:input message="tns:updateDownloadDataSoapIn" />
       <wsdl:output message="tns:updateDownloadDataSoapOut" />
@@ -364,6 +387,15 @@
     </wsdl:operation>
     <wsdl:operation name="deletePreviousVersions">
       <soap:operation soapAction="http://tempuri.org/deletePreviousVersions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePreviousVersion">
+      <soap:operation soapAction="http://tempuri.org/deletePreviousVersion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -484,6 +516,15 @@
     </wsdl:operation>
     <wsdl:operation name="deletePreviousVersions">
       <soap12:operation soapAction="http://tempuri.org/deletePreviousVersions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deletePreviousVersion">
+      <soap12:operation soapAction="http://tempuri.org/deletePreviousVersion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

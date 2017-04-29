@@ -68,11 +68,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accountSetting.ascx" />
     <Content Include="Admin\management.aspx" />
     <Content Include="Admin\log.aspx" />
     <Content Include="Admin\registration.aspx" />
+    <Content Include="Admin\adminAccount.aspx" />
     <Content Include="Global.asax" />
     <Content Include="LoginB\home.aspx" />
+    <Content Include="LoginB\invalid.aspx" />
     <Content Include="LoginB\login.aspx" />
     <Content Include="LoginB\registration.aspx" />
     <Content Include="LoginB\testing.aspx" />
@@ -89,32 +92,34 @@
     <Content Include="Super\register.aspx" />
     <Content Include="Super\log.aspx" />
     <Content Include="Super\adminManagement.aspx" />
+    <Content Include="Super\superAccout.aspx" />
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
     <Content Include="Super\Super.Master" />
     <Content Include="User\trash.aspx" />
     <Content Include="User\oldVersions.aspx" />
-    <None Include="Web References\CloudWS\CloudWS.disco" />
+    <None Include="Web References\CloudWS\CloudWS.wsdl" />
+    <Content Include="User\userAccount.aspx" />
+    <Content Include="User\upgrade.aspx" />
+    <Content Include="Web References\CloudWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <None Include="Web References\CloudWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\Part2WS\Reference.map">
+    <Content Include="Web References\Part2WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\Reference.map">
+    </Content>
+    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
     <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -126,11 +131,19 @@
   <ItemGroup>
     <Content Include="User\upload.aspx" />
     <Content Include="User\account.aspx" />
-    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
+    <None Include="Web References\CloudWS\CloudWS.disco" />
     <None Include="Web References\Part2WS\Part2WS.disco" />
+    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="accountSetting.ascx.cs">
+      <DependentUpon>accountSetting.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="accountSetting.ascx.designer.cs">
+      <DependentUpon>accountSetting.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -159,8 +172,22 @@
     <Compile Include="Admin\registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\adminAccount.aspx.cs">
+      <DependentUpon>adminAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\adminAccount.aspx.designer.cs">
+      <DependentUpon>adminAccount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LoginB\invalid.aspx.cs">
+      <DependentUpon>invalid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginB\invalid.aspx.designer.cs">
+      <DependentUpon>invalid.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginB\login.Master.cs">
       <DependentUpon>login.Master</DependentUpon>
@@ -238,6 +265,13 @@
     <Compile Include="Super\adminManagement.aspx.designer.cs">
       <DependentUpon>adminManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Super\superAccout.aspx.cs">
+      <DependentUpon>superAccout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Super\superAccout.aspx.designer.cs">
+      <DependentUpon>superAccout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -279,6 +313,20 @@
     </Compile>
     <Compile Include="User\oldVersions.aspx.designer.cs">
       <DependentUpon>oldVersions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\userAccount.aspx.cs">
+      <DependentUpon>userAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\userAccount.aspx.designer.cs">
+      <DependentUpon>userAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\upgrade.aspx.cs">
+      <DependentUpon>upgrade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\upgrade.aspx.designer.cs">
+      <DependentUpon>upgrade.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\CloudWS\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -17,6 +17,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="AccountType" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="StorageSpace" type="s:long" />
           <s:element minOccurs="1" maxOccurs="1" name="StorageUsed" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountID" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="AddAccountResponse">

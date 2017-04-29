@@ -81,9 +81,6 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    <%--<li class="page-scroll">
-                        <a href="home.aspx">Home</a>
-                    </li>--%>
                     <li class="page-scroll">
                         <a href="upload.aspx">Upload</a>
                     </li>
@@ -91,7 +88,10 @@
                         <a href="cloud.aspx">Cloud</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="account.aspx">Edit Account</a>
+                        <a href="userAccount.aspx">Account Setting</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="upgrade.aspx">Upgrade</a>
                     </li>
                     <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>

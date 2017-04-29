@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TermProject {
+namespace TermProject.Super {
     
     
-    public partial class gvAccount {
+    public partial class WebForm4 {
         
         /// <summary>
-        /// gvManagement control.
+        /// accountSetting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvManagement;
+        protected global::TermProject.accountSetting accountSetting;
     }
 }

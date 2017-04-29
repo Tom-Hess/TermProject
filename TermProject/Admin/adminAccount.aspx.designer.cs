@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TermProject.checkout {
+namespace TermProject.Admin {
     
     
     public partial class WebForm4 {
         
         /// <summary>
-        /// TransactionId control.
+        /// accountSetting control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TransactionId;
-        
-        /// <summary>
-        /// Continue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Continue;
+        protected global::TermProject.accountSetting accountSetting;
     }
 }

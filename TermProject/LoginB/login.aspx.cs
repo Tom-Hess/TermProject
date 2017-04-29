@@ -24,6 +24,21 @@ namespace TermProject.LoginB
 
             if (!IsPostBack)
             {
+                switch (Convert.ToInt32(Session["Login"])) // check if user has already logged in during this session
+                {
+                    case 1:
+                        // User
+                        Response.Redirect("~/User/cloud.aspx");
+                        break;
+                    case 2:
+                        //Admin
+                        Response.Redirect("~/Admin/management.aspx");
+                        break;
+                    case 3:
+                        // SUPER admin
+                        Response.Redirect("~/Super/adminManagement.aspx");
+                        break;
+                }
                 //if a cookie has been created, load the user's login information into the textboxes
                 if (Request.Cookies["UserCookie"] != null)
                 {
@@ -115,6 +130,12 @@ namespace TermProject.LoginB
                             Session["Login"] = 3;
                             Session["Email"] = txtEmail.Text;
                             Response.Redirect("~/Super/adminManagement.aspx");
+                            break;
+                        case 3:
+                            // User account deactivated
+                            Session["Login"] = 0;
+                            Session["Email"] = txtEmail.Text;
+                            Response.Redirect("invalid.aspx");
                             break;
                         default:
                             // User

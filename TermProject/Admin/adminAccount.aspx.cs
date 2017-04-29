@@ -11,7 +11,10 @@ namespace TermProject.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Convert.ToInt32(Session["Login"]) != 2)
+            {
+                Response.Redirect("../logout.aspx");
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Super/Super.Master" AutoEventWireup="true" CodeBehind="WebForm4.aspx.cs" Inherits="TermProject.Super.WebForm4" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Super/Super.Master" AutoEventWireup="true" CodeBehind="suppAccount.aspx.cs" Inherits="TermProject.Super.WebForm4" %>
 
 <%@ Register Src="~/accountSetting.ascx" TagName="accountSetting" TagPrefix="uc1" %>
 

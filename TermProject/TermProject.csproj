@@ -92,7 +92,7 @@
     <Content Include="Super\register.aspx" />
     <Content Include="Super\log.aspx" />
     <Content Include="Super\adminManagement.aspx" />
-    <Content Include="Super\superAccout.aspx" />
+    <Content Include="Super\suppAccount.aspx" />
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
     <Content Include="Super\Super.Master" />
@@ -265,12 +265,12 @@
     <Compile Include="Super\adminManagement.aspx.designer.cs">
       <DependentUpon>adminManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Super\superAccout.aspx.cs">
-      <DependentUpon>superAccout.aspx</DependentUpon>
+    <Compile Include="Super\suppAccount.aspx.cs">
+      <DependentUpon>suppAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Super\superAccout.aspx.designer.cs">
-      <DependentUpon>superAccout.aspx</DependentUpon>
+    <Compile Include="Super\suppAccount.aspx.designer.cs">
+      <DependentUpon>suppAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

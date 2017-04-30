@@ -11,10 +11,7 @@ namespace TermProject.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            forum myForum = (forum)LoadControl("../forum.ascx");
-
-
-            Form.Controls.Add(myForum);
+            forum.DataBind();
         }
     }
 }

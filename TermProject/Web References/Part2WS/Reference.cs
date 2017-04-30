@@ -66,6 +66,12 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback getAdminLogOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getForumOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addQuestionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback addAnswerOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -157,6 +163,15 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event getAdminLogCompletedEventHandler getAdminLogCompleted;
+        
+        /// <remarks/>
+        public event getForumCompletedEventHandler getForumCompleted;
+        
+        /// <remarks/>
+        public event addQuestionCompletedEventHandler addQuestionCompleted;
+        
+        /// <remarks/>
+        public event addAnswerCompletedEventHandler addAnswerCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -745,6 +760,103 @@ namespace TermProject.Part2WS {
             if ((this.getAdminLogCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getAdminLogCompleted(this, new getAdminLogCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getForum", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet getForum(int verification) {
+            object[] results = this.Invoke("getForum", new object[] {
+                        verification});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getForumAsync(int verification) {
+            this.getForumAsync(verification, null);
+        }
+        
+        /// <remarks/>
+        public void getForumAsync(int verification, object userState) {
+            if ((this.getForumOperationCompleted == null)) {
+                this.getForumOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetForumOperationCompleted);
+            }
+            this.InvokeAsync("getForum", new object[] {
+                        verification}, this.getForumOperationCompleted, userState);
+        }
+        
+        private void OngetForumOperationCompleted(object arg) {
+            if ((this.getForumCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getForumCompleted(this, new getForumCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addQuestion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int addQuestion(string email, string question, int verification) {
+            object[] results = this.Invoke("addQuestion", new object[] {
+                        email,
+                        question,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addQuestionAsync(string email, string question, int verification) {
+            this.addQuestionAsync(email, question, verification, null);
+        }
+        
+        /// <remarks/>
+        public void addQuestionAsync(string email, string question, int verification, object userState) {
+            if ((this.addQuestionOperationCompleted == null)) {
+                this.addQuestionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddQuestionOperationCompleted);
+            }
+            this.InvokeAsync("addQuestion", new object[] {
+                        email,
+                        question,
+                        verification}, this.addQuestionOperationCompleted, userState);
+        }
+        
+        private void OnaddQuestionOperationCompleted(object arg) {
+            if ((this.addQuestionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addQuestionCompleted(this, new addQuestionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/addAnswer", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int addAnswer(string email, string question, int ID, int verification) {
+            object[] results = this.Invoke("addAnswer", new object[] {
+                        email,
+                        question,
+                        ID,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void addAnswerAsync(string email, string question, int ID, int verification) {
+            this.addAnswerAsync(email, question, ID, verification, null);
+        }
+        
+        /// <remarks/>
+        public void addAnswerAsync(string email, string question, int ID, int verification, object userState) {
+            if ((this.addAnswerOperationCompleted == null)) {
+                this.addAnswerOperationCompleted = new System.Threading.SendOrPostCallback(this.OnaddAnswerOperationCompleted);
+            }
+            this.InvokeAsync("addAnswer", new object[] {
+                        email,
+                        question,
+                        ID,
+                        verification}, this.addAnswerOperationCompleted, userState);
+        }
+        
+        private void OnaddAnswerOperationCompleted(object arg) {
+            if ((this.addAnswerCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.addAnswerCompleted(this, new addAnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1388,6 +1500,84 @@ namespace TermProject.Part2WS {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void getForumCompletedEventHandler(object sender, getForumCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getForumCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getForumCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void addQuestionCompletedEventHandler(object sender, addQuestionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addQuestionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addQuestionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void addAnswerCompletedEventHandler(object sender, addAnswerCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class addAnswerCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal addAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
             }
         }
     }

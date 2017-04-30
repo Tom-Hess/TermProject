@@ -94,6 +94,9 @@
                         <a href="upgrade.aspx">Upgrade</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="userForum.aspx">Support Forum</a>
+                    </li>
+                    <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>
                     </li>
                 </ul>

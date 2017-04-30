@@ -90,6 +90,9 @@
                         <a href="adminAccount.aspx">Account Setting</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="adminForum.aspx">Support Forum</a>
+                    </li>
+                    <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>
                     </li>
 

@@ -543,7 +543,6 @@ namespace TermProjWS
             }
             else
                 return temp;
-
         }
 
         [WebMethod]
@@ -566,5 +565,85 @@ namespace TermProjWS
             }
             return myDS;
         }
+
+        [WebMethod]
+        public DataSet getForum(int verification)
+        {
+            myDS = new DataSet();
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPgetForum";
+
+                myDS = myDB.GetDataSetUsingCmdObj(myCommand);
+            }
+            return myDS;
+        }
+
+        [WebMethod]
+        public int addQuestion(string email, string question, int verification)
+        {
+            int temp = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPaddQuestion";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@question", question);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                temp = myDB.DoUpdateUsingCmdObj(myCommand);
+                return temp;
+            }
+            else
+                return temp;
+        }
+
+        [WebMethod]
+        public int addAnswer(string email, string question, int ID, int verification)
+        {
+            int temp = 0;
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPaddAnser";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@question", question);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@ID", ID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.Int;
+                myCommand.Parameters.Add(myParameter);
+
+                temp = myDB.DoUpdateUsingCmdObj(myCommand);
+                return temp;
+            }
+            else
+                return temp;
+        }
+
+
+
     }
 }

@@ -91,7 +91,7 @@
                         <a href="userAccount.aspx">Account Settings</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="upgrade.aspx">Upgrade</a>
+                        <a href="upgrade.aspx">Upgrade Storage</a>
                     </li>
                     <li class="page-scroll">
                         <a href="userForum.aspx">Support Forum</a>

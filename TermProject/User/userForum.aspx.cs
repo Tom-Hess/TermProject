@@ -13,8 +13,6 @@ namespace TermProject.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            forum.DataBind();
-
             string question = Request["question"];
 
             int temp = P2WS.addQuestion(Session["email"].ToString(), question,

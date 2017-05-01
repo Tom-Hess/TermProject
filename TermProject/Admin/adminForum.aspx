@@ -5,47 +5,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <script type="text/javascript">
-        var xmlhttp;
-        try {
-            // Code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        catch (try_older_microsoft) {
-            try {
-                // Code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            catch (other) {
-                xmlhttp = false;
-                alert("Your browser doesn't support AJAX!");
-            }
-        }
-        function submitAnswer() {
-            var answer = document.getElementById("txtAnswer").value;
-            var id = document.getElementById("txtID").value;
-            var params = "question=" + question + "&id=" + id;
 
-            // Open a new asynchronous request, set the callback function, and send the request.
-            xmlhttp.open("POST", "adminForum.aspx", true);
-            xmlhttp.onreadystatechange = onComplete;
-
-            // set the HTTP request headers for the information being sent using POST
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.setRequestHeader("Content-length", params.length);
-            xmlhttp.send(params);
-        }
-
-        // Callback function used to update the page when the server completes a response
-        // to an asynchronous request.
-        function onComplete() {
-            //Response is READY and Status is OK
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("Content2").innerHTML = xmlhttp.responseText;
-            }
+    <script language="javascript" type="text/javascript">
+        function addQuestion() {
+            return
         }
     </script>
-
     <div class="container" style="margin-top: 30px">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
@@ -55,25 +20,34 @@
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true">
+                            <Services>
+                            </Services>
+                        </asp:ScriptManager>
                         <br />
-                        <uc1:forum ID="forum" runat="server" Visible="True" />
+                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                            <ContentTemplate>
+                                <uc1:forum ID="forum" runat="server" Visible="True" />
+                                <asp:Label runat="server" ID="lblMsg" Text=""></asp:Label>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btnAdd" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                        <table>
+                            <tr>
+                                <td>Question ID: </td>
+                                <td>
+                                    <input type="text" id="txtID" runat="server" name="id" required="required" /></td>
+                            </tr>
+                            <tr>
+                                <td>Answer: </td>
+                                <td>
+                                    <input type="text" id="txtAnswer" runat="server" name="answer" required="required" /></td>
+                            </tr>
+                        </table>
                         <br />
-                        <div id="content_area">
-                            <table>
-                                <tr>
-                                    <td>Question ID: </td>
-                                    <td>
-                                        <input type="text" id="txtID" required="required" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Answer: </td>
-                                    <td>
-                                        <input type="text" id="txtAnswer" required="required" /></td>
-                                </tr>
-                            </table>
-                            <br />
-                            <input type="button" value="submit" onclick="submitAnswer();" />
-                        </div>
+                        <asp:Button runat="server" ID="btnAdd" Text="Add Question" OnClick="btnAdd_Click" />
                     </form>
                 </div>
             </div>

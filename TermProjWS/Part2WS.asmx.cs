@@ -611,7 +611,7 @@ namespace TermProjWS
         }
 
         [WebMethod]
-        public int addAnswer(string email, string question, int ID, int verification)
+        public int addAnswer(string email, string answer, int ID, int verification)
         {
             int temp = 0;
             if (verification == verificationToken)
@@ -619,14 +619,14 @@ namespace TermProjWS
                 myCommand.Parameters.Clear();
 
                 myCommand.CommandType = CommandType.StoredProcedure;
-                myCommand.CommandText = "TPaddAnser";
+                myCommand.CommandText = "TPaddAnswer";
 
                 SqlParameter myParameter = new SqlParameter("@email", email);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);
 
-                myParameter = new SqlParameter("@question", question);
+                myParameter = new SqlParameter("@answer", answer);
                 myParameter.Direction = ParameterDirection.Input;
                 myParameter.SqlDbType = SqlDbType.VarChar;
                 myCommand.Parameters.Add(myParameter);

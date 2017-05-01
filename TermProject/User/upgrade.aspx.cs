@@ -16,8 +16,7 @@ namespace TermProject.User
 
         protected void submit(object sender, EventArgs e)
         {
-            Session["upgradeOption"] = Request["option"];
-            
+            Session["upgradeOption"] = Request.Form["option"];
         }
     }
 }

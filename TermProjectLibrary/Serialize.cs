@@ -15,24 +15,6 @@ namespace TermProjectLibrary
         DBConnect myDB = new DBConnect();
         SqlCommand objCommand = new SqlCommand();
 
-
-        public MemoryStream SerializeToMemoryStream(Object objToSerialize)
-        {
-            BinaryFormatter serializer = new BinaryFormatter();
-            MemoryStream memoryStream = new MemoryStream();
-            serializer.Serialize(memoryStream, objToSerialize);
-            return memoryStream;
-        }
-
-        public Object DeserializeFromMemoryStream(MemoryStream memoryStream)
-        {
-            BinaryFormatter deserializer = new BinaryFormatter();
-            Object deserializedObject;
-            memoryStream.Position = 0;
-            deserializedObject = deserializer.Deserialize(memoryStream);
-            return deserializedObject;
-        }
-
         public Byte[] SerializeToByteArray(Object objToSerialize)
         {
             BinaryFormatter serializer = new BinaryFormatter();

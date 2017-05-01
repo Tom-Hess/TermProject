@@ -105,26 +105,27 @@
     <Content Include="User\cancel.aspx" />
     <Content Include="User\complete.aspx" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
+    <Content Include="User\done.aspx" />
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <Content Include="Web References\CloudWS\Reference.map">
+    <None Include="Web References\CloudWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <Content Include="Web References\Part2WS\Reference.map">
+    <None Include="Web References\Part2WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web References\RegistrationWS\Reference.map">
+    </None>
+    <None Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -351,6 +352,13 @@
     </Compile>
     <Compile Include="User\complete.aspx.designer.cs">
       <DependentUpon>complete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\done.aspx.cs">
+      <DependentUpon>done.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\done.aspx.designer.cs">
+      <DependentUpon>done.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\CloudWS\Reference.cs">
       <AutoGen>True</AutoGen>

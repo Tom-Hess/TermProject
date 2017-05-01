@@ -10,7 +10,7 @@
 namespace TermProject.User {
     
     
-    public partial class WebForm9 {
+    public partial class WebForm10 {
         
         /// <summary>
         /// lblMsg control.

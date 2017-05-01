@@ -15,7 +15,7 @@ namespace TermProject
     {
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Validation myValidation = new Validation();
-
+        Part2WS.Person Account = new Part2WS.Person();
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +23,17 @@ namespace TermProject
         }
 
         [Category("Misc")]
-        public Part2WS.Person accountInfo { get; set; }
+        public Part2WS.Person accountInfo
+        {
+            get
+            {
+                return this.Account;
+            }
+            set
+            {
+                this.Account = value;
+            }
+        }
 
         public void btnChangePW_Click(object sender, EventArgs e)
         {

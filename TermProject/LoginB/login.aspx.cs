@@ -119,6 +119,12 @@ namespace TermProject.LoginB
 
                     switch (accountType)
                     {
+                        case 0:
+                            // User
+                            Session["Login"] = 1;
+                            Session["Email"] = txtEmail.Text;
+                            Response.Redirect("~/User/cloud.aspx");
+                            break;
                         case 1:
                             //Admin
                             Session["Login"] = 2;
@@ -131,17 +137,12 @@ namespace TermProject.LoginB
                             Session["Email"] = txtEmail.Text;
                             Response.Redirect("~/Super/adminManagement.aspx");
                             break;
-                        case 3:
+                        case -1:
                             // User account deactivated
-                            Session["Login"] = 0;
-                            Session["Email"] = txtEmail.Text;
-                            Response.Redirect("invalid.aspx");
+                            lblMsg.Text = "Your account has been deactivated. Contact an administrator for assistance.";
                             break;
                         default:
-                            // User
-                            Session["Login"] = 1;
-                            Session["Email"] = txtEmail.Text;
-                            Response.Redirect("~/User/cloud.aspx");
+                            lblMsg.Text = "Invalid account type.";
                             break;
                     }
 

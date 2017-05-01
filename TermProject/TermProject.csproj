@@ -77,7 +77,6 @@
     <Content Include="forum.ascx" />
     <Content Include="Global.asax" />
     <Content Include="LoginB\home.aspx" />
-    <Content Include="LoginB\invalid.aspx" />
     <Content Include="LoginB\login.aspx" />
     <Content Include="LoginB\registration.aspx" />
     <Content Include="LoginB\testing.aspx" />
@@ -198,13 +197,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="LoginB\invalid.aspx.cs">
-      <DependentUpon>invalid.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginB\invalid.aspx.designer.cs">
-      <DependentUpon>invalid.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginB\login.Master.cs">
       <DependentUpon>login.Master</DependentUpon>

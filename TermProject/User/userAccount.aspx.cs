@@ -13,6 +13,7 @@ namespace TermProject.User
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
         Part2WS.Person accountInfo = new Part2WS.Person();
         Validation myValidation = new Validation();
+        accountSetting myAccountSetting = new accountSetting();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Convert.ToInt32(Session["Login"]) != 1)
@@ -24,7 +25,7 @@ namespace TermProject.User
             accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString(),
                 Convert.ToInt32(Session["verification"]));
 
-            accountSetting.accountInfo = accountInfo;
+            myAccountSetting.accountInfo = accountInfo;
 
         }
     }

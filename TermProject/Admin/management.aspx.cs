@@ -66,7 +66,7 @@ namespace TermProject.Admin
             }
             else if (capacity < Convert.ToInt64(gvManagement.Rows[rowIndex].Cells[5].Text))
             {//StorageCapacity cannot be smaller than StorageUsed
-                lblMsg.Text = "Cannot set Storage Capacity lower than current cloud Storage size. ";
+                lblMsg.Text = "Cannot set Storage Capacity lower than the user's current cloud Storage size. ";
                 return;
             }
             else
@@ -110,7 +110,7 @@ namespace TermProject.Admin
                 {
                     lblMsg.ForeColor = System.Drawing.Color.Green;
                     lblMsg.Text = "Account " + userID.ToString() +
-                        "'s password has been resetted to the default password. ";
+                        "'s password has been reset to the default password. ";
                 }
             }
             else if (e.CommandName == "activateORDeactiavate")

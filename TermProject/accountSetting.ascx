@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <br />
-                    <h3 class="panel-title"><strong>Account Setting</strong></h3>
+                    <h3 class="panel-title"><strong>Account Settings</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form id="form1" runat="server">

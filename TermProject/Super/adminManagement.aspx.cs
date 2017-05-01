@@ -34,19 +34,6 @@ namespace TermProject.Super
 
         }
 
-        //protected void gvManagement_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        //{
-        //}
-
-        //protected void gvManagement_RowEditing(object sender, GridViewEditEventArgs e)
-        //{
-        //}
-
-        //protected void gvManagement_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        //{
-            
-        //}
-
         public void showFiles()
         {
             myDS = P2WS.getAllAdmin(Convert.ToInt32(Session["Verification"]));
@@ -103,7 +90,7 @@ namespace TermProject.Super
                 {
                     lblMsg.ForeColor = System.Drawing.Color.Green;
                     lblMsg.Text = "Account " + userID.ToString() +
-                        "'s password has been resetted to the default password. ";
+                        "'s password has been reset to the default password. ";
                 }
             }
         }

@@ -90,7 +90,7 @@
                         <a href="adminManagement.aspx">Administrator Management</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="superAccount.aspx">Account Setting</a>
+                        <a href="superAccount.aspx">Account Settings</a>
                     </li>
                     <li class="page-scroll">
                         <a href="../logout.aspx">Logout</a>

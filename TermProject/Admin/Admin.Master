@@ -87,7 +87,7 @@
                         <a href="log.aspx">Transaction Log</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="adminAccount.aspx">Account Setting</a>
+                        <a href="adminAccount.aspx">Account Settings</a>
                     </li>
                     <li class="page-scroll">
                         <a href="adminForum.aspx">Support Forum</a>

@@ -75,4 +75,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
+    <p>
+        This page utilize custom user control and AJAX
+    </p>
 </asp:Content>

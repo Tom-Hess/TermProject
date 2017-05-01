@@ -11,7 +11,7 @@ namespace TermProject.User
     public partial class WebForm6 : System.Web.UI.Page
     {
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
-        Part2WS.Person accountInfo = new Part2WS.Person();
+        Part2WS.Person myInfo = new Part2WS.Person();
         Validation myValidation = new Validation();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,12 +20,16 @@ namespace TermProject.User
                 Response.Redirect("../logout.aspx");
             }
 
+            //accountSetting myAccount = new accountSetting();
+
             //create person object for the user's current information
-            accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString(),
+            myInfo = P2WS.GetAccountInfo(Session["Email"].ToString(),
                 Convert.ToInt32(Session["verification"]));
 
-            accountSetting.accountInfo = accountInfo;
+            //myAccount.accountInfo = accountInfo;
 
+
+            accountSetting.accountInfo = myInfo;
         }
     }
 }

@@ -103,13 +103,10 @@
     <Content Include="User\upgrade.aspx" />
     <Content Include="User\userForum.aspx" />
     <None Include="Web References\CloudWS\CloudWS.disco" />
+    <Content Include="User\cancel.aspx" />
+    <Content Include="User\complete.aspx" />
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\Part2WS\Part2WS.disco" />
-    <Content Include="Web References\RegistrationWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\CloudWS\CloudWS.wsdl" />
     <Content Include="Web References\CloudWS\Reference.map">
@@ -120,10 +117,14 @@
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\Part2WS\Reference.map">
+    <Content Include="Web References\Part2WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    </Content>
+    <Content Include="Web References\RegistrationWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="User\upload.aspx" />
+    <None Include="Web References\Part2WS\Part2WS.disco" />
     <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -335,6 +337,20 @@
     </Compile>
     <Compile Include="User\userForum.aspx.designer.cs">
       <DependentUpon>userForum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\cancel.aspx.cs">
+      <DependentUpon>cancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\cancel.aspx.designer.cs">
+      <DependentUpon>cancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User\complete.aspx.cs">
+      <DependentUpon>complete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\complete.aspx.designer.cs">
+      <DependentUpon>complete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Web References\CloudWS\Reference.cs">
       <AutoGen>True</AutoGen>

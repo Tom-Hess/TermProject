@@ -8,4 +8,7 @@
     <uc1:accountSetting ID="accountSetting" runat="server" Visible="True" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
+    <p>
+        This page utilize customer user control
+    </p>
 </asp:Content>

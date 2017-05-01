@@ -26,4 +26,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
+    <p>
+        Thomas: request extra credit for this feature. Our upload can upload whatever size of files, regardless size.
+    </p>
 </asp:Content>

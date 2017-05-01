@@ -16,9 +16,9 @@ namespace TermProject.Admin
             forum.DataBind();
 
             string question = Request["question"];
-            int ID = int.Parse(Request["id"]);
+            string ID = Request["id"];
 
-            int temp = P2WS.addAnswer(Session["email"].ToString(), question, ID,
+            int temp = P2WS.addAnswer(Session["email"].ToString(), question, Convert.ToInt32(ID),
                 Convert.ToInt32(Session["verification"]));
 
         }

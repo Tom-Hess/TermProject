@@ -7,17 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace TermProject.User
 {
-    public partial class WebForm7 : System.Web.UI.Page
+    public partial class WebForm4 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void submit(object sender, EventArgs e)
-        {
-            Session["upgradeOption"] = Request["option"];
-            
+            if (Convert.ToInt32(Session["Login"]) != 1)
+            {
+                Response.Redirect("../logout.aspx");
+            }
         }
     }
 }

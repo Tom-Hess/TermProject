@@ -414,6 +414,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="updateName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="accountID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="verification" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="updateNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="updateNameResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GetAccountInfoSoapIn">
@@ -548,6 +564,12 @@
   <wsdl:message name="updatePasswordSoapOut">
     <wsdl:part name="parameters" element="tns:updatePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="updateNameSoapIn">
+    <wsdl:part name="parameters" element="tns:updateName" />
+  </wsdl:message>
+  <wsdl:message name="updateNameSoapOut">
+    <wsdl:part name="parameters" element="tns:updateNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="Part2WSSoap">
     <wsdl:operation name="GetAccountInfo">
       <wsdl:input message="tns:GetAccountInfoSoapIn" />
@@ -636,6 +658,10 @@
     <wsdl:operation name="updatePassword">
       <wsdl:input message="tns:updatePasswordSoapIn" />
       <wsdl:output message="tns:updatePasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="updateName">
+      <wsdl:input message="tns:updateNameSoapIn" />
+      <wsdl:output message="tns:updateNameSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Part2WSSoap" type="tns:Part2WSSoap">
@@ -838,6 +864,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="updateName">
+      <soap:operation soapAction="http://tempuri.org/updateName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="Part2WSSoap12" type="tns:Part2WSSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1032,6 +1067,15 @@
     </wsdl:operation>
     <wsdl:operation name="updatePassword">
       <soap12:operation soapAction="http://tempuri.org/updatePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateName">
+      <soap12:operation soapAction="http://tempuri.org/updateName" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

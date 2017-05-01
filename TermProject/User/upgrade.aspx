@@ -70,9 +70,9 @@
                         <input type="hidden" name="on0" value="Price Option"><strong><span style="font-size: x-large">Choose an option Below</span></strong></div>
                         <h3>
                             <select name="os0" id="option">
-                                <option value="Option 1">Option 1 - 10MB for $9.99 USD</option>
-                                <option value="Option 2">Option 2 - 30MB for $19.99 USD</option>
-                                <option value="Option 3">Option 3 - 50MB for $29.99 USD</option>
+                                <option value="10000000">Option 1 - 10MB for $9.99 USD</option>
+                                <option value="30000000">Option 2 - 30MB for $19.99 USD</option>
+                                <option value="50000000">Option 3 - 50MB for $29.99 USD</option>
                             </select>
                         </h3>
                         <input type="hidden" name="currency_code" value="USD">

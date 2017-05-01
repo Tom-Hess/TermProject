@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/User/User.Master" AutoEventWireup="true" CodeBehind="userForum.aspx.cs" Inherits="TermProject.User.WebForm8" %>
 
-<%@ Register Src="~/forum.ascx" TagName="forum" TagPrefix="uc1" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -55,24 +53,24 @@
                 <div class="panel-body">
                     <form id="form1" runat="server">
                         <br />
-                        <uc1:forum ID="forum" runat="server" Visible="True" />
+
+                        <table>
+                            <tr>
+                                <td>Question: </td>
+                                <td>
+                                    <input type="text" id="txtQuestion" required="required" /></td>
+                            </tr>
+                        </table>
                         <br />
-                        <div id="content_area">
-                            <table>
-                                <tr>
-                                    <td>Question: </td>
-                                    <td>
-                                        <input type="text" id="txtQuestion" required="required" /></td>
-                                </tr>
-                            </table>
-                            <br />
-                            <input type="button" value="add" onclick="addQuestion();" />
-                        </div>
+                        <input type="button" value="add" onclick="addQuestion();" />
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server"></asp:UpdatePanel>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
     <p>

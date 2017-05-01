@@ -74,6 +74,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback updatePasswordOperationCompleted;
         
+        private System.Threading.SendOrPostCallback updateStorageOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -177,6 +179,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event updatePasswordCompletedEventHandler updatePasswordCompleted;
+        
+        /// <remarks/>
+        public event updateStorageCompletedEventHandler updateStorageCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -895,6 +900,39 @@ namespace TermProject.Part2WS {
             if ((this.updatePasswordCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.updatePasswordCompleted(this, new updatePasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updateStorage", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int updateStorage(string email, int option, int verification) {
+            object[] results = this.Invoke("updateStorage", new object[] {
+                        email,
+                        option,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updateStorageAsync(string email, int option, int verification) {
+            this.updateStorageAsync(email, option, verification, null);
+        }
+        
+        /// <remarks/>
+        public void updateStorageAsync(string email, int option, int verification, object userState) {
+            if ((this.updateStorageOperationCompleted == null)) {
+                this.updateStorageOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdateStorageOperationCompleted);
+            }
+            this.InvokeAsync("updateStorage", new object[] {
+                        email,
+                        option,
+                        verification}, this.updateStorageOperationCompleted, userState);
+        }
+        
+        private void OnupdateStorageOperationCompleted(object arg) {
+            if ((this.updateStorageCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updateStorageCompleted(this, new updateStorageCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1633,6 +1671,32 @@ namespace TermProject.Part2WS {
         private object[] results;
         
         internal updatePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    public delegate void updateStorageCompletedEventHandler(object sender, updateStorageCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1087.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updateStorageCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updateStorageCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

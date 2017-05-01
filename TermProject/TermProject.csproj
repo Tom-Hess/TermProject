@@ -105,11 +105,16 @@
     <None Include="Web References\CloudWS\CloudWS.disco" />
     <Content Include="User\cancel.aspx" />
     <Content Include="User\complete.aspx" />
+    <None Include="Web References\CloudWS\CloudWS.wsdl" />
+    <Content Include="Web References\CloudWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <Content Include="Web References\CloudWS\Reference.map">
+    <None Include="Web References\Part2WS\Part2WS.disco" />
+    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
@@ -118,10 +123,6 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <Content Include="Web References\Part2WS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
-    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
@@ -135,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="User\upload.aspx" />
-    <None Include="Web References\Part2WS\Part2WS.disco" />
     <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>

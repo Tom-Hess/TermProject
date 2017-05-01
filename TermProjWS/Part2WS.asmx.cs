@@ -673,5 +673,33 @@ namespace TermProjWS
                 return flag;
         }
 
+        [WebMethod]
+        public int updateStorage(string email, Int32 option, int verification)
+        {
+            int flag = 0;// rows affected by this action, -1 if except occured
+
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPupgradeStorageByEmail";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@storage", option);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.BigInt;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+            }
+            else
+                return flag;
+        }
     }
 }

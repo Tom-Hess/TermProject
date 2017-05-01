@@ -16,7 +16,24 @@ namespace TermProject.User
 
         protected void submit(object sender, EventArgs e)
         {
-            Session["upgradeOption"] = Request.Form["option"];
+            string temp = Request.Form["option"];
+
+            if (temp == "Option 1")
+            {
+                Session["upgradeOption"] = 1;
+            }
+            else if (temp == "Option 2")
+            {
+                Session["upgradeOption"] = 2;
+            }
+            else if (temp == "Option 3")
+            {
+                Session["upgradeOption"] = 3;
+            }
+            else
+            {
+
+            }
         }
     }
 }

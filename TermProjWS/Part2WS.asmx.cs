@@ -643,7 +643,35 @@ namespace TermProjWS
                 return temp;
         }
 
+        [WebMethod]
+        public int updatePassword(string email, string password, int verification)
+        {
+            string encryptedPW = myEncryption.EncryptString(password);
+            int flag = 0;// rows affected by this action, -1 if except occured
 
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPupdatePassword";
+
+                SqlParameter myParameter = new SqlParameter("@email", email);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@password", encryptedPW);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+            }
+            else
+                return flag;
+        }
 
     }
 }

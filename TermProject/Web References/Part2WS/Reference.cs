@@ -72,6 +72,8 @@ namespace TermProject.Part2WS {
         
         private System.Threading.SendOrPostCallback addAnswerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback updatePasswordOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -172,6 +174,9 @@ namespace TermProject.Part2WS {
         
         /// <remarks/>
         public event addAnswerCompletedEventHandler addAnswerCompleted;
+        
+        /// <remarks/>
+        public event updatePasswordCompletedEventHandler updatePasswordCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetAccountInfo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -857,6 +862,39 @@ namespace TermProject.Part2WS {
             if ((this.addAnswerCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.addAnswerCompleted(this, new addAnswerCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/updatePassword", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int updatePassword(string email, string password, int verification) {
+            object[] results = this.Invoke("updatePassword", new object[] {
+                        email,
+                        password,
+                        verification});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void updatePasswordAsync(string email, string password, int verification) {
+            this.updatePasswordAsync(email, password, verification, null);
+        }
+        
+        /// <remarks/>
+        public void updatePasswordAsync(string email, string password, int verification, object userState) {
+            if ((this.updatePasswordOperationCompleted == null)) {
+                this.updatePasswordOperationCompleted = new System.Threading.SendOrPostCallback(this.OnupdatePasswordOperationCompleted);
+            }
+            this.InvokeAsync("updatePassword", new object[] {
+                        email,
+                        password,
+                        verification}, this.updatePasswordOperationCompleted, userState);
+        }
+        
+        private void OnupdatePasswordOperationCompleted(object arg) {
+            if ((this.updatePasswordCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.updatePasswordCompleted(this, new updatePasswordCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1569,6 +1607,32 @@ namespace TermProject.Part2WS {
         private object[] results;
         
         internal addAnswerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    public delegate void updatePasswordCompletedEventHandler(object sender, updatePasswordCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1098.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class updatePasswordCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal updatePasswordCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

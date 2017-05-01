@@ -94,7 +94,7 @@
     <Content Include="Super\register.aspx" />
     <Content Include="Super\log.aspx" />
     <Content Include="Super\adminManagement.aspx" />
-    <Content Include="Super\suppAccount.aspx" />
+    <Content Include="Super\superAccount.aspx" />
     <Content Include="User\User.Master" />
     <Content Include="User\cloud.aspx" />
     <Content Include="Super\Super.Master" />
@@ -104,10 +104,10 @@
     <Content Include="User\userAccount.aspx" />
     <Content Include="User\upgrade.aspx" />
     <Content Include="User\userForum.aspx" />
-    <Content Include="Web References\CloudWS\Reference.map">
+    <None Include="Web References\CloudWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
@@ -119,10 +119,10 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Web References\RegistrationWS\Reference.map">
+    <None Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -282,12 +282,12 @@
     <Compile Include="Super\adminManagement.aspx.designer.cs">
       <DependentUpon>adminManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Super\suppAccount.aspx.cs">
-      <DependentUpon>suppAccount.aspx</DependentUpon>
+    <Compile Include="Super\superAccount.aspx.cs">
+      <DependentUpon>superAccount.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Super\suppAccount.aspx.designer.cs">
-      <DependentUpon>suppAccount.aspx</DependentUpon>
+    <Compile Include="Super\superAccount.aspx.designer.cs">
+      <DependentUpon>superAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\User.Master.cs">
       <DependentUpon>User.Master</DependentUpon>

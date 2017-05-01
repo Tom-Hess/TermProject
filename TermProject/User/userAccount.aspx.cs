@@ -19,9 +19,13 @@ namespace TermProject.User
             {
                 Response.Redirect("../logout.aspx");
             }
+
             //create person object for the user's current information
             accountInfo = P2WS.GetAccountInfo(Session["Email"].ToString(),
                 Convert.ToInt32(Session["verification"]));
+
+            accountSetting.accountInfo = accountInfo;
+
         }
     }
 }

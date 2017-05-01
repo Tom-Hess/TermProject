@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.ComponentModel;
 
 using TermProjectLibrary;
 
@@ -13,7 +14,6 @@ namespace TermProject
     public partial class accountSetting : System.Web.UI.UserControl
     {
         Part2WS.Part2WS P2WS = new Part2WS.Part2WS();
-        Part2WS.Person accountInfo = new Part2WS.Person();
         Validation myValidation = new Validation();
 
         RegistrationWS.RegistrationWS RegWS = new RegistrationWS.RegistrationWS();
@@ -22,43 +22,53 @@ namespace TermProject
 
         }
 
-        protected void btnChangePW_Click(object sender, EventArgs e)
+        [Category("Misc")]
+        public Part2WS.Person accountInfo { get; set; }
+
+        public void btnChangePW_Click(object sender, EventArgs e)
         {
             dvEditInfo.Visible = false;
             dvChangePW.Visible = true;
         }
 
-        protected void btnChangeAccountInfo_Click(object sender, EventArgs e)
+        public void btnChangeAccountInfo_Click(object sender, EventArgs e)
         {
             dvEditInfo.Visible = true;
             dvChangePW.Visible = false;
             txtName.Text = accountInfo.Name;
             txtEmail.Text = accountInfo.Email;
-
         }
 
-        protected void btnUpdatePW_Click(object sender, EventArgs e)
+        public void btnUpdatePW_Click(object sender, EventArgs e)
         {
             if (ValidateUpdatePW())
             {
                 ArrayList myAL = new ArrayList(RegWS.ValidateLogin(accountInfo.Email, txtCurrentPW.Text));
                 if (Convert.ToInt32(myAL[0]) == 0)
                 {
-                    lblUpdatePWError.Text = "Current Password is invalid.";
+                    lblUpdatePWError.Text = "Current password is invalid.";
                     txtCurrentPW.Focus();
                 }
                 else
                 {
                     //update the password in the database
                     accountInfo.Password = txtNewPW.Text;
-                    P2WS.UpdateAccount(accountInfo, accountInfo.Email, Convert.ToInt32(Session["verification"]));
-                    lblUpdatePWError.Text = "Password successfully updated.";
-                    lblUpdatePWError.ForeColor = System.Drawing.Color.Green;
+                    if (P2WS.updatePassword(accountInfo.Email, txtNewPW.Text, 
+                        Convert.ToInt32(Session["verification"])) == 1)
+                    {
+                        lblUpdatePWError.Text = "Password successfully updated.";
+                        lblUpdatePWError.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else
+                    {
+                        lblUpdatePWError.Text = "Fail to update password";
+                        lblUpdatePWError.ForeColor = System.Drawing.Color.Red;
+                    }
                 }
             }
         }
 
-        protected void btnUpdateInfo_Click(object sender, EventArgs e)
+        public void btnUpdateInfo_Click(object sender, EventArgs e)
         {
             lblUpdateInfoError.ForeColor = System.Drawing.Color.Red;
             if (validateUpdateInfo())
@@ -105,6 +115,13 @@ namespace TermProject
             if (txtConfirm.Text != txtNewPW.Text)
             {
                 lblUpdatePWError.Text = "Passwords do not match.";
+                txtNewPW.Focus();
+                return false;
+            }
+
+            if (txtCurrentPW.Text == txtNewPW.Text)
+            {
+                lblUpdatePWError.Text = "New password cannot be the same as old password. ";
                 txtNewPW.Focus();
                 return false;
             }

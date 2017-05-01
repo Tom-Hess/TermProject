@@ -701,5 +701,33 @@ namespace TermProjWS
             else
                 return flag;
         }
+        [WebMethod]
+        public int updateName(int accountID, string newName, int verification)
+        {
+            int flag = 0;// rows affected by this action, -1 if except occured
+
+            if (verification == verificationToken)
+            {
+                myCommand.Parameters.Clear();
+
+                myCommand.CommandType = CommandType.StoredProcedure;
+                myCommand.CommandText = "TPupdateName";
+
+                SqlParameter myParameter = new SqlParameter("@accountID", accountID);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                myParameter = new SqlParameter("@newName", newName);
+                myParameter.Direction = ParameterDirection.Input;
+                myParameter.SqlDbType = SqlDbType.VarChar;
+                myCommand.Parameters.Add(myParameter);
+
+                flag = myDB.DoUpdateUsingCmdObj(myCommand);
+                return flag;
+            }
+            else
+                return flag;
+        }
     }
 }

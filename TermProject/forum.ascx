@@ -1,22 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="forum.ascx.cs" Inherits="TermProject.forum" %>
 
-<div class="container" style="margin-top: 30px">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <br />
-                    <h3 class="panel-title"><strong>Support Forum</strong></h3>
-                </div>
-                <div class="panel-body">
-                    <form id="form1" runat="server">
-                        <br />
+
                         <asp:Label ID="lblMsg" runat="server" text=""></asp:Label>
                         <asp:GridView ID="gvForum" HorizontalAlign="Center" runat="server" AutoGenerateColumns="False"
-                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True">
+                                BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" AllowPaging="True"
+                            OnPageIndexChanging="gvForum_PageIndexChanging">
                                 <Columns>
                                     <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="Question ID" SortExpression="Question ID" />
                                     <asp:BoundField DataField="Question" ReadOnly="true" HeaderText="Question"  />
-                                    <asp:BoundField DataField="Timestamp" ReadOnly="true" HeaderText="Timestamp" />
                                     <asp:BoundField DataField="CUser" ReadOnly="true" HeaderText="User Email"  />
                                     <asp:BoundField DataField="Answer" HeaderText="Answer"  />
                                     <asp:BoundField DataField="Admin" ReadOnly="true" HeaderText="Admin" />
@@ -31,8 +22,4 @@
                                 <SortedDescendingCellStyle BackColor="#D6DFDF" />
                                 <SortedDescendingHeaderStyle BackColor="#002876" />
                             </asp:GridView>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                    

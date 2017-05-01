@@ -99,26 +99,28 @@
     <Content Include="Super\Super.Master" />
     <Content Include="User\trash.aspx" />
     <Content Include="User\oldVersions.aspx" />
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
     <Content Include="User\userAccount.aspx" />
     <Content Include="User\upgrade.aspx" />
     <Content Include="User\userForum.aspx" />
-    <None Include="Web References\CloudWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Web References\CloudWS\CloudWS.disco" />
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\Part2WS\Part2WS.disco" />
+    <Content Include="Web References\RegistrationWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\CloudWS\CloudWS.wsdl" />
+    <Content Include="Web References\CloudWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\Part2WS\Part2WS.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
     <None Include="Web References\Part2WS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -132,9 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="User\upload.aspx" />
-    <Content Include="User\account.aspx" />
-    <None Include="Web References\CloudWS\CloudWS.disco" />
-    <None Include="Web References\Part2WS\Part2WS.disco" />
     <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -294,13 +293,6 @@
     </Compile>
     <Compile Include="User\upload.aspx.designer.cs">
       <DependentUpon>upload.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User\account.aspx.cs">
-      <DependentUpon>account.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User\account.aspx.designer.cs">
-      <DependentUpon>account.aspx</DependentUpon>
     </Compile>
     <Compile Include="User\cloud.aspx.cs">
       <DependentUpon>cloud.aspx</DependentUpon>

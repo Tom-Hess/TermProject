@@ -31,5 +31,12 @@ namespace TermProject
                 gvForum.DataBind();
             }
         }
+
+        protected void gvForum_PageIndexChanging(Object sender, System.Web.UI.WebControls.GridViewPageEventArgs e)
+        {
+            // Set the GridView to display the correct page
+            gvForum.PageIndex = e.NewPageIndex;
+            DataBind();
+        }
     }
 }

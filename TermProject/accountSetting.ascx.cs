@@ -84,19 +84,32 @@ namespace TermProject
             if (validateUpdateInfo())
             {
                 string oldEmail = Session["Email"].ToString();
-                accountInfo.Email = txtEmail.Text;
-                accountInfo.Name = txtName.Text;
-                if (P2WS.UpdateAccount(accountInfo, oldEmail, Convert.ToInt32(Session["verification"])))
+
+                if (oldEmail != txtEmail.Text)
                 {
-                    Session["Email"] = accountInfo.Email;
-                    lblUpdateInfoError.Text = "Successfully updated account information.";
+                    accountInfo.Email = txtEmail.Text;
+                    accountInfo.Name = txtName.Text;
+                    if (P2WS.UpdateAccount(accountInfo, oldEmail, Convert.ToInt32(Session["verification"])))
+                    {
+                        Session["Email"] = accountInfo.Email;
+                        lblUpdateInfoError.Text = "Successfully updated account information.";
+                        lblUpdateInfoError.ForeColor = System.Drawing.Color.Green;
+                    }
+                    else
+                    {
+                        lblUpdateInfoError.Text = "New email already in use!";
+                        txtEmail.Focus();
+                    }
+                }else
+                {
+                    accountInfo.Name = txtName.Text;
+                    //update user's name
+                    P2WS.updateName(Convert.ToInt32(Session["accountID"]), txtName.Text, Convert.ToInt32(Session["verification"]));
+                    lblUpdateInfoError.Text = "Successfully updated account name.";
                     lblUpdateInfoError.ForeColor = System.Drawing.Color.Green;
+
                 }
-                else
-                {
-                    lblUpdateInfoError.Text = "New email already in use!";
-                    txtEmail.Focus();
-                }
+
             }
         }
 

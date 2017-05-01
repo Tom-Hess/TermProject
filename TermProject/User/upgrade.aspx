@@ -47,22 +47,32 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><strong>Upgrade</strong></h3>
+                    <h3 class="panel-title"><strong>Upgrade Storage</strong></h3>
                 </div>
                 <div class="panel-body">
                     <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                         <input type="hidden" name="cmd" value="_s-xclick">
                         <input type="hidden" name="hosted_button_id" value="Q8MBAL485YKZS">
-                        <h3>DEAL OF THE CENTURY!!!
+                        <h3><strong>DEAL OF THE CENTURY!!!
+                        </strong>
                         </h3>
-                        <h3>For limited time, upgrade your Cloud. Option 1: 10 MB for only $9.99, Option 2: 30 MB for only $19.99, Option 3: 50 MB for only $29.99. Tax included. No refunds!
+                        <h3 style="font-size: medium">For limited time, upgrade your Cloud storage.
                         </h3>
-                        <input type="hidden" name="on0" value="Price Option">Price Option
+                        <h3 style="font-size: medium"><strong>Option 1</strong>: 10 MB for $9.99
+                        </h3>
+                        <h3 style="font-size: medium"><strong>Option 2</strong>: 30 MB for $19.99
+                        </h3>
+                        <h3 style="font-size: medium"><strong>Option 3</strong>: 50 MB for $29.99
+                        </h3>
+                        <h3 style="font-size: medium"><strong>Tax included. No refunds! </strong>
+                        </h3>
+                        <div class="text-center">
+                        <input type="hidden" name="on0" value="Price Option"><strong><span style="font-size: x-large">Choose an option Below</span></strong></div>
                         <h3>
                             <select name="os0" id="option">
-                                <option value="Option 1">Option 1 $9.99 USD</option>
-                                <option value="Option 2">Option 2 $19.99 USD</option>
-                                <option value="Option 3">Option 3 $29.99 USD</option>
+                                <option value="Option 1">Option 1 - 10MB for $9.99 USD</option>
+                                <option value="Option 2">Option 2 - 30MB for $19.99 USD</option>
+                                <option value="Option 3">Option 3 - 50MB for $29.99 USD</option>
                             </select>
                         </h3>
                         <input type="hidden" name="currency_code" value="USD">

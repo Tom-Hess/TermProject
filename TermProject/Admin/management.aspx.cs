@@ -131,9 +131,9 @@ namespace TermProject.Admin
                 {
                     lblMsg.ForeColor = System.Drawing.Color.Green;
                     if (accountType == 0)
-                        lblMsg.Text = "Account ID " + userID + " has been activated. ";
-                    else
                         lblMsg.Text = "Account ID " + userID + " has been deactivated. ";
+                    else
+                        lblMsg.Text = "Account ID " + userID + " has been activated. ";
                     showFiles();
                 }
             }

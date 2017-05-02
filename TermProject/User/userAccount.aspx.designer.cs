@@ -19,6 +19,6 @@ namespace TermProject.User {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::TermProject.accountSetting accountSetting = new TermProject.accountSetting();
+        protected global::TermProject.accountSetting accountSetting;
     }
 }

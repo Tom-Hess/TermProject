@@ -8,6 +8,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
     <p>
-        This page utilize customer user control
+        This page utilizes custom user control
     </p>
 </asp:Content>

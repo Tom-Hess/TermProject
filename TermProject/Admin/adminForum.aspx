@@ -47,7 +47,7 @@
                             </tr>
                         </table>
                         <br />
-                        <asp:Button runat="server" ID="btnAdd" Text="Add Question" OnClick="btnAdd_Click" />
+                        <asp:Button runat="server" ID="btnAdd" Text="Add Answer" OnClick="btnAdd_Click" />
                     </form>
                 </div>
             </div>

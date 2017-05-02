@@ -1130,10 +1130,10 @@
   </wsdl:binding>
   <wsdl:service name="Part2WS">
     <wsdl:port name="Part2WSSoap" binding="tns:Part2WSSoap">
-      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx" />
+      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/part2ws.asmx" />
     </wsdl:port>
     <wsdl:port name="Part2WSSoap12" binding="tns:Part2WSSoap12">
-      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx" />
+      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/part2ws.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

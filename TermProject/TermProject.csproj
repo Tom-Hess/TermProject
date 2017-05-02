@@ -86,6 +86,7 @@
     <Content Include="LoginB\login.Master" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\PublishProfiles\TermProject.pubxml" />
+    <None Include="Properties\PublishProfiles\tp.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -104,29 +105,29 @@
     <Content Include="User\userForum.aspx" />
     <Content Include="User\cancel.aspx" />
     <Content Include="User\complete.aspx" />
-    <None Include="Web References\CloudWS\CloudWS.disco" />
     <Content Include="User\done.aspx" />
+    <None Include="Web References\CloudWS\cloudws.wsdl" />
+    <Content Include="Web References\CloudWS\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="Web References\Part2WS\FileData.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\CloudWS\CloudWS.wsdl" />
-    <None Include="Web References\CloudWS\Reference.map">
+    <None Include="Web References\Part2WS\part2ws.disco" />
+    <Content Include="Web References\RegistrationWS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\Part2WS\Part2WS.wsdl" />
+    </Content>
+    <None Include="Web References\Part2WS\part2ws.wsdl" />
     <Content Include="Web References\Part2WS\Person.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
-    <None Include="Web References\Part2WS\Reference.map">
+    <Content Include="Web References\Part2WS\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\RegistrationWS\RegistrationWS.wsdl" />
+    </Content>
+    <None Include="Web References\RegistrationWS\registrationws.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -136,8 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="User\upload.aspx" />
-    <None Include="Web References\Part2WS\Part2WS.disco" />
-    <None Include="Web References\RegistrationWS\RegistrationWS.disco" />
+    <None Include="Web References\CloudWS\cloudws.disco" />
+    <None Include="Web References\RegistrationWS\registrationws.disco" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -392,10 +393,10 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/CloudWS.asmx">
+    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/cloudws.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\CloudWS\</RelPath>
-      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/CloudWS.asmx</UpdateFromURL>
+      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/cloudws.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -403,10 +404,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TermProject_CloudWS_CloudWS</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx">
+    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/part2ws.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Part2WS\</RelPath>
-      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/Part2WS.asmx</UpdateFromURL>
+      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/part2ws.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -414,10 +415,10 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TermProject_Part2WS_Part2WS</CachedSettingsPropName>
     </WebReferenceUrl>
-    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx">
+    <WebReferenceUrl Include="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/registrationws.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\RegistrationWS\</RelPath>
-      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/RegistrationWS.asmx</UpdateFromURL>
+      <UpdateFromURL>http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/registrationws.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

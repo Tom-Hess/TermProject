@@ -34,7 +34,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Footer" runat="server">
     <p>
-        For PayPal test account, user name: pikewall05-buyer@gmail.com, password: TermProject.
         Thomas: Request extra credit for this feature. If Paypal didn't work first time, keep trying. Paypal developer site is not very stable.
     </p>
 </asp:Content>

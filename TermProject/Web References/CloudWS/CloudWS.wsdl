@@ -616,10 +616,10 @@
   </wsdl:binding>
   <wsdl:service name="CloudWS">
     <wsdl:port name="CloudWSSoap" binding="tns:CloudWSSoap">
-      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/CloudWS.asmx" />
+      <soap:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/cloudws.asmx" />
     </wsdl:port>
     <wsdl:port name="CloudWSSoap12" binding="tns:CloudWSSoap12">
-      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tub48631/TermProjectWS/CloudWS.asmx" />
+      <soap12:address location="http://cis-iis2.temple.edu/Spring2017/CIS3342_tuf34452/termprojectws/cloudws.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
